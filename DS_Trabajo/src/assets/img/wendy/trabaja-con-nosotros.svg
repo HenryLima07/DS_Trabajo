@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 396.45 157.17">
+   <defs>
+      <style>
+		@font-face {
+		  font-family: myFirstFont;
+		  src: url('../../fonts/Fontfabric - IntroBlackInlineCaps.otf');
+		  font-weight: normal;
+		}
+		@font-face {
+		  font-family: semibold;
+		  src: url('../../fonts/Fontfabric - IntroSemiBold.otf');
+		  font-weight: normal;
+		}
+		@font-face {
+		  font-family: introblackInlineCaps;
+		  src: url('../../fonts/Fontfabric - IntroBlackInlineCaps.otf');
+		}
+		.cls-1{font-size:27.63px;font-family:myFirstFont;letter-spacing:0.04em;}
+		.cls-1,.cls-10,.cls-5{fill:#fff;}
+		.cls-2{letter-spacing:0.02em;}
+		.cls-3{letter-spacing:0.01em;}
+		.cls-4{letter-spacing:0.02em;}
+		.cls-5{font-size:49.56px;letter-spacing:0.07em;}
+		.cls-10,.cls-5{font-family:introblackInlineCaps;}
+		.cls-6{letter-spacing:0.06em;}
+		.cls-7{letter-spacing:0.07em;}
+		.cls-8{letter-spacing:0.07em;}
+		.cls-9{letter-spacing:0.09em;}
+		.cls-10{font-size:63.44px;letter-spacing:0.06em;}
+		.cls-11{letter-spacing:-0.07em;}
+		.cls-12{letter-spacing:-0.07em;}
+		.cls-13{letter-spacing:-0.06em;}
+	  </style>
+   </defs>
+   <g id="Capa_2" data-name="Capa 2">
+      <g id="Layer_1" data-name="Layer 1">
+         <text class="cls-1" transform="translate(1.92 23.49) scale(0.97 1)">
+            COMI
+            <tspan class="cls-2" x="83.06" y="0">D</tspan>
+            <tspan class="cls-3" x="103.76" y="0">A</tspan>
+            <tspan x="123.32" y="0" xml:space="preserve"> REAL</tspan>
+            <tspan class="cls-4" x="204.42" y="0">.</tspan>
+            <tspan x="213.23" y="0">GENTE REAL.</tspan>
+         </text>
+         <text class="cls-5" transform="translate(1.83 76.61) scale(0.97 1)">
+            ¡
+            <tspan class="cls-6" x="12.39" y="0">TRABAJA CON</tspan>
+         </text>
+         <text class="cls-10" transform="translate(0 138.66) scale(0.97 1)">
+            NOSOTROS!
+         </text>
+      </g>
+   </g>
+</svg>
+

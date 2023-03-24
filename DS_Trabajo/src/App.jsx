@@ -3,7 +3,7 @@ import { Routes, Route} from "react-router-dom"
 import './App.css'
 
 //importing views
-import Wendy from "./assets/Views/Wendy/Wendy.view";
+import Wendy from "./Views/Wendy/Wendy.view";
 
 function App() {
 
