@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 import classes from "./AsideMenu.module.scss";
 
-import AsideCloseIcon from "../../../assets/img/wendy/close-aside.svg";
+import AsideCloseIcon from "../../../assets/img/wendy/close-w.svg";
 
 const restaurants = {
     "wendys": "WENDY'S"

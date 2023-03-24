@@ -1,7 +1,7 @@
 //importing icons
 import rowIcon from "../../../assets/img/wendy/flechas.png";
 import workWithUsImage from "../../../assets/img/wendy/trabaja-con-nosotros.svg";
-import ninia from "../../../assets/img/wendy/ninia.svg";
+import ninia from '/img/wendys/ninia.svg';
 import VideoWendy from "../../../assets/videos/wendys/wendys_video.mp4";
 
 
