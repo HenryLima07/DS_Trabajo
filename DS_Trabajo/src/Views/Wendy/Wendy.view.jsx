@@ -1,12 +1,13 @@
 
 //importing icon
-import HeaderIcon from "../../assets/img/wendy/wendy_logo.svg";
+import HeaderIcon from "../../assets/img/wendy/wendys.svg";
 import AsideIcon from "../../assets/img/wendy/logo-wht.svg";
 
 //importing elements
 import Header from "../../components/Header/Header.component";
-import TrabajaContainer from "../../components/Main/TrabajaContainer/TrabajaContainer.component";
-import VidaRestaurantContainer from "../../components/Main/VidaRestaurantContainer/VidaRestaurantContainer.component";
+import Main from "../../components/Main/Main.component";
+import Footer from "../../components/Footer/Footer.component";
+ 
 
 const Wendy = ()=>{
     const wendys_assets = {
@@ -16,11 +17,8 @@ const Wendy = ()=>{
     return(
         <>
             <Header banner={wendys_assets.HeaderIcon} asideicon = {wendys_assets.AsideIcon} restaurant = "wendys"/>
-            <section>
-                <TrabajaContainer />
-                <VidaRestaurantContainer />
-            </section>
-
+            <Main />
+            <Footer />
         </>
     )
 }
