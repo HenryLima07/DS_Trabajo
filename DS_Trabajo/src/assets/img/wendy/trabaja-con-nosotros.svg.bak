@@ -4,17 +4,17 @@
       <style>
 		@font-face {
 		  font-family: myFirstFont;
-		  src: url('../fonts/Fontfabric - IntroBlack.otf');
+		  src: url('../../fonts/Fontfabric - IntroBlack.otf');
 		  font-weight: normal;
 		}
 		@font-face {
 		  font-family: semibold;
-		  src: url('../fonts/Fontfabric - IntroSemiBold.otf');
+		  src: url('../../fonts/Fontfabric - IntroSemiBold.otf');
 		  font-weight: normal;
 		}
 		@font-face {
 		  font-family: introblackInlineCaps;
-		  src: url('../fonts/Fontfabric - IntroBlackInlineCaps.otf');
+		  src: url('../../fonts/Fontfabric - IntroBlackInlineCaps.otf');
 		}
 		.cls-1{font-size:27.63px;font-family:myFirstFont;letter-spacing:0.04em;}
 		.cls-1,.cls-10,.cls-5{fill:#fff;}

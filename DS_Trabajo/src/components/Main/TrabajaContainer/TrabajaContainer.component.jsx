@@ -1,19 +1,23 @@
 //importing icons
 import rowIcon from "../../../assets/img/wendy/flechas.png";
 import workWithUsImage from "../../../assets/img/wendy/trabaja-con-nosotros.svg";
-import ninia from "../../../assets/img/wendy/ninia.svg"
+import ninia from "../../../assets/img/wendy/ninia.svg";
+import VideoWendy from "../../../assets/videos/wendys/wendys_video.mp4";
+
 
 //importing classes
 import classes from "./TrabajaContainer.module.scss";
 
-const TrabajaContainer = ({video})=>{
+const TrabajaContainer = ()=>{
     return (
-        <section id="TrabajaConNosotrosDiv" className={`flex flex-col lg:flex-row w-full bg-wendys-background bg-[url(${ninia})] bg-no-repeat bg-smallWaterMarkSize sm:bg-mediumWaterMarkSize lg:bg-normalWaterMarkSize bg-smallWaterMarkPositon sm:bg-mediumWaterMarkPositon lg:bg-normalWaterMarkPositon`}>
+        <section id="TrabajaConNosotrosDiv" className={`flex flex-col lg:flex-row w-full bg-wendys-background bg-[url('${ninia}')] bg-no-repeat bg-smallWaterMarkSize sm:bg-mediumWaterMarkSize lg:bg-normalWaterMarkSize bg-smallWaterMarkPositon sm:bg-mediumWaterMarkPositon lg:bg-normalWaterMarkPositon`}>
+
+         {/* TODO: IMAGE background */}
         
             <div className="w-full flex flex-col items-center mt-20 mb-10 lg:mb-40">
                 <div className="flex flex-col max-w-md w-2/3">
                     <video muted={true} autoPlay={true} playsInline={true} loop={true} className="object-fit w-full">
-                        <source src={video} type="video/mp4" />
+                        <source src={VideoWendy} type="video/mp4" />
                     </video>
                 </div>
             </div>
@@ -41,6 +45,6 @@ const TrabajaContainer = ({video})=>{
     );
 }
 
-TODO: fonts
+
 
 export default TrabajaContainer;
