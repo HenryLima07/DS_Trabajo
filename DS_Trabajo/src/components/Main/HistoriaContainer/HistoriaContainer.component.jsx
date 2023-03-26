@@ -1,10 +1,12 @@
 import backgroundTexture from '/img/wendys/black-plain-concrete-textured.jpg';
 import seccionIcon from "../../../assets/img/wendy/seccion.png";
 
+import classes from "./HistoriaContainer.module.scss";
+
 const HistoriaContainer = ()=>{
     return(
 
-        <section className={`bg-[url('${backgroundTexture}')] bg-cover flex flex-col items-center md:flex-row lg:-mt-[10rem] clipBorder`}>
+        <section className={`bg-[url('/img/wendys/black-plain-concrete-textured.jpg')] bg-cover flex flex-col items-center md:flex-row lg:-mt-[10rem] ${classes["clipBorder"]}`}>
             <div className="mr-10 md:mr-0 md:w-6/12 ml-10 lg:ml-32 my-10 lg:my-60 pt-10">
                 <h3 className="text-wendys-blue font-wendysSimpleFont text-2xl">UN POCO DE</h3>
                 <h2 className="text-white font-wendysSimpleFont text-4xl sm:text-6xl mb-12 mt-2">Historia de Wendy's</h2>

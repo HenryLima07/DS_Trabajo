@@ -2,21 +2,10 @@ import { Link } from "react-router-dom";
 
 import classes from "./AsideMenu.module.scss";
 
-import AsideCloseIcon from "../../../assets/img/wendy/close-w.svg";
+import AsideCloseIcon from "../../../../assets/img/wendy/close-w.svg";
 
-const restaurants = {
-    "wendys": "WENDY'S"
-}
 
-const AsideMenu=({asideicon, restaurant})=>{
-
-    const asideTitle = ()=>{
-        if(restaurants[restaurant] === "WENDY'S") return "WENDY'S EMPLEOS";
-        if(restaurants[restaurant] === "add others") return "WENDY'S EMPLEOS";
-        if(restaurants[restaurant] === "add others") return "WENDY'S EMPLEOS";
-        if(restaurants[restaurant] === "add others") return "WENDY'S EMPLEOS";
-        if(restaurants[restaurant] === "add others") return "WENDY'S EMPLEOS";
-    }
+const AsideMenu=({asideicon})=>{
 
     return(
         <aside className={`${classes["aside-menu"]} transition-all duration-300 w-80 h-full fixed -left-80  top-0 bottom-0 shadow-md shadow-black z-[1200] translate-x-80`}>
@@ -32,7 +21,7 @@ const AsideMenu=({asideicon, restaurant})=>{
 
                 </div>
 
-                <h2 className="font-wendys-default px-2 py-4 w-full text-3xl text-justify text-white"> {asideTitle()} </h2>
+                <h2 className="font-wendys-default px-2 py-4 w-full text-3xl text-justify text-white"> WENDY'S </h2>
             
             </div>
 

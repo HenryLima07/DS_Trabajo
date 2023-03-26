@@ -8,17 +8,21 @@ const Menu = ()=>{
                 <Link to={"/"}>
                     <li>Inicio</li>
                 </Link>
-                <Link to={"/"}>
+
+                <Link to={"/registro"}>
                     <li>Aplica por primera vez</li>
                 </Link>
-                <Link>
+
+                <Link to={"/actualiza-perfil"}>
                     <li>Actualiza tu perfil</li>
                 </Link>
-                <Link to={"/"}>
+
+                <Link to={"/plazas"}>
                     <li>Plazas disponibles</li>
                 </Link>
-                <Link to={"/"} >
-                    <li>Contactanos</li>
+
+                <Link to={"/contactos"} >
+                    <li>Contactos</li>
                 </Link>
             </ul>
         </div>

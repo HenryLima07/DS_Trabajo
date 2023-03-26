@@ -3,20 +3,19 @@ import rowIcon from "../../../assets/img/wendy/flechas.png";
 import workWithUsImage from "../../../assets/img/wendy/trabaja-con-nosotros.svg";
 import ninia from '/img/wendys/ninia.svg';
 import VideoWendy from "../../../assets/videos/wendys/wendys_video.mp4";
-
+import { Link } from "react-router-dom";
 
 //importing classes
 import classes from "./TrabajaContainer.module.scss";
 
 const TrabajaContainer = ()=>{
     return (
-        <section id="TrabajaConNosotrosDiv" className={`flex flex-col lg:flex-row w-full bg-wendys-background bg-[url('${ninia}')] bg-no-repeat bg-smallWaterMarkSize sm:bg-mediumWaterMarkSize lg:bg-normalWaterMarkSize bg-smallWaterMarkPositon sm:bg-mediumWaterMarkPositon lg:bg-normalWaterMarkPositon`}>
-
-         {/* TODO: IMAGE background */}
+        <section id="TrabajaConNosotrosDiv" className={`flex flex-col lg:flex-row w-full bg-wendys-background bg-[url('/img/wendys/ninia.svg')] bg-no-repeat bg-smallWaterMarkSize sm:bg-mediumWaterMarkSize lg:bg-normalWaterMarkSize bg-smallWaterMarkPositon sm:bg-mediumWaterMarkPositon lg:bg-normalWaterMarkPositon`}>
         
             <div className="w-full flex flex-col items-center mt-20 mb-10 lg:mb-40">
+
                 <div className="flex flex-col max-w-md w-2/3">
-                    <video muted={true} autoPlay={true} playsInline={true} loop={true} className="object-fit w-full">
+                    <video muted={true} autoPlay={true} playsInline={true} loop={true} className={`object-fit w-full ${classes["video"]}`}>
                         <source src={VideoWendy} type="video/mp4" />
                     </video>
                 </div>
@@ -28,11 +27,12 @@ const TrabajaContainer = ()=>{
             </div>
             
             <div className="mb-10 lg:mb-0">
-            <button type="button"
-                className="bg-wendys-blue hover:bg-wendys-darkblue transition-colors px-6 sm:px-20 py-4 rounded-lg font-wendysSimpleFont text-white text-xl"
-                 style={{lineHeight: 85 + "%"}}>
-                    APLICÁ POR <br /> PRIMERA VEZ
-                </button>
+            <Link to = "/registro">
+                    <div  className="bg-wendys-blue hover:bg-wendys-darkblue transition-colors px-6 sm:px-20 py-4 rounded-lg font-wendysSimpleFont text-white text-xl text-center"
+                        style={{lineHeight: 80 + "%"}}>
+                        APLICÁ POR <br /> PRIMERA VEZ
+                    </div>
+                </Link>
                 {/* TODO: (click)="apply()" */}
             </div>
 

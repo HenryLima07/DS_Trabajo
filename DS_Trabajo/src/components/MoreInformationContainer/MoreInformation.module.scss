@@ -1,0 +1,418 @@
+
+.video-animation{
+    cursor: pointer;
+    max-height: 500px;
+    margin-bottom: 10px;
+    object-fit: contain;
+}
+
+.modal{
+    cursor: pointer;
+}
+
+//fade?
+.fade {
+    -webkit-transition: opacity 0.15s linear;
+    transition: opacity 0.15s linear;
+}
+.fade:not(.show) {
+    opacity: 0;
+}
+.modal.fade .modal-dialog {
+    -webkit-transition: transform 0.3s ease-out;
+    transition: transform 0.3s ease-out;
+    -webkit-transform: translate(0, -50px);
+    -ms-transform: translate(0, -50px);
+    transform: translate(0, -50px);
+}
+.modal-backdrop.fade {
+    opacity: 0;
+}
+.offcanvas-backdrop.fade {
+    opacity: 0;
+}
+.timepicker-modal .fade.show {
+    opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+    .form-control::file-selector-button {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .form-control::-webkit-file-upload-button {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .form-switch .form-check-input {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .form-range::-webkit-slider-thumb {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .form-range::-moz-range-thumb {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .form-floating > label {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .fade {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .collapsing {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .collapsing.collapse-horizontal {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .accordion-button::after {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .modal.fade .modal-dialog {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .carousel-item {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .carousel-fade .active.carousel-item-start {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .carousel-fade .active.carousel-item-end {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .carousel-control-prev {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .carousel-control-next {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .carousel-indicators [data-bs-target] {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .spinner-border {
+        -webkit-animation-duration: 1.5s;
+        animation-duration: 1.5s;
+    }
+    .spinner-grow {
+        -webkit-animation-duration: 1.5s;
+        animation-duration: 1.5s;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .form-control::file-selector-button {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .form-control::-webkit-file-upload-button {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .form-switch .form-check-input {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .form-range::-webkit-slider-thumb {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .form-range::-moz-range-thumb {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .form-floating > label {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .fade {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .collapsing {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .collapsing.collapse-horizontal {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .accordion-button::after {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .modal.fade .modal-dialog {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .carousel-item {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .carousel-fade .active.carousel-item-start {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .carousel-fade .active.carousel-item-end {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .carousel-control-prev {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .carousel-control-next {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .carousel-indicators [data-bs-target] {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .spinner-border {
+        -webkit-animation-duration: 1.5s;
+        animation-duration: 1.5s;
+    }
+    .spinner-grow {
+        -webkit-animation-duration: 1.5s;
+        animation-duration: 1.5s;
+    }
+}
+
+//tab content and pane ?
+.tab-content > .tab-pane {
+    display: none;
+}
+
+.modal.show .modal-dialog {
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+}
+.modal-backdrop.show {
+    opacity: 0.5;
+}
+.tooltip.show {
+    opacity: 1;
+}
+.offcanvas-backdrop.show {
+    opacity: 0.5;
+}
+.offcanvas.show {
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+}
+.timepicker-modal .fade.show {
+    opacity: 1;
+}
+
+//active
+.btn.active {
+    box-shadow: none;
+}
+.btn.active:focus {
+    box-shadow: none;
+}
+.dropdown-item.active {
+    color: #1f2937;
+    -webkit-text-decoration: none;
+    text-decoration: none;
+    background-color: #0d6efd;
+}
+.dropdown-menu-dark .dropdown-item.active {
+    color: #fff;
+    background-color: #0d6efd;
+}
+
+.nav-tabs .nav-link.active {
+    color: #2563eb;
+    border-color: #2563eb;
+}
+
+.tab-content > .active {
+    display: block;
+}
+@media (prefers-reduced-motion: reduce) {
+    .form-control::file-selector-button {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .form-control::-webkit-file-upload-button {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .form-switch .form-check-input {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .form-range::-webkit-slider-thumb {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .form-range::-moz-range-thumb {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .form-floating > label {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .fade {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .collapsing {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .collapsing.collapse-horizontal {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .accordion-button::after {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .modal.fade .modal-dialog {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .carousel-item {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .carousel-fade .active.carousel-item-start {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .carousel-fade .active.carousel-item-end {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .carousel-control-prev {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .carousel-control-next {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .carousel-indicators [data-bs-target] {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .spinner-border {
+        -webkit-animation-duration: 1.5s;
+        animation-duration: 1.5s;
+    }
+    .spinner-grow {
+        -webkit-animation-duration: 1.5s;
+        animation-duration: 1.5s;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .form-control::file-selector-button {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .form-control::-webkit-file-upload-button {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .form-switch .form-check-input {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .form-range::-webkit-slider-thumb {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .form-range::-moz-range-thumb {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .form-floating > label {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .fade {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .collapsing {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .collapsing.collapse-horizontal {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .accordion-button::after {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .modal.fade .modal-dialog {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .carousel-item {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .carousel-fade .active.carousel-item-start {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .carousel-fade .active.carousel-item-end {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .carousel-control-prev {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .carousel-control-next {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .carousel-indicators [data-bs-target] {
+        -webkit-transition: none;
+        transition: none;
+    }
+    .spinner-border {
+        -webkit-animation-duration: 1.5s;
+        animation-duration: 1.5s;
+    }
+    .spinner-grow {
+        -webkit-animation-duration: 1.5s;
+        animation-duration: 1.5s;
+    }
+}
+
+//nav-bar ?
+.nav-tabs .nav-link {
+    color: #4b5563;
+}
+
+.nav-tabs .nav-link.active {
+    color: #2563eb;
+    border-color: #2563eb;
+}
+.nav-justified > .nav-link {
+    -webkit-flex-basis: 0;
+    -ms-flex-basis: 0;
+    flex-basis: 0;
+}

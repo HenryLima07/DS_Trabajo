@@ -17,3 +17,13 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+@font-face {
+  font-family: "wendysSimpleFont";
+  src: url("./assets/fonts/Fontfabric - IntroBlack.otf");
+}
+
+@font-face {
+  font-family: "wendysFont";
+  src: url("./assets/fonts/Fontfabric - IntroBlackInlineCaps.otf");
+}
