@@ -1,11 +1,13 @@
 //importing imgs
-import valoresImg from "../../../assets/img/wendy/valores.svg";
-import backgroundValores from "/img/wendys/cuadros-valores.png";
+import valoresImg from '../../../assets/img/wendy/valores.svg';
+import backgroundValores from '/img/wendys/cuadros-valores.png';
+
+import classes from "./ValoresContainer.module.scss";
 
 
 const ValoresContainer = ()=>{
     return(
-        <section className={`flex flex-col items-center md:flex-row bg-[url('${backgroundValores}')] lg:-mt-[10rem] clipBorder`}>
+        <section className={`flex flex-col items-center md:flex-row bg-[url('/img/wendys/cuadros-valores.png')] lg:-mt-[10rem] ${classes["clipBorder"]}`}>
             
             <div className="md:w-1/2 ml-10 lg:ml-32 my-10 lg:my-40 mr-10 lg:mr-20">
                 <h1 className="text-wendys-blue font-wendysSimpleFont text-3xl sm:text-4xl mb-6 lg:mt-20">VALORES</h1>

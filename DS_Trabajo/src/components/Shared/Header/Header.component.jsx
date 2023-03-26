@@ -3,7 +3,11 @@
 import AsideMenu from "./AsideMenu/AsideMenu.component";
 import Menu from "./Menu/Menu.component";
 
-const Header = ({banner, asideicon, restaurant})=>{
+//importing icons
+import banner from "../../../assets/img/wendy/Wendys.svg";
+import asideicon from "../../../assets/img/wendy/logo-wht.svg";
+
+const Header = ()=>{
     return(
         <>
             <header className="flex flex-col items-center w-full">
@@ -13,7 +17,7 @@ const Header = ({banner, asideicon, restaurant})=>{
 
             <article>
                 <Menu />
-                <AsideMenu asideicon={asideicon} restaurant={restaurant}/>
+                <AsideMenu asideicon={asideicon} />
             </article>
         </>
     );

@@ -20,7 +20,13 @@ module.exports = {
         "normalWaterMarkSize": "40rem",
         "mediumWaterMarkSize": "32rem",
         "smallWaterMarkSize": "80%"
+      },
+      backgroundPosition:{
+        "normalWaterMarkPositon" : "120% 70%",
+        "mediumWaterMarkPositon" : "110% 110%",
+        "smallWaterMarkPositon": "130% 110%"
       }
+      
     },
   },
   plugins: [

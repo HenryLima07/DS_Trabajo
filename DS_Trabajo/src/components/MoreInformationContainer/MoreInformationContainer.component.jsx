@@ -1,20 +1,37 @@
 import classes from "./MoreInformation.module.scss";
 
 //importing data assets
-import gorra from "../../../assets/img/wendy/gorra.png"
-import crecimiento from "../../../assets/img/wendy/crecimiento.png";
-import playIcon from "../../../assets/img/wendy/play.png";
-import miraElVideo from "../../../assets/img/wendy/miraelvideo.png";
-import cuadradosValoresBG from "../../../assets/img/wendy/cuadros-valores.png"
+import gorra from "../../assets/img/wendy/gorra.png"
+import crecimiento from "../../assets/img/wendy/crecimiento.png";
+import playIcon from "../../assets/img/wendy/play.png";
+import miraElVideo from "../../assets/img/wendy/miraelvideo.png";
+import cuadradosValoresBG from "/img/wendys/cuadros-valores.png"
 
 
-import videoWendyGenrente from "../../../assets/videos/wendys/ent_gerente.mp4";
-import videoAnimation from "../../../assets/videos/wendys/anim_prof.gif"
+import videoWendyGenrente from "../../assets/videos/wendys/ent_gerente.mp4";
+import videoAnimation from "../../assets/videos/wendys/anim_prof.gif";
+import { useState } from "react";
 
-const VidaRestaurantContainer = ()=>{
+const Comments ={
+    "growth": "growth",
+    "teamwork": "teamwork",
+    "family": "family"
+}
+
+const MoreInformationContainer = ()=>{
+
+    const [currentComment, setCurrentComment] = useState("growth");
+    
+    
+    const setCurrentCommentHandler = (setComment = "growth")=>{
+        if(!Comments[setComment]) return;
+
+        setCurrentComment(setComment);
+    }
+
     return(
         <>
-            <section className={`flex flex-col pl-64 pr-8 bg-[url("${cuadradosValoresBG}")]`}>
+            <section className={`flex flex-col pl-24 pr-8 bg-[url("/img/wendys/cuadros-valores.png")]`}>
                 <div className="flex flex-col items-start py-8 w-full" >
                     <h1 className=" font-wendysSimpleFont text-5xl text-wendys-blue mb-4">
                         Se auténtico
@@ -23,30 +40,57 @@ const VidaRestaurantContainer = ()=>{
                         En Wendy’s todo lo que te decimos, es real. Mirá nuestros videos y comprobalo.
                     </h2>
 
-                    <ul className="nav nav-tabs nav-justified flex flex-col md:flex-row flex-wrap list-none border-b-0 pl-0 mb-4 w-full font-wendysSimpleFont text-wendys-blue" id="tabs-tabJustify" role={"tablist"}>
+                    <ul className={`nav ${classes["nav-tabs"]} ${classes["nav-justified"]} flex flex-col md:flex-row flex-wrap list-none border-b-0 pl-0 mb-4 w-full font-wendysSimpleFont text-wendys-blue`} id="tabs-tabJustify" role={"tablist"}>
 
-                        <li className="nav-item flex-grow text-center" role={"presentation"}>
+                        <li className={`${classes["nav-item"]} flex-grow text-center`} role={"presentation"}>
 
-                            <a href="#tabs-profesional"  id="tabs-profesional-tab" className="nav-link w-full block font-medium text-lg leading-tight uppercase border-x-0 border-t-0 border-b-2 border-gray-300 px-6 py-3 my-2 hover:bg-gray-300 active"   data-bs-toggle="pill" 
-                            data-bs-target="#tabs-profesional" role="tab" aria-controls="tabs-profesional" aria-selected="true">Crecimiento</a>
+                            <button 
+                                onClick={()=>setCurrentCommentHandler("growth")} id="tabs-profesional-tab" 
+                                className={`${classes["nav-link"]} w-full block font-medium text-lg leading-tight uppercase border-x-0 border-t-0 border-b-2 border-gray-300 px-6 py-3 my-2 hover:bg-gray-100 ${currentComment === Comments["growth"] ? classes["active"] : ""}`}
+
+                                data-bs-toggle="pill" 
+                                data-bs-target="#tabs-profesional" 
+                                role="tab" 
+                                aria-controls="tabs-profesional" 
+                                aria-selected="true"
+                            >Crecimiento</button>
+
                         </li>
 
-                        <li role={"presentation"} className="nav-item flex-grow text-center">
+                        <li role={"presentation"} className={`${classes["nav-item"]} flex-grow text-center`}>
 
-                            <a href="#tabs-gerente" id="tabs-gerente-tab" className="nav-link w-full block font-medium text-lg leading-tight uppercase border-x-0 border-t-0 border-b-2 border-gray-300 px-6 py-3 my-2 hover:bg-gray-300 active"  data-bs-toggle="pill" data-bs-target="#tabs-gerente"
-                                role="tab" aria-controls="tabs-gerente" aria-selected="false">Trabajo en equipo</a>
+                            <button 
+                                onClick={()=>setCurrentCommentHandler("teamwork")}
+                                id="tabs-gerente-tab" 
+                                className={`${classes["nav-link"]} w-full block font-medium text-lg leading-tight uppercase border-x-0 border-t-0 border-b-2 border-gray-300 px-6 py-3 my-2 hover:bg-gray-100 ${currentComment === Comments["teamwork"] ? classes["active"] : ""}`} 
+
+                                data-bs-toggle="pill" 
+                                data-bs-target="#tabs-gerente"
+                                role="tab" 
+                                aria-controls="tabs-gerente" 
+                                aria-selected="false"
+                            >Trabajo en equipo</button>
                         </li>
-                        <li role={"presentation"} className="nav-item flex-grow text-center">
+                        <li role={"presentation"} className={`${classes["nav-item"]} flex-grow text-center`}>
 
-                            <a href="#tabs-domicilio" id="tabs-domicilio-tab" 
-                            className="nav-link w-full block font-medium text-lg leading-tight uppercase border-x-0 border-t-0 border-b-2 border-gray-300 px-6 py-3 my-2 hover:bg-gray-300 active" data-bs-toggle="pill" data-bs-target="#tabs-domicilio"
-                                role="tab" aria-controls="tabs-domicilio" aria-selected="false">Familia</a>
+                            <button 
+                                onClick={()=>setCurrentCommentHandler("family")}
+                                id="tabs-domicilio-tab" 
+                                className={`${classes["nav-link"]} w-full block font-medium text-lg leading-tight uppercase border-x-0 border-t-0 border-b-2 border-gray-300 px-6 py-3 my-2 hover:bg-gray-100 ${currentComment === Comments["family"] ? classes["active"] : ""}`} 
+
+                                data-bs-toggle="pill" 
+                                data-bs-target="#tabs-domicilio"
+                                role="tab" 
+                                aria-controls="tabs-domicilio" 
+                                aria-selected="false"
+                            >Familia</button>
                         </li>
                     </ul>
 
-                    <div id="tabs-tabContentJustify" className="tab-content flex flex-row mt-10 w-full items-center">
+                    {/* TODO: do animation */}
+                    <div id="tabs-tabContentJustify" className={`${classes["tab-content"]} flex flex-row mt-10 w-full items-center`}>
 
-                        <div className="tab-pane fade show active w-1/2" id="tabs-profesional" role="tabpanel"
+                        <div className={`w-1/2 ${classes["tab-pane"]} ${classes["fade"]} ${currentComment === Comments["growth"] ? `${classes["active"]} ${classes["show"]}`  : ""} `} id="tabs-profesional" role="tabpanel"
                             aria-labelledby="tabs-profesional-tab">
 
                             <div className="flex flex-col items-center">
@@ -59,18 +103,18 @@ const VidaRestaurantContainer = ()=>{
                             </div>
                         </div>
 
-                        <div className="tab-pane fade w-1/2" id="tabs-gerente" role="tabpanel" aria-labelledby="tabs-gerente-tab">
+                        <div className={`w-1/2 ${classes["tab-pane"]} ${classes["fade"]} ${currentComment === Comments["teamwork"] ? `${classes["active"]} ${classes["show"]}`  : ""} `} id="tabs-gerente" role="tabpanel" aria-labelledby="tabs-gerente-tab">
                             <div className="flex flex-col items-center">
-                                <p className="text-center italic text-4xl w-3/2">
+                                <p className="text-center italic text-4xl w-3/4">
                                     "Wendy’s es una compañia que te brinda todas las herramientas para que tu puedas crecer".</p>
                                 <br />
                                 <p className="text-wendys-background text-center text-lg">Alejandro Ramos<br />Gerente de Distrito</p>
                             </div>
                         </div>
 
-                        <div className="tab-pane fade w-1/2" id="tabs-domicilio" role="tabpanel" aria-labelledby="tabs-domicilio-tab">
+                        <div className={`w-1/2 ${classes["tab-pane"]} ${classes["fade"]} ${currentComment === Comments["family"] ? `${classes["active"]} ${classes["show"]}`  : ""} `} id="tabs-domicilio" role="tabpanel" aria-labelledby="tabs-domicilio-tab">
                             <div className="flex flex-col items-center" >
-                                <p className="text-center italic text-4xl" >
+                                <p className="text-center italic text-4xl w-3/4" >
                                     "Lo que más me gusta es la unión y que siempre nos apoyamos".</p>
                                 <br />
                                 <p className="text-wendys-background text-center text-lg">Emmanuel Escobar<br />Profesional de domicilio
@@ -116,7 +160,7 @@ const VidaRestaurantContainer = ()=>{
                         </div>
 
                         <div className="w-2/5 p-10" >
-                            <p className="text-wedys-blue text-4xl font-wendysSimpleFont mb-4">¿TIENES METAS PROFESIONALES?</p>
+                            <p className="text-wedys-blue text-4xl font-wendysSimpleFont mb-4 text-wendys-blue">¿TIENES METAS PROFESIONALES?</p>
                             <p  className="text-xl">Cada miembro de la tripulación recibe capacitación individual y se expone a todos los
                                 lados del negocio. A partir de ahí, todo depende de ti. Wendy's ha definido trayectorias
                                 profesionales para aquellos que trabajan duro y tienen hambre de más.</p>
@@ -155,4 +199,4 @@ const VidaRestaurantContainer = ()=>{
     );
 }
 
-export default VidaRestaurantContainer;
+export default MoreInformationContainer;
