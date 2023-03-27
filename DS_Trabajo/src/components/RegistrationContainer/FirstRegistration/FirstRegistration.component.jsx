@@ -1,13 +1,40 @@
 import { Link } from "react-router-dom";
 import Form from "../../Shared/Form/Form.component";
 import Input from "../../Shared/Input/Input.component";
+import ErrorElement from "../../Shared/ErrorElement/ErrorElement.component";
+
+//importing useForm hook
+import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 const FirstRegistrationContainer = ()=>{
+    //getting objects from useform
+    const { handleSubmit, register, watch, formState: { errors } } = useForm();
+
+    //allow user move into next step
+    const [formError, setError] = useState(true);
+
+    const setErrorHandler=(state)=>setError(state);
+        
+
+    //onSubmitHandler
+    const onSubmitHandler = (e, data)=>{
+        setErrorHandler(false);
+        console.log(data);
+    }
+
+    const onInvalid=()=>{
+        setErrorHandler(true);
+    }
+
+
     return(
         <article>
         {/* TODO: formgroup */}
-            <Form className = "flex flex-col lg:flex-row p-4 items-center justify-around" autoComplete="off" >
-
+            <Form autoComplete="off" 
+                onSubmit = {(handleSubmit(onSubmitHandler, onInvalid))}
+             >
+            <div className = "flex flex-col lg:flex-row p-4 items-center justify-around">
                 <div className="mx-8">
 
                     <div className="flex flex-col justify-center">
@@ -47,11 +74,16 @@ const FirstRegistrationContainer = ()=>{
 
                                     <Input
                                         type="text"
+                                        id="nombres"
                                         name="nombres"
+                                        aria-invalid = { errors.nombres }
                                         required = {true}
                                         label = "Nombre completo"
+                                        innerref = {{...register("nombres", {required: true}) }}
                                             
-                                    />
+                                    >
+                                        {errors.email?.type === "required" && (<ErrorElement>El campo es requerido</ErrorElement>)}
+                                    </Input>
                                 </div>
                             </div>
 
@@ -65,6 +97,7 @@ const FirstRegistrationContainer = ()=>{
                                         label="País donde vive"
                                         required = {true}
                                         firstOption="Seleccione"
+                                        innerref = {{...register("paises")}}
                                     />
                                 </div>
                             </div>
@@ -78,6 +111,7 @@ const FirstRegistrationContainer = ()=>{
                                             name = "numeroDocumento"
                                             required = {true}
                                             label = "Documento de Identidad"
+                                            innerref = {{...register("numeroDocumento")}}
                                         />
                                     </div>
                                 </div>
@@ -89,7 +123,9 @@ const FirstRegistrationContainer = ()=>{
                                         className="w-full"
                                         label="Departamentos"
                                         required={true}
-                                        firstOption="Seleccione" />
+                                        firstOption="Seleccione"
+                                        innerref = {{...register("deptos")}}
+                                         />
                                     </div>
 
                                     <div className="flex flex-col p-2 w-full">
@@ -100,6 +136,7 @@ const FirstRegistrationContainer = ()=>{
                                             label = "Municipio"
                                             className="w-full"
                                             firstOption="Seleccione"
+                                            innerref = {{...register("municipios")}}
                                         />
                                     </div>
                                 </div>
@@ -115,6 +152,7 @@ const FirstRegistrationContainer = ()=>{
                                                 label="Edad"
                                                 required = {true}
                                                 className= "w-20"
+                                                innerref = {{...register("edad")}}
                                             />
                                         </div>
 
@@ -124,6 +162,7 @@ const FirstRegistrationContainer = ()=>{
                                                 name="telefono"
                                                 type= "number"
                                                 className="w-40 md:w-52"
+                                                innerref = {{...register("telefono")}}
                                             />
                                         </div>
                                     </div>
@@ -135,25 +174,27 @@ const FirstRegistrationContainer = ()=>{
                                             required={true}
                                             type="email"
                                             className="w-full"
+                                            innerref = {{...register("email")}}
                                         />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div className=" bg-[#029CD4] flex flex-col lg:flex-row px-10 lg:px-16 py-6 w-full">
 
+                    <div className="flex flex-row justify-between w-full">
+                        {/* 
+                        <div className=" w-full text-right font-wendysSimpleFont text-xl text-white"></div>  */}
+                        <div className=" w-full text-right font-wendysSimpleFont text-xl text-white">
+                            {   formError ? <></>
+                                <Link to={"/registro-step2"}><button type="submit">CONTINUAR &gt;</button></Link>}
+                        </div> 
+                    </div>
+                </div>
             </Form>
 
-            <div className=" bg-[#029CD4] flex flex-col lg:flex-row px-10 lg:px-16 py-6">
-
-                <div className="flex flex-row justify-between w-full">
-                    
-                    <div className=" w-full text-right font-wendysSimpleFont text-xl text-white"></div> 
-                    <div className=" w-full text-right font-wendysSimpleFont text-xl text-white">
-                        <Link to={"/registro-step2"}>CONTINUAR &gt;</Link>
-                    </div> 
-                </div>
-            </div>
         </article>
     )
 }

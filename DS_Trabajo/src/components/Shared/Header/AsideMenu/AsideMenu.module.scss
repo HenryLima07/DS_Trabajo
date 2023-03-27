@@ -3,7 +3,6 @@
 .aside-menu{
     visibility: visible;
     
-    visibility: hidden;
     @include media-up(1024px){
         visibility: hidden;
     }

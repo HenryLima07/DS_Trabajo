@@ -7,6 +7,7 @@ const Input = ({
     firstOption="", 
     closeOptions=false, 
     className = "", 
+    children,
     ...rest
 })=>{
     return(
@@ -23,11 +24,12 @@ const Input = ({
             </label>
            {
             type ? 
-                <input type={type} name={name} {...rest} className ={`h-10 border-solid border bg-gray-100 border-gray-300 rounded-md ${className}`} />
+                <input type={type} name={name} {...rest} className ={`w-full h-10 border-solid border bg-gray-100 border-gray-300 rounded-md ${className}`}/>
 
                 :
                 
-                <select id="paises" name="paises" className={`h-10 boder-solid border bg-gray-100 border-gray-300 rounded-md ${className}`}>
+                <select id="paises" name="paises" className={`h-10 boder-solid border bg-gray-100 border-gray-300 rounded-md ${className}`} 
+                    {...rest}>
                     <option selected={true}  value="" disabled = {true}>{firstOption}</option>
                     {
                         closeOptions ?
@@ -41,7 +43,7 @@ const Input = ({
                 </select>
           
                 }
-            
+                {children}
         </>
     )
 }
