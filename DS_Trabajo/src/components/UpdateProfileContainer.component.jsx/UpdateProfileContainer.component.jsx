@@ -1,5 +1,5 @@
 import Form from "../Shared/Form/Form.component";
-import Input from "../Shared/Input/Input.component";
+import Input from "../Shared/Form/Input/Input.component";
 
 const UpdateProfileContainer = ()=>{
     return(

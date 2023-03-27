@@ -1,36 +1,37 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+//importing form elements
 import Form from "../../Shared/Form/Form.component";
-import Input from "../../Shared/Input/Input.component";
-import ErrorElement from "../../Shared/ErrorElement/ErrorElement.component";
+import Input from "../../../components/Shared/Form/Input/Input.component";
+import Select from "../../Shared/Form/Select/Select.component";
+import ErrorElement from "../../Shared/Form/ErrorElement/ErrorElement.component";
 
 //importing useForm hook
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 
 const FirstRegistrationContainer = ()=>{
     //getting objects from useform
     const { handleSubmit, register, watch, formState: { errors } } = useForm();
-
-    //allow user move into next step
-    const [formError, setError] = useState(true);
+    const navigateTo = useNavigate();
 
     const setErrorHandler=(state)=>setError(state);
         
 
     //onSubmitHandler
-    const onSubmitHandler = (e, data)=>{
-        setErrorHandler(false);
-        console.log(data);
+    const onSubmitHandler = (data)=>{
+        const {nombres} = data;
+        console.log(nombres);
+        navigateTo("/registro-step2");
     }
 
     const onInvalid=()=>{
-        setErrorHandler(true);
+        
     }
 
 
     return(
         <article>
-        {/* TODO: formgroup */}
+        {/* TODO: Funciones especiales de validacion para documento DUI y correo */}
             <Form autoComplete="off" 
                 onSubmit = {(handleSubmit(onSubmitHandler, onInvalid))}
              >
@@ -76,13 +77,12 @@ const FirstRegistrationContainer = ()=>{
                                         type="text"
                                         id="nombres"
                                         name="nombres"
-                                        aria-invalid = { errors.nombres }
                                         required = {true}
                                         label = "Nombre completo"
-                                        innerref = {{...register("nombres", {required: true}) }}
-                                            
+                                        innerRef = {{...register("nombres", {required: true, pattern: /^[A-Za-z]+$/}) }}
                                     >
-                                        {errors.email?.type === "required" && (<ErrorElement>El campo es requerido</ErrorElement>)}
+                                        {errors.nombres?.type === "required" && (<ErrorElement>El campo es requerido</ErrorElement>)}
+                                        {errors.nombres?.type === "pattern" && (<ErrorElement>El campo solo permite texto</ErrorElement>)}
                                     </Input>
                                 </div>
                             </div>
@@ -91,14 +91,16 @@ const FirstRegistrationContainer = ()=>{
 
                                 <div className="flex flex-col p-2 w-full">
                                  
-                                    <Input 
+                                    <Select 
                                         className="w-1/2"
                                         name="paises"
                                         label="País donde vive"
                                         required = {true}
                                         firstOption="Seleccione"
-                                        innerref = {{...register("paises")}}
-                                    />
+                                        innerRef = {{...register("paises", {required: true})}}
+                                    >
+                                        {errors.paises?.type === "required" && (<ErrorElement>El campo es requerido</ErrorElement>)}
+                                    </Select>
                                 </div>
                             </div>
 
@@ -111,33 +113,43 @@ const FirstRegistrationContainer = ()=>{
                                             name = "numeroDocumento"
                                             required = {true}
                                             label = "Documento de Identidad"
-                                            innerref = {{...register("numeroDocumento")}}
-                                        />
+                                            innerRef = {{...register("numeroDocumento", {required: true})}}
+                                        >
+                                            {errors.numeroDocumento?.type === "required" && (<ErrorElement>El campo es requerido</ErrorElement>)}
+                                            {errors.numeroDocumento?.type === "registeredDocument" && (<ErrorElement>Tu documento ya ha sido registrado</ErrorElement>)}
+                                                {errors.numeroDocumento?.type === "registeredEmailDocument" && (<ErrorElement>El correo indicado ya está asociado a otro documento</ErrorElement>)}
+                                        </Input>
                                     </div>
                                 </div>
 
                                 <div className="flex flex-col sm:flex-row pb-2 w-full">
 
                                     <div className="flex flex-col p-2 w-full">
-                                        <Input name="deptos" 
-                                        className="w-full"
-                                        label="Departamentos"
-                                        required={true}
-                                        firstOption="Seleccione"
-                                        innerref = {{...register("deptos")}}
-                                         />
+                                        <Select name="deptos" 
+                                            className="w-full"
+                                            label="Departamentos"
+                                            required={true}
+                                            firstOption="Seleccione"
+                                            innerref = {{...register("depto", {required: true})}}
+                                        >
+                                            {errors.depto?.type === "required" && (<ErrorElement>El campo es requerido</ErrorElement>)}
+
+                                        </Select>
                                     </div>
 
                                     <div className="flex flex-col p-2 w-full">
 
-                                        <Input 
+                                        <Select 
                                             name="municipios"
                                             required = {true}
                                             label = "Municipio"
                                             className="w-full"
                                             firstOption="Seleccione"
-                                            innerref = {{...register("municipios")}}
-                                        />
+                                            innerRef = {{...register("municipio", {required: true})}}
+                                        >
+                                            {errors.municipio?.type === "required" && (<ErrorElement>El campo es requerido</ErrorElement>)}
+
+                                        </Select>
                                     </div>
                                 </div>
 
@@ -152,8 +164,12 @@ const FirstRegistrationContainer = ()=>{
                                                 label="Edad"
                                                 required = {true}
                                                 className= "w-20"
-                                                innerref = {{...register("edad")}}
-                                            />
+                                                innerRef = {{...register("edad", {required: true, max: 99 , min: 18})}}
+                                            >
+                                                {errors.edad?.type === "required" && (<ErrorElement>El campo es requerido</ErrorElement>)}                                           
+                                                {errors.edad?.type === "min" && (<ErrorElement>Debe tener al menos 18 años</ErrorElement>)}                                           
+                                                {errors.edad?.type === "max" && (<ErrorElement>Su edad debe ser menor a 99 años</ErrorElement>)}                                           
+                                            </Input>
                                         </div>
 
                                         <div className="flex flex-col p-2">
@@ -162,8 +178,10 @@ const FirstRegistrationContainer = ()=>{
                                                 name="telefono"
                                                 type= "number"
                                                 className="w-40 md:w-52"
-                                                innerref = {{...register("telefono")}}
-                                            />
+                                                innerRef = {{...register("telefono", {required: true})}}
+                                            >
+                                                {errors.municipio?.type === "required" && (<ErrorElement>El campo es requerido</ErrorElement>)}
+                                            </Input>
                                         </div>
                                     </div>
                                     <div className="flex flex-col p-2 w-full">
@@ -174,8 +192,10 @@ const FirstRegistrationContainer = ()=>{
                                             required={true}
                                             type="email"
                                             className="w-full"
-                                            innerref = {{...register("email")}}
-                                        />
+                                            innerRef= {{...register("email", {required: true})}}
+                                        >
+                                            {errors.email?.type === "required" && (<ErrorElement>El campo es requerido</ErrorElement>)}
+                                        </Input>
                                     </div>
                                 </div>
                             </div>
@@ -188,8 +208,7 @@ const FirstRegistrationContainer = ()=>{
                         {/* 
                         <div className=" w-full text-right font-wendysSimpleFont text-xl text-white"></div>  */}
                         <div className=" w-full text-right font-wendysSimpleFont text-xl text-white">
-                            {   formError ? <></>
-                                <Link to={"/registro-step2"}><button type="submit">CONTINUAR &gt;</button></Link>}
+                            <button type="submit">CONTINUAR &gt;</button>
                         </div> 
                     </div>
                 </div>
