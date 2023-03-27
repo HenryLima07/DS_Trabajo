@@ -8,6 +8,19 @@ import AsideCloseIcon from "../../../../assets/img/wendy/close-w.svg";
 const AsideMenu=({asideicon})=>{
 
     return(
+
+        <>
+        <div id="hamburger" className="w-full">
+            <a className="flex flex-row w-full p-4 bg-black lg:hidden items-center">
+                <div className="space-y-1.5">
+                    <span className="block w-8 h-0.5 bg-white rounded-lg"></span>
+                    <span className="block w-8 h-0.5 bg-white rounded-lg"></span>
+                    <span className="block w-8 h-0.5 bg-white rounded-lg"></span>
+                </div>
+
+                <div className="pl-4 text-lg text-white font-bold">Menu</div>
+            </a>
+        </div>
         <aside className={`${classes["aside-menu"]} transition-all duration-300 w-80 h-full fixed -left-80  top-0 bottom-0 shadow-md shadow-black z-[1200] translate-x-80`}>
             <div className="bg-wendys-background flex flex-col">
 
@@ -35,7 +48,7 @@ const AsideMenu=({asideicon})=>{
 
             </ul>
         </aside>
-
+        </>
     )
 }
 //1024

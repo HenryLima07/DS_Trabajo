@@ -22,6 +22,5 @@ const Header = ()=>{
         </>
     );
 }
-"hidden bg-black text-white h-11 w-full lg:flex flex-row justify-around items-center font-bold text-lg a"
 
 export default Header;
