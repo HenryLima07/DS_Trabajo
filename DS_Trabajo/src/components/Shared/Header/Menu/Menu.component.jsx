@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Menu = ()=>{
     return(
-        <div className=" bg-black text-white lg:flex h-11 w-full ">
+        <div className="hidden bg-black text-white lg:flex h-11 w-full ">
             <ul className="w-full hidden lg:flex flex-row justify-around items-center font-bold text-lg">
                 <Link to={"/"}>
                     <li>Inicio</li>

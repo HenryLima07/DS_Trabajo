@@ -33,7 +33,6 @@ const TrabajaContainer = ()=>{
                         APLICÁ POR <br /> PRIMERA VEZ
                     </div>
                 </Link>
-                {/* TODO: (click)="apply()" */}
             </div>
 
             <div className="w-full text-left hidden lg:block">

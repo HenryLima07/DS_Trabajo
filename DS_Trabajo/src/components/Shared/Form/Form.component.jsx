@@ -1,8 +1,8 @@
-
+import { useForm } from "react-hook-form";
 
 const Form = ({children, ...rest})=>{
     return(
-        <form action="" {...rest}>
+        <form {...rest}>
             {children}
         </form>
     )
