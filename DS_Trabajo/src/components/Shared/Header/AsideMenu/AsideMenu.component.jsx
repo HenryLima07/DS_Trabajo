@@ -8,7 +8,7 @@ import AsideCloseIcon from "../../../../assets/img/wendy/close-w.svg";
 import { useState } from "react";
 
 
-const AsideMenu=({asideicon})=>{
+const AsideMenu=({asideicon, className})=>{
 
     const [toogleAsideMenu, setToogleAsideMenu] = useState(false);
 
@@ -20,7 +20,7 @@ const AsideMenu=({asideicon})=>{
 
         <>
         {/* TODO: add animation on display */}
-        <div id="hamburger" className="w-full">
+        <div id="hamburger" className={`w-full z-10 ${className}`}>
             <a className="flex flex-row w-full p-4 bg-black lg:hidden items-center">
                 <div className="space-y-1.5 cursor-pointer" onClick={()=> setToogleAsideMenuHandler(true)}>
                     <span className="block w-8 h-0.5 bg-white rounded-lg"></span>
@@ -33,7 +33,7 @@ const AsideMenu=({asideicon})=>{
         </div>
 
         {/* set class to toogle it */}
-        <aside className={`${classes["aside-menu"]} transition-all duration-300 w-80 h-full fixed -left-80  top-0 bottom-0 shadow-md shadow-black z-[1200] translate-x-80 ${toogleAsideMenu ? "show": "hidden"}`}>
+        <aside className={`transition-all duration-300 w-80 h-full fixed -left-80 top-0 bottom-0 shadow-md shadow-black z-[1200] ${toogleAsideMenu ? "translate-x-80": " invisible"}`}>
             <div className="bg-wendys-background flex flex-col">
 
                 <div className="flex flex-row h-30 justify-between items-start pt-4 px-6">
