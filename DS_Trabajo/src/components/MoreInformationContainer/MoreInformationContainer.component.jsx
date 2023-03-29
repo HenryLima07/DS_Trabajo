@@ -12,6 +12,10 @@ import videoWendyGenrente from "../../assets/videos/wendys/ent_gerente.mp4";
 import videoAnimation from "../../assets/videos/wendys/anim_prof.gif";
 import { useState } from "react";
 
+//importing components
+import SubNavigationBar from "./SubNavigationBar/SubNavigationBar.component";
+import CommentsBox from "./Comments/Comments.component";
+
 const Comments ={
     "crecimiento": "crecimiento",
     "teamwork": "teamwork",
@@ -51,83 +55,31 @@ const MoreInformationContainer = ()=>{
 
                     <ul className={`${classes["nav-tabs"]} flex flex-col md:flex-row flex-wrap list-none border-b-0 pl-0 mb-4 w-full font-wendysSimpleFont text-wendys-blue`} id="tabs-tabJustify" role={"tablist"}>
 
-                        <li className={`${classes["nav-item"]} flex-grow text-center`} role={"presentation"}>
 
-                            <button 
-                                onClick={()=>setCurrentCommentHandler("crecimiento")} className={`${classes["nav-link"]} w-full block font-medium text-lg leading-tight uppercase border-x-0 border-t-0 border-b-2 border-gray-300 px-6 py-3 my-2 hover:bg-gray-100 ${selectedNav === Comments["crecimiento"] ? classes["active"] : ""}`}
+                            <SubNavigationBar className={`${classes["nav-link"]} ${selectedNav === Comments["crecimiento"] ? classes["active"] : ""}`} 
+                             onClickHandler={()=>setCurrentCommentHandler("crecimiento")} > crecimiento</SubNavigationBar>
 
-                                id="tabs-profesional-tab" 
-                                data-bs-toggle="pill" 
-                                data-bs-target="#tabs-profesional" 
-                                role="tab" 
-                                aria-controls="tabs-profesional" 
-                                aria-selected="true"
-                            >Crecimiento</button>
+                            <SubNavigationBar className={`${classes["nav-link"]} ${selectedNav === Comments["teamwork"] ? classes["active"]: ""}`} 
+                             onClickHandler={()=>setCurrentCommentHandler("teamwork")} > Trabajo en equipo</SubNavigationBar>
 
-                        </li>
+                            <SubNavigationBar className={`${classes["nav-link"]} ${selectedNav === Comments["familia"] ? classes["active"] : ""}`} onClickHandler={()=>setCurrentCommentHandler("familia")} >Familia</SubNavigationBar>
 
-                        <li role={"presentation"} className={`${classes["nav-item"]} flex-grow text-center`}>
-
-                            <button 
-                                onClick={()=>setCurrentCommentHandler("teamwork")} className={`${classes["nav-link"]} w-full block font-medium text-lg leading-tight uppercase border-x-0 border-t-0 border-b-2 border-gray-300 px-6 py-3 my-2 hover:bg-gray-100 ${selectedNav === Comments["teamwork"] ? classes["active"] : ""}`} 
-
-                                id="tabs-gerente-tab" 
-                                data-bs-toggle="pill" 
-                                data-bs-target="#tabs-gerente"
-                                role="tab" 
-                                aria-controls="tabs-gerente" 
-                                aria-selected="false"
-                            >Trabajo en equipo</button>
-                        </li>
-                        <li role={"presentation"} className={`${classes["nav-item"]} flex-grow text-center`}>
-
-                            <button 
-                                onClick={()=>setCurrentCommentHandler("familia")} className={`${classes["nav-link"]} w-full block font-medium text-lg leading-tight uppercase border-x-0 border-t-0 border-b-2 border-gray-300 px-6 py-3 my-2 hover:bg-gray-100 ${selectedNav === Comments["familia"] ? classes["active"] : ""}`} 
-
-                                id="tabs-domicilio-tab" 
-                                data-bs-toggle="pill" 
-                                data-bs-target="#tabs-domicilio"
-                                role="tab" 
-                                aria-controls="tabs-domicilio" 
-                                aria-selected="false"
-                            >Familia</button>
-                        </li>
                     </ul>
 
-                    {/* TODO: do animation */}
                     <div id="tabs-tabContentJustify" className={`flex flex-row mt-10 w-full items-center ${classes.tab}`}>
 
-                        <div className={` w-1/2 hidden opacity-0 ${selectedNav === Comments["crecimiento"] ? `${classes.visible}`: ``} ${currentComment === Comments["crecimiento"] ? `${classes["transition"]} opacity-100`:""} `} id="tabs-profesional" role="tabpanel"
-                            aria-labelledby="tabs-profesional-tab">
+                        <CommentsBox Empleado="Madai Cruz" Puesto="Profesional de Servicios"
+                            className={`${selectedNav === Comments["crecimiento"] ? `${classes.visible}`: ``} ${currentComment === Comments["crecimiento"] ? `${classes["transition"]} opacity-100`:""}`}
+                        >"Para mi es una bendición, me hizo ser independiente".</CommentsBox>
 
-                            <div className="flex flex-col items-center">
+                        <CommentsBox Empleado="Alejandro Ramos" Puesto="Gerente de Distrito"
+                            className={`${selectedNav === Comments["teamwork"] ? `${classes.visible}`: ``} ${currentComment === Comments["teamwork"] ? `${classes["transition"]} opacity-100`:""}`}
+                        >"Wendy’s es una compañia que te brinda todas las herramientas para que tu puedas crecer".</CommentsBox>
 
-                                <p className="text-center italic text-4xl w-3/4">
-                                    "Para mi es una bendición, me hizo ser independiente".</p>
-                                <br />
-                                <br />
-                                <p className="text-wendys-background text-center text-lg">Madai Cruz<br />Profesional de Servicio</p>
-                            </div>
-                        </div>
+                        <CommentsBox Empleado="Madai Cruz" Puesto="Profesional de Servicios"
+                            className={`${selectedNav === Comments["familia"] ? `${classes.visible}`: ``} ${currentComment === Comments["familia"] ? `${classes["transition"]} opacity-100`:""}`}
+                        >"Lo que más me gusta es la unión y que siempre nos apoyamos".</CommentsBox>
 
-                        <div className={` w-1/2  hidden opacity-0 ${selectedNav === Comments["teamwork"] ? `${classes.visible}`: ``} ${currentComment === Comments["teamwork"] ?`${classes["transition"]} opacity-100`:""}  `} id="tabs-gerente" role="tabpanel" aria-labelledby="tabs-gerente-tab">
-                            <div className="flex flex-col items-center">
-                                <p className="text-center italic text-4xl w-3/4">
-                                    "Wendy’s es una compañia que te brinda todas las herramientas para que tu puedas crecer".</p>
-                                <br />
-                                <p className="text-wendys-background text-center text-lg">Alejandro Ramos<br />Gerente de Distrito</p>
-                            </div>
-                        </div>
-
-                        <div className={` w-1/2 hidden opacity-0 ${selectedNav === Comments["familia"] ? `${classes.visible}`: ``} ${currentComment === Comments["familia"]?`${classes["transition"]} opacity-100`:""} `} id="tabs-domicilio" role="tabpanel" aria-labelledby="tabs-domicilio-tab">
-                            <div className="flex flex-col items-center" >
-                                <p className="text-center italic text-4xl w-3/4" >
-                                    "Lo que más me gusta es la unión y que siempre nos apoyamos".</p>
-                                <br />
-                                <p className="text-wendys-background text-center text-lg">Emmanuel Escobar<br />Profesional de domicilio
-                                </p>
-                            </div>
-                        </div>
 
                         <div className="flex flex-col w-1/2 items-center relative"> 
 
