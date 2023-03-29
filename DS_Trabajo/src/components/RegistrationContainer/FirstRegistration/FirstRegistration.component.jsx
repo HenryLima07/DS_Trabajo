@@ -1,17 +1,47 @@
 import { Link, useNavigate } from "react-router-dom";
 
+//importing img
+import niniaBackground from "../../../assets/img/wendy/niniaGray.svg";
+
 //importing form elements
 import Form from "../../Shared/Form/Form.component";
 import Input from "../../../components/Shared/Form/Input/Input.component";
 import Select from "../../Shared/Form/Select/Select.component";
 import ErrorElement from "../../Shared/Form/ErrorElement/ErrorElement.component";
+import FileUploadComponent from "../../Shared/Form/FileUploadComponent/FileUploadComponent.component";
 
 //importing useForm hook
 import { useForm } from "react-hook-form";
 
+
+//errors messages
+const errorsMessages = {
+    require: "Este campo es requerido",
+    nombre: {
+        soloTexto: "El campo solo permite texto",
+    },
+
+    numeroDocumento:{
+        documentoRegistrado: "Tu documento ya ha sido registrado",
+        documentoEmailRegistrado: "El correo indicado ya está asociado a otro documento"
+    },
+
+    edad:{
+        max: "Edad no puede ser mayor a 99 años",
+        min: "Debe tener al menos 18 años"
+    },
+
+    email:{
+        correoInvalido: "Correo electronico invalido",
+        correoRepetido: "Correo electronico en uso por otro usuario"
+    }
+}
+
+
+
 const FirstRegistrationContainer = ()=>{
     //getting objects from useform
-    const { handleSubmit, register, watch, formState: { errors } } = useForm();
+    const { handleSubmit, register, formState: { errors } } = useForm();
     const navigateTo = useNavigate();
 
     const setErrorHandler=(state)=>setError(state);
@@ -28,10 +58,9 @@ const FirstRegistrationContainer = ()=>{
         
     }
 
-
     return(
         <article>
-        {/* TODO: Funciones especiales de validacion para documento DUI y correo */}
+        {/* TODO: Funciones especiales de validacion para documento DUI y correo y despliege de informacion en options*/}
             <Form autoComplete="off" 
                 onSubmit = {(handleSubmit(onSubmitHandler, onInvalid))}
              >
@@ -43,16 +72,17 @@ const FirstRegistrationContainer = ()=>{
                         <div className="flex flex-col items-center border border-gray-200 rounded-md">
 
                             <div className="w-52 flex flex-col items-center p-4">
+                                <img src={niniaBackground} alt="background wendys icon" />
 
                                 {/* TODO: WEBCAM ? and ng-template */}
                             </div>
 
                             <div className="w-full mt-4 flex flex-col items-center bg-gray-200 p-4">
 
-                                {/* TODO: app file upload */}
+                               <FileUploadComponent innerRef={{...register("fileUpload")}}></FileUploadComponent> 
 
                                 <br />
-                                <label className="bg-wendys-blue text-white py-3 px-6 rounded cursor-pointer" htmlFor="">Abrir camara</label>
+                                {/* <label className="bg-wendys-blue text-white py-3 px-6 rounded cursor-pointer" htmlFor="">Abrir camara</label> */}
                                 <label htmlFor="" className="bg-wendys-blue text-white py-3 px-8 rounded cursor-pointer">Tomar foto</label>
 
                                 <p className="mt-4">
@@ -79,10 +109,15 @@ const FirstRegistrationContainer = ()=>{
                                         name="nombres"
                                         required = {true}
                                         label = "Nombre completo"
-                                        innerRef = {{...register("nombres", {required: true, pattern: /^[A-Za-z]+$/}) }}
+                                        innerRef = {{...register("nombres", {
+                                            required: errorsMessages.require, 
+                                            pattern:{
+                                                value: /^[A-Za-z]+$/,
+                                                message: errorsMessages.nombre.soloTexto
+                                            } 
+                                        })}}
                                     >
-                                        {errors.nombres?.type === "required" && (<ErrorElement>El campo es requerido</ErrorElement>)}
-                                        {errors.nombres?.type === "pattern" && (<ErrorElement>El campo solo permite texto</ErrorElement>)}
+                                       <ErrorElement>{errors.nombres?.message}</ErrorElement>
                                     </Input>
                                 </div>
                             </div>
@@ -97,9 +132,12 @@ const FirstRegistrationContainer = ()=>{
                                         label="País donde vive"
                                         required = {true}
                                         firstOption="Seleccione"
-                                        innerRef = {{...register("paises", {required: true})}}
+                                        innerRef = {{...register("paises", {
+                                            
+                                            required: errorsMessages.require
+                                        })}}
                                     >
-                                        {errors.paises?.type === "required" && (<ErrorElement>El campo es requerido</ErrorElement>)}
+                                        <ErrorElement>{errors.paises?.message}</ErrorElement>
                                     </Select>
                                 </div>
                             </div>
@@ -113,11 +151,12 @@ const FirstRegistrationContainer = ()=>{
                                             name = "numeroDocumento"
                                             required = {true}
                                             label = "Documento de Identidad"
-                                            innerRef = {{...register("numeroDocumento", {required: true})}}
+                                            innerRef = {{...register("numeroDocumento", {
+                                                required: errorsMessages.require,
+                                                
+                                            })}}
                                         >
-                                            {errors.numeroDocumento?.type === "required" && (<ErrorElement>El campo es requerido</ErrorElement>)}
-                                            {errors.numeroDocumento?.type === "registeredDocument" && (<ErrorElement>Tu documento ya ha sido registrado</ErrorElement>)}
-                                                {errors.numeroDocumento?.type === "registeredEmailDocument" && (<ErrorElement>El correo indicado ya está asociado a otro documento</ErrorElement>)}
+                                            <ErrorElement>{errors.numeroDocumento?.message}</ErrorElement>
                                         </Input>
                                     </div>
                                 </div>
@@ -130,9 +169,12 @@ const FirstRegistrationContainer = ()=>{
                                             label="Departamentos"
                                             required={true}
                                             firstOption="Seleccione"
-                                            innerref = {{...register("depto", {required: true})}}
+                                            innerref = {{...register("depto", {
+                                                required: errorsMessages.require
+
+                                            })}}
                                         >
-                                            {errors.depto?.type === "required" && (<ErrorElement>El campo es requerido</ErrorElement>)}
+                                            <ErrorElement>{errors.depto?.message}</ErrorElement>
 
                                         </Select>
                                     </div>
@@ -145,10 +187,12 @@ const FirstRegistrationContainer = ()=>{
                                             label = "Municipio"
                                             className="w-full"
                                             firstOption="Seleccione"
-                                            innerRef = {{...register("municipio", {required: true})}}
-                                        >
-                                            {errors.municipio?.type === "required" && (<ErrorElement>El campo es requerido</ErrorElement>)}
+                                            innerRef = {{...register("municipio", {
+                                                required: errorsMessages.require
 
+                                            })}}
+                                        >
+                                            <ErrorElement>{errors.municipio?.message}</ErrorElement>
                                         </Select>
                                     </div>
                                 </div>
@@ -164,11 +208,20 @@ const FirstRegistrationContainer = ()=>{
                                                 label="Edad"
                                                 required = {true}
                                                 className= "w-20"
-                                                innerRef = {{...register("edad", {required: true, max: 99 , min: 18})}}
+                                                innerRef = {{...register("edad", {
+                                                    required: errorsMessages.require,
+                                                    max: {
+                                                        value: 99,
+                                                        message: errorsMessages.edad.max
+                                                    }, 
+                                                    min: {
+                                                        value: 18,
+                                                        message: errorsMessages.edad.min
+                                                    }
+                                                    
+                                                })}}
                                             >
-                                                {errors.edad?.type === "required" && (<ErrorElement>El campo es requerido</ErrorElement>)}                                           
-                                                {errors.edad?.type === "min" && (<ErrorElement>Debe tener al menos 18 años</ErrorElement>)}                                           
-                                                {errors.edad?.type === "max" && (<ErrorElement>Su edad debe ser menor a 99 años</ErrorElement>)}                                           
+                                                <ErrorElement>{errors.edad?.message}</ErrorElement>                                           
                                             </Input>
                                         </div>
 
@@ -178,9 +231,11 @@ const FirstRegistrationContainer = ()=>{
                                                 name="telefono"
                                                 type= "number"
                                                 className="w-40 md:w-52"
-                                                innerRef = {{...register("telefono", {required: true})}}
+                                                innerRef = {{...register("telefono", {
+                                                    required: errorsMessages.require
+                                                })}}
                                             >
-                                                {errors.municipio?.type === "required" && (<ErrorElement>El campo es requerido</ErrorElement>)}
+                                                <ErrorElement>{errors.telefono?.message}</ErrorElement>
                                             </Input>
                                         </div>
                                     </div>
@@ -192,9 +247,16 @@ const FirstRegistrationContainer = ()=>{
                                             required={true}
                                             type="email"
                                             className="w-full"
-                                            innerRef= {{...register("email", {required: true})}}
+                                            innerRef= {{...register("email", {
+                                                required: errorsMessages.require, 
+                                                pattern:{
+                                                    value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                                                    message: errorsMessages.email.correoInvalido
+                                                } 
+                                                
+                                            })}}
                                         >
-                                            {errors.email?.type === "required" && (<ErrorElement>El campo es requerido</ErrorElement>)}
+                                            <ErrorElement>{errors.email?.message}</ErrorElement>
                                         </Input>
                                     </div>
                                 </div>

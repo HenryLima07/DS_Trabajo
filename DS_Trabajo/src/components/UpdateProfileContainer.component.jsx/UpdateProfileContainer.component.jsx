@@ -1,7 +1,32 @@
 import Form from "../Shared/Form/Form.component";
 import Input from "../Shared/Form/Input/Input.component";
+import ErrorElement from "../Shared/Form/ErrorElement/ErrorElement.component";
+
+import { useForm } from "react-hook-form";
+
+//errors messages
+const errorsMessages = {
+    require: "Este campo es requerido",
+    email:{
+        correoInvalido: "Correo electronico invalido",
+        correoNoRegistrado: "Correo electronico no exite"
+    }
+}
+
 
 const UpdateProfileContainer = ()=>{
+
+    const { register, handleSubmit, formState:{ errors } } = useForm();
+
+    const onSubmitHandler = (data)=>{
+        const { email } = data;
+        console.log(email);
+    }
+
+    const onInvalidHandler = ()=>{
+
+    }
+
     return(
         <section className="flex flex-col lg:flex-row p-4 items-center justify-around" >
 
@@ -12,11 +37,11 @@ const UpdateProfileContainer = ()=>{
 
 
                 {/* TODO: Add action on submit */}
-                <Form action="" autoComplete="off" className = "flex flex-col items-center w-full">
+                <Form onSubmit = {handleSubmit(onSubmitHandler, onInvalidHandler)} autoComplete="off" className = "flex flex-col items-center w-full ng-untouched ng-pristine ng-invalid">
                     
-                    <div className=" flex flex-col items-center sm:items-end sm:flex-row pb-2 w-full justify-center">
+                    <div className="flex flex-col items-center sm:items-end sm:flex-row pb-2 w-full justify-center">
 
-                        <div className="items-end">
+                        <div className="items-end w-80">
 
                             <div className="flex flex-col p-2 items-start">
 
@@ -26,7 +51,16 @@ const UpdateProfileContainer = ()=>{
                                     required={true} 
                                     label = "Correo electrónico"
                                     className = "w-80"
-                                />                                
+                                    innerRef={{...register("email", {
+                                        required: errorsMessages.require,
+                                        pattern: {
+                                            value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                                            message: errorsMessages.email.correoInvalido
+                                        }
+
+                                    
+                                    })}}
+                                ><ErrorElement>{errors.email?.message}</ErrorElement></Input>                                
                             </div>
                         </div>
 

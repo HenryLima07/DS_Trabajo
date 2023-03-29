@@ -1,9 +1,0 @@
-@import "../../../../mixins.module";
-
-.aside-menu{
-    visibility: visible;
-    
-    @include media-up(1024px){
-        visibility: hidden;
-    }
-}

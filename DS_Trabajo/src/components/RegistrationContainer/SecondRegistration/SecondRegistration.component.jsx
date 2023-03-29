@@ -1,16 +1,41 @@
 import Form from "../../Shared/Form/Form.component";
 import Input from "../../Shared/Form/Input/Input.component";
+import Select from "../../Shared/Form/Select/Select.component";
+import ErrorElement from "../../Shared/Form/ErrorElement/ErrorElement.component";
 
 import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+
+
+//errors messages
+const errorsMessages = {
+    require: "Este campo es requerido",
+}
+
 
 const SecondRegistrationContainer = ()=>{
     const information = false;
+
+    const { handleSubmit, register, formState: { errors } } = useForm();
+
+    //onSubmitHandler
+    const onSubmitHandler = (data)=>{
+
+        const {nivelEstudios} = data;
+        console.log(nivelEstudios);
+    }
+
+    const onInvalid=()=>{
+        
+    }
+    
+
     return(
         <section>
 
             <article className="flex flex-col items-center py-8">
 
-            <Form autoComplete = "off" >
+            <Form autoComplete = "off" onSubmit = {handleSubmit(onSubmitHandler, onInvalid)}>
 
                 <div className="flex flex-col items-start">
 
@@ -18,13 +43,17 @@ const SecondRegistrationContainer = ()=>{
 
                         <div className="flex flex-col p-2">
 
-                            <Input 
+                            <Select 
                                 name="nivelEstudios"
                                 required = {true}
                                 label= "Nivel de estudios"
                                 className="w-60"
                                 firstOption="Seleccione"
-                            />
+                                innerRef = {{...register("nivelEstudios", {
+                                    required: errorsMessages.require
+                                })}}
+
+                            ><ErrorElement>{errors.nivelEstudios?.message}</ErrorElement></Select>
                         </div>
 
                         <div className="flex flex-col p-2 w-full">
@@ -40,11 +69,11 @@ const SecondRegistrationContainer = ()=>{
                     <div className="flex flex-row pb-2">
 
                         <div className="flex flex-col md:flex-row p-2 justify-center" >
-                            <Input 
+                            <Select 
                                     name="discapacitado"
                                     label="Posees algún tipo de discapacidad"
                                     className="w-20"
-                                    closeOptions={true}
+                                    defaultOptions={true}
                                 />
                         </div>
                     </div>

@@ -13,41 +13,50 @@ import videoAnimation from "../../assets/videos/wendys/anim_prof.gif";
 import { useState } from "react";
 
 const Comments ={
-    "growth": "growth",
+    "crecimiento": "crecimiento",
     "teamwork": "teamwork",
-    "family": "family"
+    "familia": "familia"
 }
 
 const MoreInformationContainer = ()=>{
 
-    const [currentComment, setCurrentComment] = useState("growth");
-    
-    
-    const setCurrentCommentHandler = (setComment = "growth")=>{
-        if(!Comments[setComment]) return;
+    //control nav moving
+    const [selectedNav, setSelectedNav] = useState("crecimiento");
 
-        setCurrentComment(setComment);
+    //control display text
+    const [currentComment, setCurrentComment] = useState("crecimiento");
+    
+    
+    const setCurrentCommentHandler = (setComment = "crecimiento")=>{
+        if(!Comments[setComment]) return;
+        setSelectedNav(setComment);
+
+        setTimeout(()=>{
+            setCurrentComment(setComment);
+        }, 200)
     }
 
     return(
         <>
             <section className={`flex flex-col pl-24 pr-8 bg-[url("/img/wendys/cuadros-valores.png")]`}>
                 <div className="flex flex-col items-start py-8 w-full" >
+
                     <h1 className=" font-wendysSimpleFont text-5xl text-wendys-blue mb-4">
                         Se auténtico
                     </h1>
+                    
                     <h2 className="mb-8 text-xl">
                         En Wendy’s todo lo que te decimos, es real. Mirá nuestros videos y comprobalo.
                     </h2>
 
-                    <ul className={`nav ${classes["nav-tabs"]} ${classes["nav-justified"]} flex flex-col md:flex-row flex-wrap list-none border-b-0 pl-0 mb-4 w-full font-wendysSimpleFont text-wendys-blue`} id="tabs-tabJustify" role={"tablist"}>
+                    <ul className={`${classes["nav-tabs"]} flex flex-col md:flex-row flex-wrap list-none border-b-0 pl-0 mb-4 w-full font-wendysSimpleFont text-wendys-blue`} id="tabs-tabJustify" role={"tablist"}>
 
                         <li className={`${classes["nav-item"]} flex-grow text-center`} role={"presentation"}>
 
                             <button 
-                                onClick={()=>setCurrentCommentHandler("growth")} id="tabs-profesional-tab" 
-                                className={`${classes["nav-link"]} w-full block font-medium text-lg leading-tight uppercase border-x-0 border-t-0 border-b-2 border-gray-300 px-6 py-3 my-2 hover:bg-gray-100 ${currentComment === Comments["growth"] ? classes["active"] : ""}`}
+                                onClick={()=>setCurrentCommentHandler("crecimiento")} className={`${classes["nav-link"]} w-full block font-medium text-lg leading-tight uppercase border-x-0 border-t-0 border-b-2 border-gray-300 px-6 py-3 my-2 hover:bg-gray-100 ${selectedNav === Comments["crecimiento"] ? classes["active"] : ""}`}
 
+                                id="tabs-profesional-tab" 
                                 data-bs-toggle="pill" 
                                 data-bs-target="#tabs-profesional" 
                                 role="tab" 
@@ -60,10 +69,9 @@ const MoreInformationContainer = ()=>{
                         <li role={"presentation"} className={`${classes["nav-item"]} flex-grow text-center`}>
 
                             <button 
-                                onClick={()=>setCurrentCommentHandler("teamwork")}
-                                id="tabs-gerente-tab" 
-                                className={`${classes["nav-link"]} w-full block font-medium text-lg leading-tight uppercase border-x-0 border-t-0 border-b-2 border-gray-300 px-6 py-3 my-2 hover:bg-gray-100 ${currentComment === Comments["teamwork"] ? classes["active"] : ""}`} 
+                                onClick={()=>setCurrentCommentHandler("teamwork")} className={`${classes["nav-link"]} w-full block font-medium text-lg leading-tight uppercase border-x-0 border-t-0 border-b-2 border-gray-300 px-6 py-3 my-2 hover:bg-gray-100 ${selectedNav === Comments["teamwork"] ? classes["active"] : ""}`} 
 
+                                id="tabs-gerente-tab" 
                                 data-bs-toggle="pill" 
                                 data-bs-target="#tabs-gerente"
                                 role="tab" 
@@ -74,10 +82,9 @@ const MoreInformationContainer = ()=>{
                         <li role={"presentation"} className={`${classes["nav-item"]} flex-grow text-center`}>
 
                             <button 
-                                onClick={()=>setCurrentCommentHandler("family")}
-                                id="tabs-domicilio-tab" 
-                                className={`${classes["nav-link"]} w-full block font-medium text-lg leading-tight uppercase border-x-0 border-t-0 border-b-2 border-gray-300 px-6 py-3 my-2 hover:bg-gray-100 ${currentComment === Comments["family"] ? classes["active"] : ""}`} 
+                                onClick={()=>setCurrentCommentHandler("familia")} className={`${classes["nav-link"]} w-full block font-medium text-lg leading-tight uppercase border-x-0 border-t-0 border-b-2 border-gray-300 px-6 py-3 my-2 hover:bg-gray-100 ${selectedNav === Comments["familia"] ? classes["active"] : ""}`} 
 
+                                id="tabs-domicilio-tab" 
                                 data-bs-toggle="pill" 
                                 data-bs-target="#tabs-domicilio"
                                 role="tab" 
@@ -88,9 +95,9 @@ const MoreInformationContainer = ()=>{
                     </ul>
 
                     {/* TODO: do animation */}
-                    <div id="tabs-tabContentJustify" className={`${classes["tab-content"]} flex flex-row mt-10 w-full items-center`}>
+                    <div id="tabs-tabContentJustify" className={`flex flex-row mt-10 w-full items-center ${classes.tab}`}>
 
-                        <div className={`w-1/2 ${classes["tab-pane"]} ${classes["fade"]} ${currentComment === Comments["growth"] ? `${classes["active"]} ${classes["show"]}`  : ""} `} id="tabs-profesional" role="tabpanel"
+                        <div className={` w-1/2 hidden opacity-0 ${selectedNav === Comments["crecimiento"] ? `${classes.visible}`: ``} ${currentComment === Comments["crecimiento"] ? `${classes["transition"]} opacity-100`:""} `} id="tabs-profesional" role="tabpanel"
                             aria-labelledby="tabs-profesional-tab">
 
                             <div className="flex flex-col items-center">
@@ -103,7 +110,7 @@ const MoreInformationContainer = ()=>{
                             </div>
                         </div>
 
-                        <div className={`w-1/2 ${classes["tab-pane"]} ${classes["fade"]} ${currentComment === Comments["teamwork"] ? `${classes["active"]} ${classes["show"]}`  : ""} `} id="tabs-gerente" role="tabpanel" aria-labelledby="tabs-gerente-tab">
+                        <div className={` w-1/2  hidden opacity-0 ${selectedNav === Comments["teamwork"] ? `${classes.visible}`: ``} ${currentComment === Comments["teamwork"] ?`${classes["transition"]} opacity-100`:""}  `} id="tabs-gerente" role="tabpanel" aria-labelledby="tabs-gerente-tab">
                             <div className="flex flex-col items-center">
                                 <p className="text-center italic text-4xl w-3/4">
                                     "Wendy’s es una compañia que te brinda todas las herramientas para que tu puedas crecer".</p>
@@ -112,7 +119,7 @@ const MoreInformationContainer = ()=>{
                             </div>
                         </div>
 
-                        <div className={`w-1/2 ${classes["tab-pane"]} ${classes["fade"]} ${currentComment === Comments["family"] ? `${classes["active"]} ${classes["show"]}`  : ""} `} id="tabs-domicilio" role="tabpanel" aria-labelledby="tabs-domicilio-tab">
+                        <div className={` w-1/2 hidden opacity-0 ${selectedNav === Comments["familia"] ? `${classes.visible}`: ``} ${currentComment === Comments["familia"]?`${classes["transition"]} opacity-100`:""} `} id="tabs-domicilio" role="tabpanel" aria-labelledby="tabs-domicilio-tab">
                             <div className="flex flex-col items-center" >
                                 <p className="text-center italic text-4xl w-3/4" >
                                     "Lo que más me gusta es la unión y que siempre nos apoyamos".</p>
@@ -136,7 +143,6 @@ const MoreInformationContainer = ()=>{
                         </div>
 
                     </div>
-
                 </div>
 
 
@@ -169,7 +175,7 @@ const MoreInformationContainer = ()=>{
                 </div>
             </section>
 
-            <div className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto bg-black bg-opacity-50" tabIndex="-1" aria-labelledbgny="exampleModalCenterTitle" aria-modal="true" role="dialog">
+            <div className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto bg-black bg-opacity-50" tabIndex="-1" aria-labelledby="exampleModalCenterTitle" aria-modal="true" role="dialog">
 
                 <div className="modal-dialog modal-dialog-centered relative w-auto pointer-events-none max-w-none mx-32" >
 
