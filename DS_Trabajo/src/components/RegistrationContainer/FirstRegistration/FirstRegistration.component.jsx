@@ -1,4 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+
+//importing useForm hook
+import { useForm } from "react-hook-form";
 
 //importing img
 import niniaBackground from "../../../assets/img/wendy/niniaGray.svg";
@@ -10,8 +14,6 @@ import Select from "../../Shared/Form/Select/Select.component";
 import ErrorElement from "../../Shared/Form/ErrorElement/ErrorElement.component";
 import FileUploadComponent from "../../Shared/Form/FileUploadComponent/FileUploadComponent.component";
 
-//importing useForm hook
-import { useForm } from "react-hook-form";
 
 
 //errors messages
@@ -43,9 +45,14 @@ const FirstRegistrationContainer = ()=>{
     //getting objects from useform
     const { handleSubmit, register, formState: { errors } } = useForm();
     const navigateTo = useNavigate();
-
-    const setErrorHandler=(state)=>setError(state);
         
+    //set open or close camera
+    const [OpenCamera, setOpenCamera] = useState(false);
+
+    //setOpenCameraHandler
+    const setOpenCameraHandler = (setValue)=>{
+        setOpenCamera(setValue);
+    }
 
     //onSubmitHandler
     const onSubmitHandler = (data)=>{
@@ -54,6 +61,7 @@ const FirstRegistrationContainer = ()=>{
         navigateTo("/registro-step2");
     }
 
+    //onInvalidHandler
     const onInvalid=()=>{
         
     }
@@ -80,10 +88,14 @@ const FirstRegistrationContainer = ()=>{
                             <div className="w-full mt-4 flex flex-col items-center bg-gray-200 p-4">
 
                                <FileUploadComponent innerRef={{...register("fileUpload")}}></FileUploadComponent> 
-
                                 <br />
-                                {/* <label className="bg-wendys-blue text-white py-3 px-6 rounded cursor-pointer" htmlFor="">Abrir camara</label> */}
-                                <label htmlFor="" className="bg-wendys-blue text-white py-3 px-8 rounded cursor-pointer">Tomar foto</label>
+
+                                {
+                                    OpenCamera ? 
+                                    <label className="bg-wendys-blue text-white py-3 px-6 rounded cursor-pointer">Abrir camara</label>
+                                    :
+                                    <label htmlFor="" className="bg-wendys-blue text-white py-3 px-8 rounded cursor-pointer" onClick={()=>setOpenCameraHandler(true)}>Tomar foto</label>
+                                }
 
                                 <p className="mt-4">
                                     Archivo permitido jpg o png. Tamaño máximo 1 MB
