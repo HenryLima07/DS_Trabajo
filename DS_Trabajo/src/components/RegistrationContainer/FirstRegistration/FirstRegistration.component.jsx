@@ -67,6 +67,7 @@ const FirstRegistrationContainer = ()=>{
             () => {
               const imageSrc = webcamRef.current.getScreenshot();
               setPicture(imageSrc);
+              setOpenCamera(false);
             }, [webcamRef] );
 
     //onSubmitHandler
@@ -118,7 +119,7 @@ const FirstRegistrationContainer = ()=>{
     return(
         <article>
         {/* TODO: Funciones especiales de validacion para documento DUI y correo y despliege de informacion en options
-        TODO: mostrar imagen en container*/}
+        TODO: takenpicture*/}
             <Form autoComplete="off" 
                 onSubmit = {(handleSubmit(onSubmitHandler, onInvalid))}
              >
