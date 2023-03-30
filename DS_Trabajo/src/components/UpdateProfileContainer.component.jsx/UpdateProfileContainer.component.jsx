@@ -22,7 +22,7 @@ const UpdateProfileContainer = ()=>{
         const { email } = data;
         console.log(email);
     }
-
+ {/* TODO: Add action on submit */}
     const onInvalidHandler = ()=>{
 
     }
@@ -36,7 +36,7 @@ const UpdateProfileContainer = ()=>{
                 </h2>
 
 
-                {/* TODO: Add action on submit */}
+               
                 <Form onSubmit = {handleSubmit(onSubmitHandler, onInvalidHandler)} autoComplete="off" className = "flex flex-col items-center w-full ng-untouched ng-pristine ng-invalid">
                     
                     <div className="flex flex-col items-center sm:items-end sm:flex-row pb-2 w-full justify-center">

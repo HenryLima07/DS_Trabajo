@@ -18,7 +18,8 @@ const Input = ({
                     <label className="text-red-600">* </label>
                     :
                     <></>
-                }
+                } :
+                
             </label>
             <input 
                 type={type} 

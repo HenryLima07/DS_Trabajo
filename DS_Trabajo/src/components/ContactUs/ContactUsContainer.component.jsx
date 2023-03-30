@@ -1,8 +1,10 @@
 
+import React from "react";
+
 const ContactUsContainer = ()=>{
+
     return(
         <section className=" flex flex-col lg:flex-row py-16 items-center justify-around">
-            
             <div className="md:hidden">
                 
                 <div className="mb-8">

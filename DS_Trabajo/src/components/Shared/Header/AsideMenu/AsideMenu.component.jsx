@@ -19,7 +19,6 @@ const AsideMenu=({asideicon, className})=>{
     return(
 
         <>
-        {/* TODO: add animation on display */}
         <div id="hamburger" className={`w-full z-10 ${className}`}>
             <a className="flex flex-row w-full p-4 bg-black lg:hidden items-center">
                 <div className="space-y-1.5 cursor-pointer" onClick={()=> setToogleAsideMenuHandler(true)}>
