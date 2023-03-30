@@ -117,7 +117,6 @@ const SecondRegistrationContainer = ()=>{
                                     </div>
                                 </div>
                             </div>
-                            {/* TODO:span */}
                         </div>
                     </div>
 

@@ -19,7 +19,7 @@ const Select = ({
                     <label className="text-red-600">* </label>
                 :
                     <></>
-                    }
+                    }:
             </label>
             <select 
                 name={name} 

@@ -1,8 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 
 //importing useForm hook
 import { useForm } from "react-hook-form";
+import Webcam from "react-webcam";
 
 //importing img
 import niniaBackground from "../../../assets/img/wendy/niniaGray.svg";
@@ -13,7 +14,6 @@ import Input from "../../../components/Shared/Form/Input/Input.component";
 import Select from "../../Shared/Form/Select/Select.component";
 import ErrorElement from "../../Shared/Form/ErrorElement/ErrorElement.component";
 import FileUploadComponent from "../../Shared/Form/FileUploadComponent/FileUploadComponent.component";
-
 
 
 //errors messages
@@ -39,7 +39,12 @@ const errorsMessages = {
     }
 }
 
-
+//video settings
+const videSettings = {
+    width: 900,
+    height: 800,
+    facingMode: "user",
+}
 
 const FirstRegistrationContainer = ()=>{
     //getting objects from useform
@@ -53,6 +58,16 @@ const FirstRegistrationContainer = ()=>{
     const setOpenCameraHandler = (setValue)=>{
         setOpenCamera(setValue);
     }
+    
+    //takePicture
+    const [picture, setPicture] = useState("");
+    const webcamRef = useRef(null);
+
+    const takePhotoHandler = useCallback(
+            () => {
+              const imageSrc = webcamRef.current.getScreenshot();
+              setPicture(imageSrc);
+            }, [webcamRef] );
 
     //onSubmitHandler
     const onSubmitHandler = (data)=>{
@@ -66,9 +81,44 @@ const FirstRegistrationContainer = ()=>{
         
     }
 
+    //set and show image from input
+    const imageAccepted = /image\/(png|jpg|jpeg)/gm;
+    
+    const [fileUploaded, setFileUploaded] = useState(null);
+
+    const onChangeHandler = (e) => {
+        const file = e.target.files[0];
+        if (!file.type.match(imageAccepted)) {
+          alert("Image mime type is not valid");
+          return;
+        }
+        setFileUploaded(file);
+      }
+      useEffect(() => {
+        let fileReader, isCancel = false;
+        if (fileUploaded) {
+          fileReader = new FileReader();
+          fileReader.onload = (e) => {
+            const { result } = e.target;
+            if (result && !isCancel) {
+              setPicture(result)
+            }
+          }
+          fileReader.readAsDataURL(fileUploaded);
+        }
+        return () => {
+          isCancel = true;
+          if (fileReader && fileReader.readyState === 1) {
+            fileReader.abort();
+          }
+        }
+    
+      }, [fileUploaded]);
+
     return(
         <article>
-        {/* TODO: Funciones especiales de validacion para documento DUI y correo y despliege de informacion en options*/}
+        {/* TODO: Funciones especiales de validacion para documento DUI y correo y despliege de informacion en options
+        TODO: mostrar imagen en container*/}
             <Form autoComplete="off" 
                 onSubmit = {(handleSubmit(onSubmitHandler, onInvalid))}
              >
@@ -80,21 +130,42 @@ const FirstRegistrationContainer = ()=>{
                         <div className="flex flex-col items-center border border-gray-200 rounded-md">
 
                             <div className="w-52 flex flex-col items-center p-4">
-                                <img src={niniaBackground} alt="background wendys icon" />
+                            {
+                                OpenCamera || picture?
+                                    OpenCamera ? 
+                                        <div>
+                                            <Webcam
+                                                audio={false}
+                                                mirrored = {true}
+                                                height={800}
+                                                ref={webcamRef}
+                                                screenshotFormat="image/jpeg"
+                                                width={900}
+                                                videoConstraints={videSettings}
+                                            />
+                                        </div>
 
-                                {/* TODO: WEBCAM ? and ng-template */}
+                                    :
+                                        picture ? 
+                                            <img src={picture} />
+                                        : <></>
+
+                                :
+                                    <img src={niniaBackground} alt="background wendys icon" />
+                            }
+
                             </div>
 
                             <div className="w-full mt-4 flex flex-col items-center bg-gray-200 p-4">
 
-                               <FileUploadComponent innerRef={{...register("fileUpload")}}></FileUploadComponent> 
+                               <FileUploadComponent innerRef={{...register("fileUpload")}} onChange={onChangeHandler}></FileUploadComponent> 
                                 <br />
 
                                 {
                                     OpenCamera ? 
-                                    <label className="bg-wendys-blue text-white py-3 px-6 rounded cursor-pointer">Abrir camara</label>
+                                    <label htmlFor="" className="bg-wendys-blue text-white py-3 px-8 rounded cursor-pointer" onClick={takePhotoHandler}>Tomar foto</label>
                                     :
-                                    <label htmlFor="" className="bg-wendys-blue text-white py-3 px-8 rounded cursor-pointer" onClick={()=>setOpenCameraHandler(true)}>Tomar foto</label>
+                                    <label className="bg-wendys-blue text-white py-3 px-6 rounded cursor-pointer" onClick={()=>setOpenCameraHandler(true)}>Abrir camara</label>
                                 }
 
                                 <p className="mt-4">
@@ -154,42 +225,38 @@ const FirstRegistrationContainer = ()=>{
                                 </div>
                             </div>
 
-                                <div className="flex flex-row pb-2 w-full">
-
-                                    <div className="flex flex-col p-2 w-full">
-                                        <Input 
-                                            className="w-1/2"
-                                            type={"text"}
-                                            name = "numeroDocumento"
-                                            required = {true}
-                                            label = "Documento de Identidad"
-                                            innerRef = {{...register("numeroDocumento", {
-                                                required: errorsMessages.require,
-                                                
-                                            })}}
-                                        >
-                                            <ErrorElement>{errors.numeroDocumento?.message}</ErrorElement>
-                                        </Input>
-                                    </div>
+                            <div className="flex flex-row pb-2 w-full">
+                                <div className="flex flex-col p-2 w-1/2">
+                                    <Input 
+                                        className="w-full"
+                                        type={"text"}
+                                        name = "numeroDocumento"
+                                        required = {true}
+                                        label = "Documento de Identidad"
+                                        innerRef = {{...register("numeroDocumento", {
+                                            required: errorsMessages.require,
+                                            
+                                        })}}
+                                    >
+                                        <ErrorElement>{errors.numeroDocumento?.message}</ErrorElement>
+                                    </Input>
                                 </div>
+                            </div>
 
-                                <div className="flex flex-col sm:flex-row pb-2 w-full">
-
-                                    <div className="flex flex-col p-2 w-full">
-                                        <Select name="deptos" 
-                                            className="w-full"
-                                            label="Departamentos"
-                                            required={true}
-                                            firstOption="Seleccione"
-                                            innerref = {{...register("depto", {
-                                                required: errorsMessages.require
-
-                                            })}}
-                                        >
-                                            <ErrorElement>{errors.depto?.message}</ErrorElement>
-
-                                        </Select>
-                                    </div>
+                            <div className="flex flex-col sm:flex-row pb-2 w-full">
+                                <div className="flex flex-col p-2 w-full">
+                                    <Select name="deptos" 
+                                        className="w-full"
+                                        label="Departamentos"
+                                        required={true}
+                                        firstOption="Seleccione"
+                                        innerref = {{...register("depto", {
+                                            required: errorsMessages.require
+                                        })}}
+                                    >
+                                        <ErrorElement>{errors.depto?.message}</ErrorElement>
+                                    </Select>
+                                </div>
 
                                     <div className="flex flex-col p-2 w-full">
 
@@ -207,86 +274,89 @@ const FirstRegistrationContainer = ()=>{
                                             <ErrorElement>{errors.municipio?.message}</ErrorElement>
                                         </Select>
                                     </div>
-                                </div>
+                            </div>
 
-                                <div className="flex flex-col sm:flex-row pb-2 w-full">
+                            <div className="flex flex-col sm:flex-row pb-2 w-full">
+                                
+                                <div className="flex flex-row w-full">
                                     
-                                    <div className="flex flex-row w-full">
-
-                                        <div className="flex flex-col p-2">
-                                            <Input 
-                                                type={"number"}
-                                                name="edad"
-                                                label="Edad"
-                                                required = {true}
-                                                className= "w-20"
-                                                innerRef = {{...register("edad", {
-                                                    required: errorsMessages.require,
-                                                    max: {
-                                                        value: 99,
-                                                        message: errorsMessages.edad.max
-                                                    }, 
-                                                    min: {
-                                                        value: 18,
-                                                        message: errorsMessages.edad.min
-                                                    }
-                                                    
-                                                })}}
-                                            >
-                                                <ErrorElement>{errors.edad?.message}</ErrorElement>                                           
-                                            </Input>
-                                        </div>
-
-                                        <div className="flex flex-col p-2">
-                                            <Input 
-                                                label="Télefono"
-                                                name="telefono"
-                                                type= "number"
-                                                className="w-40 md:w-52"
-                                                innerRef = {{...register("telefono", {
-                                                    required: errorsMessages.require
-                                                })}}
-                                            >
-                                                <ErrorElement>{errors.telefono?.message}</ErrorElement>
-                                            </Input>
-                                        </div>
-                                    </div>
-                                    <div className="flex flex-col p-2 w-full">
-
+                                    <div className="flex flex-col p-2 w-28">
+                                    
                                         <Input 
-                                            label="E-mail"
-                                            name="email"
-                                            required={true}
-                                            type="email"
-                                            className="w-full"
-                                            innerRef= {{...register("email", {
-                                                required: errorsMessages.require, 
-                                                pattern:{
-                                                    value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-                                                    message: errorsMessages.email.correoInvalido
-                                                } 
+                                            type={"number"}
+                                            name="edad"
+                                            label="Edad"
+                                            required = {true}
+                                            className= "w-full"
+                                            innerRef = {{...register("edad", {
+                                                required: errorsMessages.require,
+                                                max: {
+                                                    value: 99,
+                                                    message: errorsMessages.edad.max
+                                                }, 
+                                                min: {
+                                                    value: 18,
+                                                    message: errorsMessages.edad.min
+                                                }
                                                 
                                             })}}
                                         >
-                                            <ErrorElement>{errors.email?.message}</ErrorElement>
+                                            <ErrorElement>{errors.edad?.message}</ErrorElement>                                           
                                         </Input>
                                     </div>
+                                    
+                                    <div className="flex flex-col p-2 w-44 md:w-56">
+                                        <Input 
+                                            label="Télefono"
+                                            name="telefono"
+                                            type= "number"
+                                            className="w-full"
+                                            required={true}
+                                            innerRef = {{...register("telefono", {
+                                                required: errorsMessages.require
+                                            })}}
+                                        >
+                                            <ErrorElement>{errors.telefono?.message}</ErrorElement>
+                                        </Input>
+                                    </div>
+                                </div>
+                                <div className="flex flex-col p-2 w-full">
+
+                                    <Input 
+                                        label="E-mail"
+                                        name="email"
+                                        required={true}
+                                        type="email"
+                                        className="w-full"
+                                        innerRef= {{...register("email", {
+                                            required: errorsMessages.require, 
+                                            pattern:{
+                                                value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                                                message: errorsMessages.email.correoInvalido
+                                            } 
+                                            
+                                        })}}
+                                    >
+                                        <ErrorElement>{errors.email?.message}</ErrorElement>
+                                    </Input>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className=" bg-[#029CD4] flex flex-col lg:flex-row px-10 lg:px-16 py-6 w-full">
-
-                    <div className="flex flex-row justify-between w-full">
-                        {/* 
-                        <div className=" w-full text-right font-wendysSimpleFont text-xl text-white"></div>  */}
-                        <div className=" w-full text-right font-wendysSimpleFont text-xl text-white">
-                            <button type="submit">CONTINUAR &gt;</button>
-                        </div> 
-                    </div>
+            </div>
+            <div className=" bg-[#029CD4] flex flex-col lg:flex-row px-10 lg:px-16 py-6 w-full">
+                
+                <div className="flex flex-row justify-between w-full">
+                    {/* 
+                    <div className=" w-full text-right font-wendysSimpleFont text-xl text-white"></div>  */}
+                
+                    <div className=" w-full text-right font-wendysSimpleFont text-xl text-white">
+                        <button type="submit">CONTINUAR &gt;</button>
+                    </div> 
                 </div>
-            </Form>
+            </div>
+        </Form>
 
         </article>
     )
