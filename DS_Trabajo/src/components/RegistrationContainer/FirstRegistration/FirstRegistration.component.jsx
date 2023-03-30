@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 
 //importing useForm hook
 import { useForm } from "react-hook-form";
@@ -82,10 +82,38 @@ const FirstRegistrationContainer = ()=>{
     }
 
     //set and show image from input
+    const imageAccepted = /image\/(png|jpg|jpeg)/gm;
+    
+    const [fileUploaded, setFileUploaded] = useState(null);
 
-    const onImageChangeHandler = (e) => {
-        if (e.target.files && e.target.files[0]) setPicture(URL.createObjectURL(e.target.files[0]));
-    }
+    const onChangeHandler = (e) => {
+        const file = e.target.files[0];
+        if (!file.type.match(imageAccepted)) {
+          alert("Image mime type is not valid");
+          return;
+        }
+        setFileUploaded(file);
+      }
+      useEffect(() => {
+        let fileReader, isCancel = false;
+        if (fileUploaded) {
+          fileReader = new FileReader();
+          fileReader.onload = (e) => {
+            const { result } = e.target;
+            if (result && !isCancel) {
+              setPicture(result)
+            }
+          }
+          fileReader.readAsDataURL(fileUploaded);
+        }
+        return () => {
+          isCancel = true;
+          if (fileReader && fileReader.readyState === 1) {
+            fileReader.abort();
+          }
+        }
+    
+      }, [fileUploaded]);
 
     return(
         <article>
@@ -103,10 +131,8 @@ const FirstRegistrationContainer = ()=>{
 
                             <div className="w-52 flex flex-col items-center p-4">
                             {
-                                OpenCamera ?
-                                    picture ? 
-                                        <img src={picture} />
-                                    :
+                                OpenCamera || picture?
+                                    OpenCamera ? 
                                         <div>
                                             <Webcam
                                                 audio={false}
@@ -118,6 +144,12 @@ const FirstRegistrationContainer = ()=>{
                                                 videoConstraints={videSettings}
                                             />
                                         </div>
+
+                                    :
+                                        picture ? 
+                                            <img src={picture} />
+                                        : <></>
+
                                 :
                                     <img src={niniaBackground} alt="background wendys icon" />
                             }
@@ -126,7 +158,7 @@ const FirstRegistrationContainer = ()=>{
 
                             <div className="w-full mt-4 flex flex-col items-center bg-gray-200 p-4">
 
-                               <FileUploadComponent innerRef={{...register("fileUpload")}} onImageChangeHandler={onImageChangeHandler}></FileUploadComponent> 
+                               <FileUploadComponent innerRef={{...register("fileUpload")}} onChange={onChangeHandler}></FileUploadComponent> 
                                 <br />
 
                                 {
