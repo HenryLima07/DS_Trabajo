@@ -1,4 +1,4 @@
-
+import Options from "./Options/Options.component";
 
 const Select = ({
     name, 
@@ -8,9 +8,11 @@ const Select = ({
     required = false,
     firstOption = "",
     defaultOptions = false,
+    Data=[],
     children, 
     ...rest })=>{
-    return(
+        console.log(Data);
+        return(
         <>
             <label htmlFor={name} className ="font-bold pr-8"  >
 
@@ -27,16 +29,26 @@ const Select = ({
                 {...innerRef}
                 {...rest}
             >
-                <option selected={true}  value="" disabled={true}>{firstOption}</option>
+            <>
+                <Options selected={true}>{firstOption}</Options> 
                 {
                     defaultOptions ?
                         <>
-                            <option value={"S"}>Sí</option>
-                            <option value={"N"}>No</option>
+                            <Options value="S">Sí</Options>
+                            <Options value="N">No</Options>
                         </>
                         :
                         <></>
                     }
+                {
+                    Data.length > 0  ? 
+                        Data.map(element =>{
+                            <Option value={element.id}>{element.value}</Option>
+                        })
+                        :
+                        <></>
+                }
+                </>
                 </select>
             {children}
 

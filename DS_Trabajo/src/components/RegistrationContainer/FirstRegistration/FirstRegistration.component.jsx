@@ -16,6 +16,52 @@ import ErrorElement from "../../Shared/Form/ErrorElement/ErrorElement.component"
 import FileUploadComponent from "../../Shared/Form/FileUploadComponent/FileUploadComponent.component";
 
 
+//data 
+const Municipios = [
+    {id: "1", munNom: "nombre municipio"},
+    {id: "1", munNom: "nombre municipio"},
+    {id: "1", munNom: "nombre municipio"},
+    {id: "1", munNom: "nombre municipio"},
+    {id: "1", munNom: "nombre municipio"},
+    {id: "1", munNom: "nombre municipio"},
+    {id: "1", munNom: "nombre municipio"},
+    {id: "1", munNom: "nombre municipio"},
+    {id: "1", munNom: "nombre municipio"},
+    {id: "1", munNom: "nombre municipio"},
+]
+const Departamentos = [
+    {id: "1", dptNombre: "nombre departamento"},
+    {id: "1", dptNombre: "nombre departamento"},
+    {id: "1", dptNombre: "nombre departamento"},
+    {id: "1", dptNombre: "nombre departamento"},
+    {id: "1", dptNombre: "nombre departamento"},
+    {id: "1", dptNombre: "nombre departamento"},
+    {id: "1", dptNombre: "nombre departamento"},
+    {id: "1", dptNombre: "nombre departamento"},
+    {id: "1", dptNombre: "nombre departamento"},
+    {id: "1", dptNombre: "nombre departamento"},
+]
+const paises = [
+    {id: "1", paiNombre: "nombre país"},
+    {id: "1", paiNombre: "nombre país"},
+    {id: "1", paiNombre: "nombre país"},
+    {id: "1", paiNombre: "nombre país"},
+    {id: "1", paiNombre: "nombre país"},
+    {id: "1", paiNombre: "nombre país"},
+    {id: "1", paiNombre: "nombre país"},
+    {id: "1", paiNombre: "nombre país"},
+    {id: "1", paiNombre: "nombre país"},
+    {id: "1", paiNombre: "nombre país"},
+]
+
+const  castData =(data, dataFrom)=>{
+    return data.map(element =>{
+        if(dataFrom === "paises") return {id: element.id, value: element.paiNombre};
+        if(dataFrom === "municipios") return {id: element.id, value: element.munNom};
+        if(dataFrom === "departamentos") return {id: element.id, value: element.dptNombre};
+    });
+}
+
 //errors messages
 const errorsMessages = {
     require: "Este campo es requerido",
@@ -46,7 +92,21 @@ const videSettings = {
     facingMode: "user",
 }
 
+
 const FirstRegistrationContainer = ()=>{
+
+    //handlers of data for selects elements
+    const [paisData, setpaisData] = useState([]);
+    const [munData, setmunData] = useState([]);
+    const [dptData, setdptData] = useState([]);
+
+    //casting data from selects
+    useEffect(() => {
+        setpaisData(castData(paises, "paises"));
+        setmunData(castData(Municipios, "municipios"));
+        setdptData(castData(Departamentos, "departamentos"));
+    }, []);
+
     //getting objects from useform
     const { handleSubmit, register, formState: { errors } } = useForm();
     const navigateTo = useNavigate();
@@ -220,6 +280,7 @@ const FirstRegistrationContainer = ()=>{
                                             
                                             required: errorsMessages.require
                                         })}}
+                                        Data = {paisData}
                                     >
                                         <ErrorElement>{errors.paises?.message}</ErrorElement>
                                     </Select>
@@ -254,6 +315,7 @@ const FirstRegistrationContainer = ()=>{
                                         innerref = {{...register("depto", {
                                             required: errorsMessages.require
                                         })}}
+                                        Data={dptData}
                                     >
                                         <ErrorElement>{errors.depto?.message}</ErrorElement>
                                     </Select>
@@ -271,6 +333,8 @@ const FirstRegistrationContainer = ()=>{
                                                 required: errorsMessages.require
 
                                             })}}
+
+                                            Data={munData}
                                         >
                                             <ErrorElement>{errors.municipio?.message}</ErrorElement>
                                         </Select>
