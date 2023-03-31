@@ -256,7 +256,7 @@ const FirstRegistrationContainer = ()=>{
                                         innerRef = {{...register("nombres", {
                                             required: errorsMessages.require, 
                                             pattern:{
-                                                value: /^[A-Za-z]+$/,
+                                                value: /^[a-zA-Z\ áéíóúÁÉÍÓÚñÑ\s]*$/,
                                                 message: errorsMessages.nombre.soloTexto
                                             } 
                                         })}}
