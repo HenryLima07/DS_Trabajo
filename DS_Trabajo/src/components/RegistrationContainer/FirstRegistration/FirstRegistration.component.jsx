@@ -1,14 +1,13 @@
-import { Link, useNavigate } from "react-router-dom";
 import { useState, useCallback, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-//importing useForm hook
 import { useForm } from "react-hook-form";
 import Webcam from "react-webcam";
 
-//importing img
+//importing src
 import niniaBackground from "../../../assets/img/wendy/niniaGray.svg";
 
-//importing form elements
+//importing elements
 import Form from "../../Shared/Form/Form.component";
 import Input from "../../../components/Shared/Form/Input/Input.component";
 import Select from "../../Shared/Form/Select/Select.component";
@@ -16,7 +15,15 @@ import ErrorElement from "../../Shared/Form/ErrorElement/ErrorElement.component"
 import FileUploadComponent from "../../Shared/Form/FileUploadComponent/FileUploadComponent.component";
 
 //importing modules
-import { castData, errorsMessages, videSettings } from "../Registration.module";
+import { 
+    castData, 
+    errorsMessages, 
+    videSettings, 
+    onInvalid, 
+    imageAccepted, 
+    setItemLS, 
+    clearLS
+} from "../Registration.module";
 
 //TODO: save in local storage users information after first registration step
 
@@ -60,14 +67,12 @@ const paises = [
 ]
 
 
-const FirstRegistrationContainer = ()=>{
+
+const FirstRegistrationContainer = ({data, dataFrom})=>{
+    const navigateTo = useNavigate();
 
     //getting objects from useform
     const { handleSubmit, register, formState: { errors } } = useForm();
-    const navigateTo = useNavigate();        
-
-    //set and show image from input
-    const imageAccepted = /image\/(png|jpg|jpeg)/gm;
     
     //handlers of data for options elements
     const [paisData, setpaisData] = useState([]);
@@ -82,11 +87,13 @@ const FirstRegistrationContainer = ()=>{
     //set toogle camera state
     const [OpenCamera, setOpenCamera] = useState(false);
 
-    //casting data from selects
+    //casting data from selects and assing data to img elements
     useEffect(() => {
         setpaisData(castData(paises, "paises"));
         setmunData(castData(Municipios, "municipios"));
         setdptData(castData(Departamentos, "departamentos"));
+
+        if(data && dataFrom === "localstorage") setPicture(data.pic_perfil);
     }, []);
 
     //set image view when taking photo
@@ -124,6 +131,28 @@ const FirstRegistrationContainer = ()=>{
         setOpenCamera(setValue);
     }
     
+    const onSubmitHandler = (data)=>{
+        if(!data) return;
+        
+        //clearing localstorage to save new instance on same key
+        if(item) clearLS(item);
+
+        const dataUser ={
+            "nombre": data.nombres,
+            "pais": data.paises,
+            "documento": data.numeroDocumento,
+            "departamento": data.depto,
+            "municipio": data.municipio,
+            "edad": data.edad,
+            "telefono": data.telefono,
+            "email": data.email,
+            "pic_perfil": picture
+        }
+        setItemLS(dataUser);
+
+        navigateTo("/registro-step2");
+    }
+
     //set image view when uploading files
     const onChangeHandler = (e) => {
         const file = e.target.files[0];
@@ -133,19 +162,6 @@ const FirstRegistrationContainer = ()=>{
         }
         setFileUploaded(file);
       }
-
-    //onSubmitHandler
-    const onSubmitHandler = (data)=>{
-        const {nombres} = data;
-        console.log(data);
-        console.log(picture);
-        navigateTo("/registro-step2");
-    }
-
-    //onInvalidHandler
-    const onInvalid=()=>{
-        
-    }
 
     return(
         <article>

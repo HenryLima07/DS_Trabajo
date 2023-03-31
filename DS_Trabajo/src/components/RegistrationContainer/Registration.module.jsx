@@ -1,3 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
+//global navigate function
+//const navigateTo = useNavigate();
+
 //errors messages
 export const errorsMessages = {
     require: "Este campo es requerido",
@@ -38,6 +43,17 @@ export const  castData =(data, dataFrom)=>{
     });
 }
 
+
+//functions and data for first step registration
+//set and show image from input
+export const imageAccepted = /image\/(png|jpg|jpeg)/gm;
+//onSubmitHandler
+
+
+    //onInvalidHandler
+export const onInvalid=()=>{
+        
+}
 
 //localStorage modules
 
