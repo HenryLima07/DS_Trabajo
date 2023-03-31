@@ -170,7 +170,7 @@ const FirstRegistrationContainer = ()=>{
     //onSubmitHandler
     const onSubmitHandler = (data)=>{
         const {nombres} = data;
-        console.log(nombres);
+        console.log(data);
         navigateTo("/registro-step2");
     }
 
@@ -312,28 +312,32 @@ const FirstRegistrationContainer = ()=>{
                             </div>
 
                             <div className="flex flex-col sm:flex-row pb-2 w-full">
-                                <div className="flex flex-col p-2 w-full">
-                                    <Select name="deptos" 
-                                        className="w-full"
-                                        label="Departamentos"
-                                        required={true}
-                                        firstOption="Seleccione"
-                                        innerref = {{...register("depto", {
-                                            required: errorsMessages.require
-                                        })}}
-                                        Data={dptData}
-                                    >
-                                        <ErrorElement>{errors.depto?.message}</ErrorElement>
-                                    </Select>
-                                </div>
+                                    <div className="flex flex-col p-2 w-full">
+
+                                        <Select 
+                                            name="deptos"
+                                            className="w-full"
+                                            label   = "Departamentos"
+                                            required = {true}
+                                            firstOption="Seleccione"
+                                            innerRef = {{...register("depto", {
+                                                required: errorsMessages.require
+
+                                            })}}
+
+                                            Data={dptData}
+                                        >
+                                            <ErrorElement>{errors.depto?.message}</ErrorElement>
+                                        </Select>
+                                    </div> 
 
                                     <div className="flex flex-col p-2 w-full">
 
                                         <Select 
                                             name="municipios"
-                                            required = {true}
-                                            label = "Municipio"
                                             className="w-full"
+                                            label   = "Municipio"
+                                            required = {true}
                                             firstOption="Seleccione"
                                             innerRef = {{...register("municipio", {
                                                 required: errorsMessages.require
