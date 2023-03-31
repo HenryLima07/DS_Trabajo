@@ -4,6 +4,8 @@ import Title from "../../components/Shared/Title/TitleContainer.component";
 import RegistrationCotainer from "../../components/RegistrationContainer/RegistrationContainer.component";
 
 const RegistrationView = ()=>{
+
+    //TODO: get data from api and set as main information when updating personals information
     return(
         <>
             <Header />

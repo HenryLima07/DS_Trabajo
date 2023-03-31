@@ -5,6 +5,8 @@ import ErrorElement from "../../Shared/Form/ErrorElement/ErrorElement.component"
 
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useState, useEffect } from "react";
+import { castData } from "../Registration.module";
 
 
 //errors messages
@@ -12,11 +14,36 @@ const errorsMessages = {
     require: "Este campo es requerido",
 }
 
+const estudios=[
+    {id: "1", nieNombre: "Pensum cerrado"},
+    {id: "2", nieNombre: "Básico incompleto"},
+    {id: "3", nieNombre: "Primaria"},
+    {id: "4", nieNombre: "Noveno"},
+    {id: "5", nieNombre: "Quinto año de secundaria (sin bachiller)"},
+    {id: "6", nieNombre: "No aplica"},
+    {id: "7", nieNombre: "Universidad 1er año"},
+    {id: "8", nieNombre: "Universidad 2do año"},
+    {id: "9", nieNombre: "Universidad 3er año"},
+    {id: "10", nieNombre: "Universidad 4to año"},
+    {id: "15", nieNombre: "Universidad 5to año"},
+    {id: "15", nieNombre: "Graduado universitario"},
+    {id: "15", nieNombre: "Universidad incompleta"},
+    {id: "15", nieNombre: "Maestria"},
+]
 
 const SecondRegistrationContainer = ()=>{
+    //information i dont know
     const information = false;
 
+    //castedData for options in nivel de estudios
+    const [Estudios, setEstudios] = useState([]);
+
     const { handleSubmit, register, formState: { errors } } = useForm();
+
+    //casting at loading
+    useEffect(() => {
+        setEstudios(castData(estudios, "estudios"))
+    }, []);
 
     //onSubmitHandler
     const onSubmitHandler = (data)=>{
@@ -52,6 +79,8 @@ const SecondRegistrationContainer = ()=>{
                                 innerRef = {{...register("nivelEstudios", {
                                     required: errorsMessages.require
                                 })}}
+
+                                Data = {Estudios}
 
                             ><ErrorElement>{errors.nivelEstudios?.message}</ErrorElement></Select>
                         </div>

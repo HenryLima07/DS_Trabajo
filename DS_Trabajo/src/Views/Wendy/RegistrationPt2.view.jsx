@@ -4,6 +4,8 @@ import SecondRegistrationContainer from "../../components/RegistrationContainer/
 import Title from "../../components/Shared/Title/TitleContainer.component";
 
 
+//TODO: set data from api as main data when updating persona information
+
 const RegistrationPt2View = ()=>{
     return(
         <>

@@ -15,82 +15,49 @@ import Select from "../../Shared/Form/Select/Select.component";
 import ErrorElement from "../../Shared/Form/ErrorElement/ErrorElement.component";
 import FileUploadComponent from "../../Shared/Form/FileUploadComponent/FileUploadComponent.component";
 
+//importing modules
+import { castData, errorsMessages, videSettings } from "../Registration.module";
+
+//TODO: save in local storage users information after first registration step
+
 
 //data 
 const Municipios = [
-    {id: "1", munNom: "nombre municipio"},
-    {id: "1", munNom: "nombre municipio"},
-    {id: "1", munNom: "nombre municipio"},
-    {id: "1", munNom: "nombre municipio"},
-    {id: "1", munNom: "nombre municipio"},
-    {id: "1", munNom: "nombre municipio"},
-    {id: "1", munNom: "nombre municipio"},
-    {id: "1", munNom: "nombre municipio"},
-    {id: "1", munNom: "nombre municipio"},
-    {id: "1", munNom: "nombre municipio"},
+    {id: "1", munNom: "nombre 1"},
+    {id: "2", munNom: "nombre 2"},
+    {id: "3", munNom: "nombre 3"},
+    {id: "4", munNom: "nombre 4"},
+    {id: "5", munNom: "nombre 5"},
+    {id: "6", munNom: "nombre 6"},
+    {id: "7", munNom: "nombre 7"},
+    {id: "8", munNom: "nombre 8"},
+    {id: "9", munNom: "nombre 9"},
+    {id: "10", munNom: "nombre 0"},
 ]
 const Departamentos = [
-    {id: "1", dptNombre: "nombre departamento"},
-    {id: "1", dptNombre: "nombre departamento"},
-    {id: "1", dptNombre: "nombre departamento"},
-    {id: "1", dptNombre: "nombre departamento"},
-    {id: "1", dptNombre: "nombre departamento"},
-    {id: "1", dptNombre: "nombre departamento"},
-    {id: "1", dptNombre: "nombre departamento"},
-    {id: "1", dptNombre: "nombre departamento"},
-    {id: "1", dptNombre: "nombre departamento"},
-    {id: "1", dptNombre: "nombre departamento"},
+    {id: "1", dptNombre: "nombre 1"},
+    {id: "2", dptNombre: "nombre 2"},
+    {id: "3", dptNombre: "nombre 3"},
+    {id: "4", dptNombre: "nombre 4"},
+    {id: "5", dptNombre: "nombre 5"},
+    {id: "6", dptNombre: "nombre 6"},
+    {id: "7", dptNombre: "nombre 7"},
+    {id: "8", dptNombre: "nombre 8"},
+    {id: "9", dptNombre: "nombre 9"},
+    {id: "0", dptNombre: "nombre 0"},
 ]
 const paises = [
-    {id: "1", paiNombre: "nombre país"},
-    {id: "1", paiNombre: "nombre país"},
-    {id: "1", paiNombre: "nombre país"},
-    {id: "1", paiNombre: "nombre país"},
-    {id: "1", paiNombre: "nombre país"},
-    {id: "1", paiNombre: "nombre país"},
-    {id: "1", paiNombre: "nombre país"},
-    {id: "1", paiNombre: "nombre país"},
-    {id: "1", paiNombre: "nombre país"},
-    {id: "1", paiNombre: "nombre país"},
+    {id: "1", paiNombre: "nombre 9"},
+    {id: "2", paiNombre: "nombre 8"},
+    {id: "3", paiNombre: "nombre 7"},
+    {id: "4", paiNombre: "nombre 6"},
+    {id: "5", paiNombre: "nombre 5"},
+    {id: "6", paiNombre: "nombre 4"},
+    {id: "7", paiNombre: "nombre 3"},
+    {id: "8", paiNombre: "nombre 2"},
+    {id: "9", paiNombre: "nombre 1"},
+    {id: "0", paiNombre: "nombre 0"},
 ]
-
-const  castData =(data, dataFrom)=>{
-    return data.map(element =>{
-        if(dataFrom === "paises") return {id: element.id, value: element.paiNombre};
-        if(dataFrom === "municipios") return {id: element.id, value: element.munNom};
-        if(dataFrom === "departamentos") return {id: element.id, value: element.dptNombre};
-    });
-}
-
-//errors messages
-const errorsMessages = {
-    require: "Este campo es requerido",
-    nombre: {
-        soloTexto: "El campo solo permite texto",
-    },
-
-    numeroDocumento:{
-        documentoRegistrado: "Tu documento ya ha sido registrado",
-        documentoEmailRegistrado: "El correo indicado ya está asociado a otro documento"
-    },
-
-    edad:{
-        max: "Edad no puede ser mayor a 99 años",
-        min: "Debe tener al menos 18 años"
-    },
-
-    email:{
-        correoInvalido: "Correo electronico invalido",
-        correoRepetido: "Correo electronico en uso por otro usuario"
-    }
-}
-
-//video settings
-const videSettings = {
-    width: 900,
-    height: 800,
-    facingMode: "user",
-}
 
 
 const FirstRegistrationContainer = ()=>{
@@ -171,6 +138,7 @@ const FirstRegistrationContainer = ()=>{
     const onSubmitHandler = (data)=>{
         const {nombres} = data;
         console.log(data);
+        console.log(picture);
         navigateTo("/registro-step2");
     }
 
@@ -179,13 +147,9 @@ const FirstRegistrationContainer = ()=>{
         
     }
 
-
-
-
     return(
         <article>
-        {/* TODO: Funciones especiales de validacion para documento DUI y correo y despliege de informacion en options
-        TODO: takenpicture*/}
+        {/* TODO: Funciones especiales de validacion para documento DUI y correo y despliege de informacion en options*/}
             <Form autoComplete="off" 
                 onSubmit = {(handleSubmit(onSubmitHandler, onInvalid))}
              >
@@ -225,7 +189,7 @@ const FirstRegistrationContainer = ()=>{
 
                             <div className="w-full mt-4 flex flex-col items-center bg-gray-200 p-4">
 
-                               <FileUploadComponent innerRef={{...register("fileUpload")}} onChange={onChangeHandler}></FileUploadComponent> 
+                               <FileUploadComponent onChange={onChangeHandler}></FileUploadComponent> 
                                 <br />
 
                                 {
