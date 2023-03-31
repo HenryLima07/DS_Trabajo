@@ -95,10 +95,25 @@ const videSettings = {
 
 const FirstRegistrationContainer = ()=>{
 
-    //handlers of data for selects elements
+    //getting objects from useform
+    const { handleSubmit, register, formState: { errors } } = useForm();
+    const navigateTo = useNavigate();        
+
+    //set and show image from input
+    const imageAccepted = /image\/(png|jpg|jpeg)/gm;
+    
+    //handlers of data for options elements
     const [paisData, setpaisData] = useState([]);
     const [munData, setmunData] = useState([]);
     const [dptData, setdptData] = useState([]);
+    
+    //takePicture
+    const [picture, setPicture] = useState("");
+    const [fileUploaded, setFileUploaded] = useState(null);
+    const webcamRef = useRef(null);
+
+    //set toogle camera state
+    const [OpenCamera, setOpenCamera] = useState(false);
 
     //casting data from selects
     useEffect(() => {
@@ -107,55 +122,16 @@ const FirstRegistrationContainer = ()=>{
         setdptData(castData(Departamentos, "departamentos"));
     }, []);
 
-    //getting objects from useform
-    const { handleSubmit, register, formState: { errors } } = useForm();
-    const navigateTo = useNavigate();
-        
-    //set open or close camera
-    const [OpenCamera, setOpenCamera] = useState(false);
-
-    //setOpenCameraHandler
-    const setOpenCameraHandler = (setValue)=>{
-        setOpenCamera(setValue);
-    }
-    
-    //takePicture
-    const [picture, setPicture] = useState("");
-    const webcamRef = useRef(null);
-
+    //set image view when taking photo
     const takePhotoHandler = useCallback(
-            () => {
-              const imageSrc = webcamRef.current.getScreenshot();
-              setPicture(imageSrc);
-              setOpenCamera(false);
-            }, [webcamRef] );
+        () => {
+          const imageSrc = webcamRef.current.getScreenshot();
+          setPicture(imageSrc);
+          setOpenCamera(false);
+        }, [webcamRef] );
 
-    //onSubmitHandler
-    const onSubmitHandler = (data)=>{
-        const {nombres} = data;
-        console.log(nombres);
-        navigateTo("/registro-step2");
-    }
-
-    //onInvalidHandler
-    const onInvalid=()=>{
-        
-    }
-
-    //set and show image from input
-    const imageAccepted = /image\/(png|jpg|jpeg)/gm;
-    
-    const [fileUploaded, setFileUploaded] = useState(null);
-
-    const onChangeHandler = (e) => {
-        const file = e.target.files[0];
-        if (!file.type.match(imageAccepted)) {
-          alert("Image mime type is not valid");
-          return;
-        }
-        setFileUploaded(file);
-      }
-      useEffect(() => {
+    //set image src when file is selected
+    useEffect(() => {
         let fileReader, isCancel = false;
         if (fileUploaded) {
           fileReader = new FileReader();
@@ -175,6 +151,36 @@ const FirstRegistrationContainer = ()=>{
         }
     
       }, [fileUploaded]);
+
+    //setOpenCameraHandler
+    const setOpenCameraHandler = (setValue)=>{
+        setOpenCamera(setValue);
+    }
+    
+    //set image view when uploading files
+    const onChangeHandler = (e) => {
+        const file = e.target.files[0];
+        if (!file.type.match(imageAccepted)) {
+          alert("Image mime type is not valid");
+          return;
+        }
+        setFileUploaded(file);
+      }
+
+    //onSubmitHandler
+    const onSubmitHandler = (data)=>{
+        const {nombres} = data;
+        console.log(nombres);
+        navigateTo("/registro-step2");
+    }
+
+    //onInvalidHandler
+    const onInvalid=()=>{
+        
+    }
+
+
+
 
     return(
         <article>

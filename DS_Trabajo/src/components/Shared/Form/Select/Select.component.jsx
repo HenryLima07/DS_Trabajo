@@ -11,7 +11,9 @@ const Select = ({
     Data=[],
     children, 
     ...rest })=>{
-        console.log(Data);
+
+    const mappedOptions = Data.map((element, index) => <Options key={index} value={element.id}>{element.value}</Options>);
+      
         return(
         <>
             <label htmlFor={name} className ="font-bold pr-8"  >
@@ -41,10 +43,8 @@ const Select = ({
                         <></>
                     }
                 {
-                    Data.length > 0  ? 
-                        Data.map(element =>{
-                            <Option value={element.id}>{element.value}</Option>
-                        })
+                    Data && Data.length > 0 ?
+                        mappedOptions
                         :
                         <></>
                 }
