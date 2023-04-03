@@ -1,24 +1,20 @@
-import { useState, useCallback, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useForm } from "react-hook-form";
-import Webcam from "react-webcam";
 
-//importing src
-import niniaBackground from "../../../assets/img/wendy/niniaGray.svg";
 
 //importing elements
 import Form from "../../Shared/Form/Form.component";
 import Input from "../../../components/Shared/Form/Input/Input.component";
 import Select from "../../Shared/Form/Select/Select.component";
 import ErrorElement from "../../Shared/Form/ErrorElement/ErrorElement.component";
-import FileUploadComponent from "../../Shared/Form/FileUploadComponent/FileUploadComponent.component";
+import FormFooterContainer from "../FormFooterContainer/FormFooterContainer.component";
+import ProfilePicContainer from "../ProfilePicContainer/ProfilePicContainer.component";
 
 //importing modules
 import {  
-    errorsMessages, 
-    videSettings, 
-    imageAccepted, 
+    errorsMessages,
     checkDB,
     checkLS,
     setItemLS, 
@@ -81,17 +77,15 @@ const FirstRegistrationContainer = ({Data, dataFrom})=>{
     //getting objects from useform
     const { handleSubmit, register, setValue, formState: { errors } } = useForm();
     
-    //takePicture
+    //get picture controller
     const [picture, setPicture] = useState("");
-    const [fileUploaded, setFileUploaded] = useState(null);
-    const webcamRef = useRef(null);
 
-    //set toogle camera state
-    const [OpenCamera, setOpenCamera] = useState(false);
+    //picture controller stc
+    const setPictureHandler = (src) => setPicture(src);
 
     //setting default value on selects elements and assing data to img elements
     useEffect(() => {
-        if(data && dataFrom === "localstorage") setPicture(data.pic_perfil);
+        if(data && dataFrom === "localstorage") setPictureHandler(data.pic_perfil);
 
         if(!defaultPais) return;
         setValue("paises", defaultPais);
@@ -102,41 +96,6 @@ const FirstRegistrationContainer = ({Data, dataFrom})=>{
         if(!defaultMunicipio) return;
         setValue("municipio", defaultMunicipio);
     }, []);
-
-    //set image view when taking photo
-    const takePhotoHandler = useCallback(
-        () => {
-          const imageSrc = webcamRef.current.getScreenshot();
-          setPicture(imageSrc);
-          setOpenCamera(false);
-        }, [webcamRef] );
-
-    //set image src when file is selected
-    useEffect(() => {
-        let fileReader, isCancel = false;
-        if (fileUploaded) {
-          fileReader = new FileReader();
-          fileReader.onload = (e) => {
-            const { result } = e.target;
-            if (result && !isCancel) {
-              setPicture(result)
-            }
-          }
-          fileReader.readAsDataURL(fileUploaded);
-        }
-        return () => {
-          isCancel = true;
-          if (fileReader && fileReader.readyState === 1) {
-            fileReader.abort();
-          }
-        }
-    
-      }, [fileUploaded]);
-
-    //setOpenCameraHandler
-    const setOpenCameraHandler = (setValue)=>{
-        setOpenCamera(setValue);
-    }
     
     const onSubmitHandler = (data)=>{
         if(!data) return;
@@ -157,6 +116,8 @@ const FirstRegistrationContainer = ({Data, dataFrom})=>{
         }
         setItemLS(dataUser);
 
+        console.log(dataUser);
+
         navigateTo("/registro-step2");
     }
 
@@ -164,16 +125,6 @@ const FirstRegistrationContainer = ({Data, dataFrom})=>{
     const onInvalid=(data)=>{
         console.log(data);    
     }
-
-    //set image view when uploading files
-    const onChangeHandler = (e) => {
-        const file = e.target.files[0];
-        if (!file.type.match(imageAccepted)) {
-          alert("Image mime type is not valid");
-          return;
-        }
-        setFileUploaded(file);
-      }
 
 
     return(
@@ -184,58 +135,8 @@ const FirstRegistrationContainer = ({Data, dataFrom})=>{
                 onSubmit = {(handleSubmit(onSubmitHandler, onInvalid))}
              >
             <div className = "flex flex-col lg:flex-row p-4 items-center justify-around">
-                <div className="mx-8">
-
-                    <div className="flex flex-col justify-center">
-
-                        <div className="flex flex-col items-center border border-gray-200 rounded-md">
-
-                            <div className="w-52 flex flex-col items-center p-4">
-                            {
-                                OpenCamera || picture?
-                                    OpenCamera ? 
-                                        <div>
-                                            <Webcam
-                                                audio={false}
-                                                mirrored = {true}
-                                                height={800}
-                                                ref={webcamRef}
-                                                screenshotFormat="image/jpeg"
-                                                width={900}
-                                                videoConstraints={videSettings}
-                                            />
-                                        </div>
-
-                                    :
-                                        picture ? 
-                                            <img src={picture} />
-                                        : <></>
-
-                                :
-                                    <img src={niniaBackground} alt="background wendys icon" />
-                            }
-
-                            </div>
-
-                            <div className="w-full mt-4 flex flex-col items-center bg-gray-200 p-4">
-
-                               <FileUploadComponent onChange={onChangeHandler}></FileUploadComponent> 
-                                <br />
-
-                                {
-                                    OpenCamera ? 
-                                    <label htmlFor="" className="bg-wendys-blue text-white py-3 px-8 rounded cursor-pointer" onClick={takePhotoHandler}>Tomar foto</label>
-                                    :
-                                    <label className="bg-wendys-blue text-white py-3 px-6 rounded cursor-pointer" onClick={()=>setOpenCameraHandler(true)}>Abrir camara</label>
-                                }
-
-                                <p className="mt-4">
-                                    Archivo permitido jpg o png. Tamaño máximo 1 MB
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
+                <ProfilePicContainer picture = {picture} setPictureHandler = {setPictureHandler} />
 
                 <div className="flex flex-col items-center py-8 w-full">
 
@@ -440,17 +341,7 @@ const FirstRegistrationContainer = ({Data, dataFrom})=>{
                     </div>
                 </div>
             </div>
-            <div className=" bg-[#029CD4] flex flex-col lg:flex-row px-10 lg:px-16 py-6 w-full">
-                
-                <div className="flex flex-row justify-between w-full">
-                    {/* 
-                    <div className=" w-full text-right font-wendysSimpleFont text-xl text-white"></div>  */}
-                
-                    <div className=" w-full text-right font-wendysSimpleFont text-xl text-white">
-                        <button type="submit">CONTINUAR &gt;</button>
-                    </div> 
-                </div>
-            </div>
+            <FormFooterContainer className={"text-right"}><button type="submit">CONTINUAR &gt;</button></FormFooterContainer>
         </Form>
 
         </article>

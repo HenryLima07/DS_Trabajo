@@ -60,7 +60,7 @@ const Select = ({
                         <></>
                 }
                 </>
-                </select>
+            </select>
             {
                 children
             }

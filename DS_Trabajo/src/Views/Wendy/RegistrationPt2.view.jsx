@@ -10,7 +10,7 @@ const RegistrationPt2View = ()=>{
     return(
         <>
             <Header />
-                <Title Title="!Tenés todo el talento que andamos buscando!" />
+                <Title Title="¡Tenés todo el talento que andamos buscando!" />
                 <SecondRegistrationContainer />
             <Footer />
 

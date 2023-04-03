@@ -2,6 +2,7 @@ import Form from "../../Shared/Form/Form.component";
 import Input from "../../Shared/Form/Input/Input.component";
 import Select from "../../Shared/Form/Select/Select.component";
 import ErrorElement from "../../Shared/Form/ErrorElement/ErrorElement.component";
+import FormFooterContainer from "../FormFooterContainer/FormFooterContainer.component";
 
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -66,7 +67,7 @@ const SecondRegistrationContainer = ({data=[], dataFrom="database"})=>{
 
                     <div className="flex flex-col md:flex-row pb-2 w-full">
 
-                        <div className="flex flex-col p-2">
+                        <div className="flex flex-col p-2 w-full">
 
                             <Select 
                                 name="estudios"
@@ -163,19 +164,7 @@ const SecondRegistrationContainer = ({data=[], dataFrom="database"})=>{
             </Form>
 
             </article>
-
-            <div className=" bg-[#029CD4] flex flex-col lg:flex-row px-10 lg:px-16  py-6 w-full">
-
-                <div className="flex flex-row justify-between w-full">
-
-                    <div className="w-full text-left font-wendysSimpleFont text-xl text-white uppercase cursor-pointer">
-                         <Link to={"/registro"}>&lt; Regresar</Link>
-                    </div>
-                    <div className="w-1/2 text-right font-wendysSimpleFont text-xl text-white hidden">
-
-                    </div>
-                </div>
-            </div>
+            <FormFooterContainer><Link to={"/registro"}>&lt; REGRESAR</Link></FormFooterContainer>
             
         </section>
        
