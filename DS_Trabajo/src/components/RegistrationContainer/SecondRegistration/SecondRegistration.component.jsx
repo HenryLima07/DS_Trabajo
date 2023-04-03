@@ -5,8 +5,7 @@ import ErrorElement from "../../Shared/Form/ErrorElement/ErrorElement.component"
 
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useState, useEffect } from "react";
-import { castData } from "../Registration.module";
+import { useEffect } from "react";
 
 
 //importing modules
@@ -33,21 +32,22 @@ const SecondRegistrationContainer = ({data=[], dataFrom="database"})=>{
     //information i dont know
     const information = false;
 
-    //castedData for options in nivel de estudios
-    const [Estudios, setEstudios] = useState([]);
+    const defaultEstudios = checkDB(data, dataFrom) ? "value from db" : null;
 
-    const { handleSubmit, register, formState: { errors } } = useForm();
+
+
+    const { handleSubmit, register, setValue, formState: { errors } } = useForm();
 
     //casting at loading
     useEffect(() => {
-        setEstudios(castData(estudios, "estudios"))
+        if(!defaultEstudios) return;
+        setValue(defaultEstudios);
     }, []);
 
     //onSubmitHandler
     const onSubmitHandler = (data)=>{
 
-        const {nivelEstudios} = data;
-        console.log(nivelEstudios);
+        console.log(data);
     }
 
     const onInvalid=()=>{
@@ -69,30 +69,31 @@ const SecondRegistrationContainer = ({data=[], dataFrom="database"})=>{
                         <div className="flex flex-col p-2">
 
                             <Select 
-                                name="nivelEstudios"
-                                required = {true}
-                                label= "Nivel de estudios"
+                                name="estudios"
                                 className="w-60"
+                                label= "Nivel de estudios"
+                                required = {true}
                                 firstOption="Seleccione"
+                                
                                 innerRef = {{...register("nivelEstudios", {
                                     required: errorsMessages.require
                                 })}}
 
-                                defaultValue = {
-                                    checkDB(data, dataFrom) ? "value from db" : null
-                                }
+                                defaultValue = { defaultEstudios }
 
-                                Data = {Estudios}
+                                Data = {estudios}
 
                             ><ErrorElement>{errors.nivelEstudios?.message}</ErrorElement></Select>
                         </div>
 
                         <div className="flex flex-col p-2 w-full">
                             <Input 
-                                name="numeroDocumento"
+                                name="carrera"
                                 label="Indíquenos la carrera"
                                 type={"text"}
                                 className="w-full"
+
+                                innerRef={{...register("carrera")}}
                             />
                         </div>
                     </div>
@@ -104,7 +105,9 @@ const SecondRegistrationContainer = ({data=[], dataFrom="database"})=>{
                                     name="discapacitado"
                                     label="Posees algún tipo de discapacidad"
                                     className="w-20"
-                                    Data={defaultOptions}
+                                    Data={ defaultOptions }
+
+                                    innerRef= {{...register("discapacidad")}}
                                 />
                         </div>
                     </div>
@@ -117,6 +120,8 @@ const SecondRegistrationContainer = ({data=[], dataFrom="database"})=>{
                                 name="discapacidadDesc"
                                 label="Cuéntanos qué discapacidad tienes"
                                 className="w*full"
+
+                                innerRef={{...register("discapacidadDesc")}}
                             />
                         </div>
                     </div>

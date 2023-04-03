@@ -15,11 +15,9 @@ import ErrorElement from "../../Shared/Form/ErrorElement/ErrorElement.component"
 import FileUploadComponent from "../../Shared/Form/FileUploadComponent/FileUploadComponent.component";
 
 //importing modules
-import { 
-    castData, 
+import {  
     errorsMessages, 
     videSettings, 
-    onInvalid, 
     imageAccepted, 
     checkDB,
     checkLS,
@@ -28,7 +26,6 @@ import {
     getItemLS
 } from "../Registration.module";
 
-//TODO: save in local storage users information after first registration step
 
 
 //data 
@@ -72,16 +69,17 @@ const paises = [
 
 
 const FirstRegistrationContainer = ({Data, dataFrom})=>{
+
     const data = getItemLS();
     const navigateTo = useNavigate();
 
+    //initial pais from db or localstorage
+    const defaultPais = checkLS(data, dataFrom) ? data.pais : checkDB(Data, dataFrom) ? "value from db" : null;
+    const defaultDepartamento = checkLS(data, dataFrom) ? data.departamento : checkDB(data, dataFrom) ? "value from db" : null;
+    const defaultMunicipio = checkLS(data, dataFrom) ? data.municipio : checkDB(data, dataFrom) ? "value from db" : null;
+
     //getting objects from useform
-    const { handleSubmit, register, formState: { errors } } = useForm();
-    
-    //handlers of data for options elements
-    const [paisData, setpaisData] = useState([]);
-    const [munData, setmunData] = useState([]);
-    const [dptData, setdptData] = useState([]);
+    const { handleSubmit, register, setValue, formState: { errors } } = useForm();
     
     //takePicture
     const [picture, setPicture] = useState("");
@@ -91,13 +89,18 @@ const FirstRegistrationContainer = ({Data, dataFrom})=>{
     //set toogle camera state
     const [OpenCamera, setOpenCamera] = useState(false);
 
-    //casting data from selects and assing data to img elements
+    //setting default value on selects elements and assing data to img elements
     useEffect(() => {
-        setpaisData(castData(paises, "paises"));
-        setmunData(castData(Municipios, "municipios"));
-        setdptData(castData(Departamentos, "departamentos"));
-
         if(data && dataFrom === "localstorage") setPicture(data.pic_perfil);
+
+        if(!defaultPais) return;
+        setValue("paises", defaultPais);
+
+        if(!defaultDepartamento) return; 
+        setValue("departamento", defaultDepartamento);
+
+        if(!defaultMunicipio) return;
+        setValue("municipio", defaultMunicipio);
     }, []);
 
     //set image view when taking photo
@@ -145,7 +148,7 @@ const FirstRegistrationContainer = ({Data, dataFrom})=>{
             "nombre": data.nombres,
             "pais": data.paises,
             "documento": data.numeroDocumento,
-            "departamento": data.depto,
+            "departamento": data.departamento,
             "municipio": data.municipio,
             "edad": data.edad,
             "telefono": data.telefono,
@@ -155,6 +158,11 @@ const FirstRegistrationContainer = ({Data, dataFrom})=>{
         setItemLS(dataUser);
 
         navigateTo("/registro-step2");
+    }
+
+    //onInvalidHandler
+    const onInvalid=(data)=>{
+        console.log(data);    
     }
 
     //set image view when uploading files
@@ -167,9 +175,11 @@ const FirstRegistrationContainer = ({Data, dataFrom})=>{
         setFileUploaded(file);
       }
 
+
     return(
         <article>
         {/* TODO: Funciones especiales de validacion para documento DUI y correo y despliege de informacion en options*/}
+
             <Form autoComplete="off" 
                 onSubmit = {(handleSubmit(onSubmitHandler, onInvalid))}
              >
@@ -270,20 +280,18 @@ const FirstRegistrationContainer = ({Data, dataFrom})=>{
                                         label="País donde vive"
                                         required = {true}
                                         firstOption="Seleccione"
+                                        
                                         innerRef = {{...register("paises", {
-                                            
-                                            required: false,
-                                            validate: value => value !== "0" || errorsMessages.require
-
+                                           required: errorsMessages.require
                                         })}}
-                                        Data = {paisData}
+                                        
+                                        defaultValue = { defaultPais }
 
-                                        defaultValue = { 
-                                            checkLS(data, dataFrom) ? data.pais : checkDB(Data, dataFrom) ? "value from db" : null
-                                        }
+                                        Data = { paises }
                                     >
                                         <ErrorElement>{errors.paises?.message}</ErrorElement>
                                     </Select>
+
                                 </div>
                             </div>
 
@@ -313,24 +321,21 @@ const FirstRegistrationContainer = ({Data, dataFrom})=>{
                                     <div className="flex flex-col p-2 w-full">
 
                                         <Select 
-                                            name="deptos"
+                                            name="departamentos"
                                             className="w-full"
                                             label   = "Departamentos"
                                             required = {true}
                                             firstOption="Seleccione"
-                                            innerRef = {{...register("depto", {
-                                                required: false,
-                                                validate: value => value !== "0" || errorsMessages.require
+                                            innerRef = {{...register("departamento", {
+                                                required: errorsMessages.require
 
                                             })}}
 
-                                            Data={dptData}
+                                            Data={ Departamentos }
 
-                                            defaultValue = {
-                                                checkLS(data, dataFrom) ? data.departamento : checkDB(data, dataFrom) ? "value from db" : null
-                                            }
+                                            defaultValue = { defaultDepartamento }
                                         >
-                                            <ErrorElement>{errors.depto?.message}</ErrorElement>
+                                            <ErrorElement>{errors.departamento?.message}</ErrorElement>
                                         </Select>
                                     </div> 
 
@@ -342,17 +347,13 @@ const FirstRegistrationContainer = ({Data, dataFrom})=>{
                                             label   = "Municipio"
                                             required = {true}
                                             firstOption="Seleccione"
-                                            defaultValue = {
-                                                checkLS(data, dataFrom) ? data.municipio : checkDB(data, dataFrom) ? "value from db" : null
-                                            }
+                                            defaultValue = { defaultMunicipio }
 
                                             innerRef = {{...register("municipio", {
-                                                required: false,
-                                                validate: value => value!== "0" || errorsMessages.require
-
+                                                required: errorsMessages.require
                                             })}}
 
-                                            Data={munData}
+                                            Data={ Municipios }
                                         >
                                             <ErrorElement>{errors.municipio?.message}</ErrorElement>
                                         </Select>

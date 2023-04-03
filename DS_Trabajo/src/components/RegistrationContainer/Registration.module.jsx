@@ -41,12 +41,12 @@ export const videSettings = {
 
 //casting data for options
 export const  castData =(data, dataFrom)=>{
-    return data.map(element =>{
-        if(dataFrom === "paises") return {id: element.id, value: element.paiNombre};
-        if(dataFrom === "municipios") return {id: element.id, value: element.munNom};
-        if(dataFrom === "departamentos") return {id: element.id, value: element.dptNombre};
-        if(dataFrom === "estudios") return {id: element.id, value: element.nieNombre};
-    });
+    if(dataFrom === "paises") return data.map(element => { return {id: element.id, value: element.paiNombre}});
+    if(dataFrom === "municipios") return data.map(element => { return {id: element.id, value: element.munNom}});
+    if(dataFrom === "departamentos") return data.map(element => { return {id: element.id, value: element.dptNombre}});
+    if(dataFrom === "estudios") return data.map(element => { return {id: element.id, value: element.nieNombre}});
+    if(dataFrom === "discapacitado") return data.map(element => { return {id: element.id, value: element.value}});
+
 }
 
 //check data exists and comes from local or db source
@@ -64,12 +64,6 @@ export const checkDB = (data, value) =>{
 //set and show image from input
 export const imageAccepted = /image\/(png|jpg|jpeg)/gm;
 //onSubmitHandler
-
-
-    //onInvalidHandler
-export const onInvalid=()=>{
-        
-}
 
 //localStorage modules
 

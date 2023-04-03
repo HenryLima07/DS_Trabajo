@@ -1,5 +1,7 @@
 import Options from "./Options/Options.component";
 import { useState, useEffect } from "react";
+import { castData } from "../../../RegistrationContainer/Registration.module";
+import { useForm } from "react-hook-form";
 
 const Select = ({
     name, 
@@ -13,18 +15,20 @@ const Select = ({
     defaultValue,
     ...rest })=>{
 
-    const mappedOptions = Data.map((element, index) => <Options key={index} value={element.id}>{element.value}</Options>);
+    //setting mapped data comparing by name in castData
+    const mappedOptions = castData(Data, name).map((element, index) => <Options key={index} value={element.id}>{element.value}</Options>);
 
-    const [SelectedIndex, SetSelectedIndex] = useState("0");
+    const [SelectedIndex, SetSelectedIndex] = useState("");
 
     useEffect(() => {
         if(!defaultValue) return;
         SetSelectedIndex(defaultValue);
+
     }, []);
     
     const changeHandler = e => {
         SetSelectedIndex(e.target.value);
-      };
+    };
     
       
         return(
@@ -48,7 +52,7 @@ const Select = ({
                 {...rest}
             >
             <>
-                <Options value="0">{firstOption}</Options> 
+                <Options value="">{firstOption}</Options> 
                 {
                     Data && Data.length > 0 ?
                         mappedOptions
@@ -57,7 +61,9 @@ const Select = ({
                 }
                 </>
                 </select>
-            {children}
+            {
+                children
+            }
 
         </>
     )
