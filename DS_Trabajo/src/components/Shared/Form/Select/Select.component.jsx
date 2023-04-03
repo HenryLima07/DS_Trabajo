@@ -1,4 +1,5 @@
 import Options from "./Options/Options.component";
+import { useState, useEffect } from "react";
 
 const Select = ({
     name, 
@@ -7,12 +8,24 @@ const Select = ({
     label = "",
     required = false,
     firstOption = "",
-    defaultOptions = false,
     Data=[],
     children, 
+    defaultValue,
     ...rest })=>{
 
     const mappedOptions = Data.map((element, index) => <Options key={index} value={element.id}>{element.value}</Options>);
+
+    const [SelectedIndex, SetSelectedIndex] = useState("0");
+
+    useEffect(() => {
+        if(!defaultValue) return;
+        SetSelectedIndex(defaultValue);
+    }, []);
+    
+    const changeHandler = e => {
+        SetSelectedIndex(e.target.value);
+      };
+    
       
         return(
         <>
@@ -25,23 +38,17 @@ const Select = ({
                     <></>
                     }:
             </label>
+
             <select 
                 name={name} 
                 className={`h-10 boder-solid border bg-gray-100 border-gray-300 rounded-md ${className}`} 
+                value = {SelectedIndex} onChangeCapture = {changeHandler}
+
                 {...innerRef}
                 {...rest}
             >
             <>
-                <Options selected={true}>{firstOption}</Options> 
-                {
-                    defaultOptions ?
-                        <>
-                            <Options value="S">Sí</Options>
-                            <Options value="N">No</Options>
-                        </>
-                        :
-                        <></>
-                    }
+                <Options value="0">{firstOption}</Options> 
                 {
                     Data && Data.length > 0 ?
                         mappedOptions

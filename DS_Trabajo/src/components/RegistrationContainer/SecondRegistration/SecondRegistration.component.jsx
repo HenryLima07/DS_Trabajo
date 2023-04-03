@@ -9,10 +9,8 @@ import { useState, useEffect } from "react";
 import { castData } from "../Registration.module";
 
 
-//errors messages
-const errorsMessages = {
-    require: "Este campo es requerido",
-}
+//importing modules
+import { errorsMessages, defaultOptions, checkDB } from "../Registration.module";
 
 const estudios=[
     {id: "1", nieNombre: "Pensum cerrado"},
@@ -31,7 +29,7 @@ const estudios=[
     {id: "15", nieNombre: "Maestria"},
 ]
 
-const SecondRegistrationContainer = ()=>{
+const SecondRegistrationContainer = ({data=[], dataFrom="database"})=>{
     //information i dont know
     const information = false;
 
@@ -80,6 +78,10 @@ const SecondRegistrationContainer = ()=>{
                                     required: errorsMessages.require
                                 })}}
 
+                                defaultValue = {
+                                    checkDB(data, dataFrom) ? "value from db" : null
+                                }
+
                                 Data = {Estudios}
 
                             ><ErrorElement>{errors.nivelEstudios?.message}</ErrorElement></Select>
@@ -102,7 +104,7 @@ const SecondRegistrationContainer = ()=>{
                                     name="discapacitado"
                                     label="Posees algún tipo de discapacidad"
                                     className="w-20"
-                                    defaultOptions={true}
+                                    Data={defaultOptions}
                                 />
                         </div>
                     </div>

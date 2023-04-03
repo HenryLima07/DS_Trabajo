@@ -21,8 +21,11 @@ import {
     videSettings, 
     onInvalid, 
     imageAccepted, 
+    checkDB,
+    checkLS,
     setItemLS, 
-    clearLS
+    clearLS,
+    getItemLS
 } from "../Registration.module";
 
 //TODO: save in local storage users information after first registration step
@@ -51,7 +54,7 @@ const Departamentos = [
     {id: "7", dptNombre: "nombre 7"},
     {id: "8", dptNombre: "nombre 8"},
     {id: "9", dptNombre: "nombre 9"},
-    {id: "0", dptNombre: "nombre 0"},
+    {id: "10", dptNombre: "nombre 0"},
 ]
 const paises = [
     {id: "1", paiNombre: "nombre 9"},
@@ -63,12 +66,13 @@ const paises = [
     {id: "7", paiNombre: "nombre 3"},
     {id: "8", paiNombre: "nombre 2"},
     {id: "9", paiNombre: "nombre 1"},
-    {id: "0", paiNombre: "nombre 0"},
+    {id: "10", paiNombre: "nombre 0"},
 ]
 
 
 
-const FirstRegistrationContainer = ({data, dataFrom})=>{
+const FirstRegistrationContainer = ({Data, dataFrom})=>{
+    const data = getItemLS();
     const navigateTo = useNavigate();
 
     //getting objects from useform
@@ -135,7 +139,7 @@ const FirstRegistrationContainer = ({data, dataFrom})=>{
         if(!data) return;
         
         //clearing localstorage to save new instance on same key
-        if(item) clearLS(item);
+        if(dataFrom === "localstorage") clearLS();
 
         const dataUser ={
             "nombre": data.nombres,
@@ -239,6 +243,10 @@ const FirstRegistrationContainer = ({data, dataFrom})=>{
                                         name="nombres"
                                         required = {true}
                                         label = "Nombre completo"
+                                        defaultValue = {
+                                            checkLS(data, dataFrom) ? data.nombre : checkDB(Data, dataFrom) ? "value from database" : null
+                                        }
+
                                         innerRef = {{...register("nombres", {
                                             required: errorsMessages.require, 
                                             pattern:{
@@ -264,9 +272,15 @@ const FirstRegistrationContainer = ({data, dataFrom})=>{
                                         firstOption="Seleccione"
                                         innerRef = {{...register("paises", {
                                             
-                                            required: errorsMessages.require
+                                            required: false,
+                                            validate: value => value !== "0" || errorsMessages.require
+
                                         })}}
                                         Data = {paisData}
+
+                                        defaultValue = { 
+                                            checkLS(data, dataFrom) ? data.pais : checkDB(Data, dataFrom) ? "value from db" : null
+                                        }
                                     >
                                         <ErrorElement>{errors.paises?.message}</ErrorElement>
                                     </Select>
@@ -281,6 +295,10 @@ const FirstRegistrationContainer = ({data, dataFrom})=>{
                                         name = "numeroDocumento"
                                         required = {true}
                                         label = "Documento de Identidad"
+                                        defaultValue = {
+                                            checkLS(data, dataFrom) ? data.documento : checkDB(data, dataFrom) ? "value from db" : null
+                                        }
+
                                         innerRef = {{...register("numeroDocumento", {
                                             required: errorsMessages.require,
                                             
@@ -301,11 +319,16 @@ const FirstRegistrationContainer = ({data, dataFrom})=>{
                                             required = {true}
                                             firstOption="Seleccione"
                                             innerRef = {{...register("depto", {
-                                                required: errorsMessages.require
+                                                required: false,
+                                                validate: value => value !== "0" || errorsMessages.require
 
                                             })}}
 
                                             Data={dptData}
+
+                                            defaultValue = {
+                                                checkLS(data, dataFrom) ? data.departamento : checkDB(data, dataFrom) ? "value from db" : null
+                                            }
                                         >
                                             <ErrorElement>{errors.depto?.message}</ErrorElement>
                                         </Select>
@@ -319,8 +342,13 @@ const FirstRegistrationContainer = ({data, dataFrom})=>{
                                             label   = "Municipio"
                                             required = {true}
                                             firstOption="Seleccione"
+                                            defaultValue = {
+                                                checkLS(data, dataFrom) ? data.municipio : checkDB(data, dataFrom) ? "value from db" : null
+                                            }
+
                                             innerRef = {{...register("municipio", {
-                                                required: errorsMessages.require
+                                                required: false,
+                                                validate: value => value!== "0" || errorsMessages.require
 
                                             })}}
 
@@ -343,6 +371,10 @@ const FirstRegistrationContainer = ({data, dataFrom})=>{
                                             label="Edad"
                                             required = {true}
                                             className= "w-full"
+                                            defaultValue ={
+                                                checkLS(data, dataFrom) ? data.edad : checkDB(data, dataFrom) ? "data from db" : null
+                                            }
+
                                             innerRef = {{...register("edad", {
                                                 required: errorsMessages.require,
                                                 max: {
@@ -367,6 +399,9 @@ const FirstRegistrationContainer = ({data, dataFrom})=>{
                                             type= "number"
                                             className="w-full"
                                             required={true}
+                                            defaultValue ={
+                                                checkLS(data, dataFrom) ? data.telefono : checkDB(data, dataFrom) ? "value from db" : null                                            }
+
                                             innerRef = {{...register("telefono", {
                                                 required: errorsMessages.require
                                             })}}
@@ -383,6 +418,10 @@ const FirstRegistrationContainer = ({data, dataFrom})=>{
                                         required={true}
                                         type="email"
                                         className="w-full"
+                                        defaultValue ={
+                                            checkLS(data, dataFrom) ? data.email : checkDB(data, dataFrom) ? "data from db" : null
+                                        }
+
                                         innerRef= {{...register("email", {
                                             required: errorsMessages.require, 
                                             pattern:{

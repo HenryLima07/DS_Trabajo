@@ -1,6 +1,6 @@
 const Options = ({selected=false, value="", children})=>{
     return(
-        <option selected={selected} value={value}>{children}</option>
+        <option value={value}>{children}</option>
     );
 }
 

@@ -11,8 +11,8 @@ const RegistrationCotainer = ()=>{
     return(
         <section>
             <FirstRegistration 
-                data={DBData ? DBData : localStorageData} 
-                dataFrom={DBData ? "databse" : "localstorage"}
+                 data={DBData ? DBData : []} 
+                dataFrom={DBData ? "database" : "localstorage"}
                 />
         </section>
     )
