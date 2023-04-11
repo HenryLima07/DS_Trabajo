@@ -1,0 +1,12 @@
+
+@mixin media-up($min-width){
+    @media screen and (min-width: $min-width) {
+        @content;
+    }
+}
+
+@mixin clipBorder($min-width: 1024px){
+    @media (min-width: $min-width){
+        clip-path: polygon(0 10rem, 100% 0, 100% 80rem, 0 100%);
+    }
+}
