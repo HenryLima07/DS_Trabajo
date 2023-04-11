@@ -1,0 +1,6 @@
+@import "../../../mixins.module";
+
+.clipBorder{
+    @include clipBorder();
+    
+}
