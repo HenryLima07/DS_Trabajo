@@ -1,0 +1,5 @@
+@import "../../../mixins.module";
+
+.corte{
+        @include clipBorder(0px)
+    }
