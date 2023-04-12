@@ -1,8 +1,6 @@
 
 import { Link } from "react-router-dom";
 
-
-
 const Menu = ({className})=>{
     
     return(
@@ -32,5 +30,5 @@ const Menu = ({className})=>{
 
     )
 }
-""
+
 export default Menu;
