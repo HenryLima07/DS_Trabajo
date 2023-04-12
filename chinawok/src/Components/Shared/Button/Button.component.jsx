@@ -1,7 +1,7 @@
 
 const Button = ({className = "", children})=>{
     return(
-        <button className={` bg-chinaButtons p-5 rounded-2xl m-3 ${className}`}>
+        <button className={` bg-chinaButtons text-white p-5 ${className}`}>
             {children}
         </button>
     )
