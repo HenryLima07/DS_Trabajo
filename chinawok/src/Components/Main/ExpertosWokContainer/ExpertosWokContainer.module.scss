@@ -1,5 +1,12 @@
 @import "../../../mixins.module";
 
 .corte{
-        @include clipBorder(0px)
+        @media (min-width: 0px){
+            clip-path: polygon(0 5rem, 100% 0, 100% 80rem, 0 100%);
+        }
+        @media (min-width: 1024px){
+            clip-path: polygon(0 7rem, 100% 0, 100% 80rem, 0 100%);
+        }
+
+        
     }
