@@ -1,9 +1,4 @@
 import { Link } from "react-router-dom";
-
-import Swal from "sweetalert2/dist/sweetalert2.all";
-
-import classes from "./AsideMenu.module.scss";
-
 import AsideCloseIcon from "../../../../assets/img/wendy/close-w.svg";
 import { useState } from "react";
 
@@ -62,5 +57,5 @@ const AsideMenu=({asideicon, className})=>{
         </>
     )
 }
-//1024
+
 export default AsideMenu;
