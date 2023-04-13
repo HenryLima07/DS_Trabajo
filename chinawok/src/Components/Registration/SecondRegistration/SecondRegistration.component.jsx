@@ -3,11 +3,12 @@ import Input from "../../Shared/Form/Input/Input.component";
 import Select from "../../Shared/Form/Select/Select.component";
 import ErrorElement from "../../Shared/Form/ErrorElement/ErrorElement.component";
 import FormFooterContainer from "../FormFooterContainer/FormFooterContainer.component";
+import Button from "../../../Components/Shared/Button/Button.component";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 //importing modules
 import { errorsMessages, defaultOptions, checkDB, getItemLS } from "../Registration.module";
@@ -30,9 +31,8 @@ const estudios=[
 ]
 
 const SecondRegistrationContainer = ({data=[], dataFrom="database"})=>{
-    
-    const navigateTo = useNavigate();
 
+    const navigateTo = useNavigate();
     //information i dont know
     const information = false;
 
@@ -48,21 +48,22 @@ const SecondRegistrationContainer = ({data=[], dataFrom="database"})=>{
 
     //onSubmitHandler
     const onSubmitHandler = (data)=>{
-        const firstRegistrationData = getItemLS();
-        if(!firstRegistrationData){
+        console.log("yea");
+        const firstRegistration = getItemLS();
+        if(!firstRegistration){
 
-            navigateTo("/registro");
+            navigateTo("/registro")
         }
-
         const Data = {
             ...data,
-            ...firstRegistrationData,
+            ...firstRegistration
         }
         console.log(Data);
     }
-
+    
     const onInvalid=()=>{
-        console.log("badabumlikethebumbumbum");
+        console.log("yeant");
+        
     }
     
 
@@ -168,7 +169,7 @@ const SecondRegistrationContainer = ({data=[], dataFrom="database"})=>{
                     </div>
 
                     <div className="w-full text-center">
-                        <button className="bg-wendys-blue hover:bg-wendys-darkblue transition-colors text-white my-8 py-4 px-8 rounded font-bold">Guardar Información</button>
+                        <Button className="hover:bg-chinaGreen transition-colors  my-8 py-4 px-8 rounded font-bold">Guardar Información</Button>
                     </div>
                 </div>
             </Form>
