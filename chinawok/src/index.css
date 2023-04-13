@@ -11,6 +11,8 @@
   color: black;
   background-color: #fff;
 
+  font-family: "Frankfurter";
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -19,11 +21,6 @@
 }
 
 @font-face {
-  font-family: "wendysSimpleFont";
-  src: url("./assets/fonts/Fontfabric - IntroBlack.otf");
-}
-
-@font-face {
-  font-family: "wendysFont";
-  src: url("./assets/fonts/Fontfabric - IntroBlackInlineCaps.otf");
+  font-family: "Frankfurter";
+  src: url("./assets/fonts/Frankfurter Medium Std Regular.otf");
 }

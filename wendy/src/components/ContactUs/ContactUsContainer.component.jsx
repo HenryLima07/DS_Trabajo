@@ -1,9 +1,4 @@
 
-import { useEffect, useState } from 'react';
-
-const imageMimeType = /image\/(png|jpg|jpeg)/i;
-
-
 const ContactUsContainer = ()=>{
 
     return(
