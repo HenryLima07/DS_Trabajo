@@ -12,7 +12,7 @@ function App() {
     <Routes>
         <Route path="/" element={<MainView />} />
         <Route path="/registro" element={<Registration />} />
-        <Route path="/registro-pt2" element={<RegistrationPt2 />} />
+        <Route path="/registro-step-2" element={<RegistrationPt2 />} />
         <Route path="/actualiza-perfil" element={<UpdateProfile />} />
         <Route path="/contactos" element={<ContactUs />} />
     </Routes>
