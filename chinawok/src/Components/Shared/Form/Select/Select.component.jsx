@@ -1,7 +1,7 @@
 import Options from "./Options/Options.component";
 import { useState, useEffect } from "react";
-import { castData } from "../../../RegistrationContainer/Registration.module";
-import { useForm } from "react-hook-form";
+import { castData } from "./Select.module";
+
 
 const Select = ({
     name, 
