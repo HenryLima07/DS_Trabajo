@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 
 //importing elements
 import Form from "../../Shared/Form/Form.component";
-import Input from "../../../components/Shared/Form/Input/Input.component";
+import Input from "../../../Components/Shared/Form/Input/Input.component";
 import Select from "../../Shared/Form/Select/Select.component";
 import ErrorElement from "../../Shared/Form/ErrorElement/ErrorElement.component";
 import FormFooterContainer from "../FormFooterContainer/FormFooterContainer.component";
