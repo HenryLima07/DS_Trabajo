@@ -53,7 +53,7 @@ export const imageAccepted = /image\/(png|jpg|jpeg)/gm;
 
 //localStorage modules
 
-const KEY_FORMS = "token_forms";
+const KEY_FORMS = "token_forms_HUT";
 
 export const clearLS = ()=> localStorage.clear();
 
