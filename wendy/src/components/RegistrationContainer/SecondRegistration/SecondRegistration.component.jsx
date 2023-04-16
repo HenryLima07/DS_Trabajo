@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 //importing modules
-import { errorsMessages, defaultOptions, checkDB, getItemLS } from "../Registration.module";
+import { errorsMessages, defaultOptions, checkDB, getItemLS, clearLS } from "../Registration.module";
 
 const estudios=[
     {id: "1", nieNombre: "Pensum cerrado"},
@@ -59,6 +59,8 @@ const SecondRegistrationContainer = ({data=[], dataFrom="database"})=>{
             ...firstRegistrationData,
         }
         console.log(Data);
+
+        clearLS();
     }
 
     const onInvalid=()=>{

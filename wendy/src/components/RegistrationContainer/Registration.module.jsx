@@ -67,9 +67,9 @@ export const imageAccepted = /image\/(png|jpg|jpeg)/gm;
 
 //localStorage modules
 
-const KEY_FORMS = "token_forms";
+const KEY_FORMS = "token_forms_WENDYS";
 
-export const clearLS = ()=> localStorage.clear();
+export const clearLS = ()=> localStorage.removeItem(KEY_FORMS);
 
 export const setItemLS = (item) =>localStorage.setItem(KEY_FORMS, JSON.stringify(item));
 
