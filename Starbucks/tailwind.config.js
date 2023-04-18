@@ -14,6 +14,8 @@ module.exports = {
       colors:{
         "starbucks-Green": "#006F42",
         "starbucks-Gray": "#E6E6E6",
+        "starbucks-Dark-Gray": "#888888",
+        "starbucks-Black": "#1E1E1E",
       },
       backgroundSize:{
         "normalWaterMarkSize": "40rem",
