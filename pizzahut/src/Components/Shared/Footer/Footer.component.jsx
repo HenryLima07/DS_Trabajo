@@ -12,10 +12,10 @@ const Footer = ({year = "2016"})=>{
                 <Link className="text-white p-2 w-[100%] text-center border-r-[1px] hover:bg-pizzaYellow hover:text-pizzaGray" to={"/actualiza-perfil"}>ACTUALIZA TU PERFIL</Link>
                 <Link className="text-white p-2 w-[100%] text-center hover:bg-pizzaYellow hover:text-pizzaGray" to={"/contactos"}>CONTÁCTANOS</Link>
             </div>
-            <div class="w-full bg-pizzaGray flex flex-col items-center text-white text-xs">
+            <div className="w-full bg-pizzaGray flex flex-col items-center text-white text-xs">
                 TRABAJOS EN CENTROAMÉRICA
             </div>
-            <div class="w-full bg-pizzaGray flex flex-col items-center text-white text-xs">
+            <div className="w-full bg-pizzaGray flex flex-col items-center text-white text-xs">
                 ©Pizza Hut, Copyright {year}. Todos los Derechos Reservados.
             </div>
         </div>
