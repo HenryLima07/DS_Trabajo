@@ -6,9 +6,15 @@ export default {
   ],
   theme: {
     extend: {
-      /* fontFamily: {
-        'Frankfurter': 'Frankfurter',
-      }, */
+      fontFamily: {
+        'mohave': 'mohave',
+        'bebasN': 'bebas neue',
+        'ronnia': 'ronnia',
+        'avenirMedium': 'AvenirLTStd-Medium',
+        'lato': 'lato',
+        'unitedSansBlack': 'UnitedSansSemiCond-Black',
+        'unitedSansBlack': 'UnitedSansSemiCond-Black',
+      },
       colors: {
         'pizzaGray' : '#2F2B29', 
         'pizzaRed' : '#D4000F',

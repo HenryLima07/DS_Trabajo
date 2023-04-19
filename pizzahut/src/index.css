@@ -20,5 +20,37 @@
   -webkit-text-size-adjust: 100%;
 }
 
+@font-face {
+  font-family: 'mohave';
+  src: url('../resources/fonts/Mohave.otf');
+}
 
-/* add font family */
+@font-face {
+  font-family: 'bebas neue';
+  src: url('../resources/fonts/BebasNeue.otf');
+}
+
+@font-face {
+  font-family: 'ronnia';
+  src: url('../resources/fonts/RonniaReg.otf');    
+}
+
+@font-face {
+  font-family: 'AvenirLTStd-Medium';
+  src: url('../resources/fonts/AvenirLTStd-Medium.otf');    
+}
+
+@font-face {
+  font-family: 'lato';
+  src: url('../resources/fonts/Lato-Regular.ttf');    
+}
+
+@font-face {
+  font-family: 'UnitedSansSemiCond-Black';
+  src: url('../resources/fonts/UnitedSansSemiCond-Black.otf');    
+}
+
+@font-face {
+  font-family: 'UnitedSansSemiCond-Black';
+  src: url('../resources/fonts/UnitedSansSemiCond-Bold.otf');    
+}
