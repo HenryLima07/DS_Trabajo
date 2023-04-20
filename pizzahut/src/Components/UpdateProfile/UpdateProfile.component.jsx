@@ -22,7 +22,7 @@ const UpdateProfileContainer = ()=>{
     }
 
     return(
-        <section className="flex flex-col lg:flex-row p-4 items-center justify-around" >
+        <section className="flex flex-col lg:flex-row p-4 items-center justify-around mb-12 bg-pizzaGrayAlt" >
 
             <div className="flex flex-col items-center py-8">
                 <h2 className="mb-8">

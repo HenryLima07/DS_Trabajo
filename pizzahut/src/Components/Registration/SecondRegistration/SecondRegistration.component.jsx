@@ -37,19 +37,22 @@ const SecondRegistrationContainer = ({data=[], dataFrom="database"})=>{
     const information = false;
 
     const defaultEstudios = checkDB(data, dataFrom) ? "value from db" : null;
-
+    const firstRegistration = getItemLS();
+    
+    
     const { handleSubmit, register, setValue, formState: { errors } } = useForm();
-
+    
     //casting at loading
     useEffect(() => {
+        if(!firstRegistration) navigateTo("/registro")        
+
         if(!defaultEstudios) return;
         setValue(defaultEstudios);
+        
     }, []);
 
     //onSubmitHandler
     const onSubmitHandler = (data)=>{
-        console.log("yea");
-        const firstRegistration = getItemLS();
         if(!firstRegistration){
 
             navigateTo("/registro")
@@ -68,7 +71,7 @@ const SecondRegistrationContainer = ({data=[], dataFrom="database"})=>{
     
 
     return(
-        <section>
+        <section className=" bg-pizzaGrayAlt mb-12">
 
             <article className="flex flex-col items-center py-8">
 

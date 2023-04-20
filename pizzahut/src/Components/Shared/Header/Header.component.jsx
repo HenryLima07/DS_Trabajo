@@ -15,8 +15,6 @@ const Header = ()=>{
     const onScrollHandler = ()=>{
         if(window.pageYOffset >= sticky) return setPositionSticky(true);
         setPositionSticky(false);
-
-        console.log(window.pageYOffset)
     }
 
     window.onscroll = () => onScrollHandler();

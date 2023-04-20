@@ -2,10 +2,11 @@ import Header from "../Components/Shared/Header/Header.component";
 import Footer from "../Components/Shared/Footer/Footer.component";
 import FirstRegistrationContainer from "../Components/Registration/FirstRegistration/FirstRegistration.component";
 import TitleContainer from "../Components/Shared/Title/TitleContainer.component";
+import bg from "/img/bg.svg";
 
 const FirstRegistrationView =()=>{
     return (
-        <div>
+        <div className= {`bg-[url('${bg}')]`}>
             <Header />
             <TitleContainer 
                 Title="¡Nuestra gran familia espera por ti!" 

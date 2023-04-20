@@ -128,7 +128,7 @@ const FirstRegistrationContainer = ({Data, dataFrom})=>{
 
 
     return(
-        <article>
+        <article className=" mb-12 bg-pizzaGrayAlt">
         {/* TODO: Funciones especiales de validacion para documento DUI y correo y despliege de informacion en options*/}
 
             <Form autoComplete="off" 

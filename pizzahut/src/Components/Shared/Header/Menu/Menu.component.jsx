@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Menu = ({className})=>{
     
     return(
-        <div className={` hidden lg:flex h-17 bg-black text-white w-full justify-center ${className} z-10`}>
+        <div className={` hidden lg:flex h-17 text-white w-full justify-center ${className} z-10`}>
             <ul className="lg:flex flex-row justify-around items-center text-xl xl:text-2xl w-[90%]">
 
                 <Link to={"/"}>
