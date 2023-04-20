@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import Webcam from "react-webcam";
 
-//importing src
+//importing assets
+import pic_profile from "../../../assets/image/profile-placeholder.png";
 
 //importing elements
 import FileUploadComponent from "../../Shared/Form/FileUploadComponent/FileUploadComponent.component";
@@ -99,7 +100,7 @@ const ProfilePicContainer = ({setPictureHandler, picture})=>{
                                         <img src={picture} />
                                     :   <></>
                                 :
-                                <img src={"#"} alt="background wendys icon" /> 
+                                <img src={pic_profile} alt="background wendys icon" /> 
                         }
 {/* TODO: add imagehere */}
                     </div>

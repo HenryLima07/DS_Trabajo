@@ -7,7 +7,7 @@ import bg from "/img/bg.svg";
 
 const ContactUsView = ()=>{
     return(
-        <div className= {`bg-[url('${bg}')]`}>
+        <div className= {`bg-[url('/img/bg.svg')]`}>
             <Header />
             <TitleContainer Title="¿Deseas ponerte en contacto con nosotros?" subTitle="Puedes escribirnos a los siguientes correos, dependiendo del país en que te encuentres:" />
             <ContactUsContainer />

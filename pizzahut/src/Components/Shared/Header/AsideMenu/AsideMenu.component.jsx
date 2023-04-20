@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-
-//import AsideCloseIcon from "../../../../assets/imgs/close.png";
-//import chinawokIcon from "../../../../assets/imgs/logoEmpleos.png";
 import { useState } from "react";
+
+//importing assets
+import menu_icon from "../../../../assets/image/art06.svg";
+import close_icon from "../../../../assets/image/close.png"
 
 
 const AsideMenu=({className})=>{
@@ -17,7 +18,7 @@ const AsideMenu=({className})=>{
 
         <>
         <div id="hamburger" className={`w-full z-10 ${className}`}>
-            <a className="flex flex-row w-full p-4 bg-black lg:hidden items-center">
+            <a className="bg-pizzaMenuBG flex flex-row w-full p-4 lg:hidden items-center">
                 <div className="space-y-1.5 cursor-pointer" onClick={()=> setToogleAsideMenuHandler(true)}>
                     <span className="block w-8 h-0.5 bg-white rounded-lg"></span>
                     <span className="block w-8 h-0.5 bg-white rounded-lg"></span>
@@ -33,10 +34,10 @@ const AsideMenu=({className})=>{
             <div className="bg-chinaGreen flex flex-col">
 
                 <div className="flex flex-row h-30 justify-between items-start pt-4 px-6">
-                    <img src={"#"} alt="chinawok logo" className="w-1/3"/>
+                    <img src={menu_icon} alt="pizza hut logo" className="w-1/3"/>
 
                     <div className="w-1/4 flex flex-col items-center cursor-pointer" onClick={()=>setToogleAsideMenuHandler(false)}>
-                        <img src={"#"} alt="close logo" className="w-8" />
+                        <img src={close_icon} alt="close icon" className="w-8" />
                         <h2 className="text-white">CLOSE</h2>
                     </div>
 

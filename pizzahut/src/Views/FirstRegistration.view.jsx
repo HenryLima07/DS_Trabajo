@@ -6,7 +6,7 @@ import bg from "/img/bg.svg";
 
 const FirstRegistrationView =()=>{
     return (
-        <div className= {`bg-[url('${bg}')]`}>
+        <div className= {`bg-[url('/img/bg.svg')]`}>
             <Header />
             <TitleContainer 
                 Title="¡Nuestra gran familia espera por ti!" 

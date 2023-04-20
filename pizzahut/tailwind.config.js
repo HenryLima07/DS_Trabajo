@@ -17,6 +17,7 @@ export default {
       },
       colors: {
         'pizzaGray' : '#2F2B29', 
+        'pizzaMenuBG' : '#22221E', 
         'pizzaRed' : '#D4000F',
         'pizzaYellow' : '#FBEA6C',
         'pizzaGrayAlt' : '#E6E6E6',

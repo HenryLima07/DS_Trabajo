@@ -7,7 +7,7 @@ import Menu from "./Menu/Menu.component";
 //importing icons
 //import banner from "../../../assets/imgs/logoEmpleos.png";
 
-const sticky = 50;
+const sticky = 185;
 
 const Header = ()=>{
     const [positionSticky, setPositionSticky] = useState(false);
@@ -22,12 +22,13 @@ const Header = ()=>{
     return(
         <>
             <header className="flex flex-col items-center w-full">
-                <Menu className={`${ positionSticky ? " fixed top-0" : ""}`}/>
+                <Menu className={`${ positionSticky ? " fixed top-0 " : ""}`}/>
             </header>
 
             <article>
-                <AsideMenu  className={`${positionSticky ? "fixed top-0" : ""}`} />
+                <AsideMenu  className={`${positionSticky ? "fixed top-0 bg-pizzaMenuBG" : ""}`} />
             </article>
+            
         </>
     );
 }

@@ -6,7 +6,7 @@ import bg from "/img/bg.svg";
 
 const RegistrationPt2 = ()=>{
     return(
-        <div className= {`bg-[url('${bg}')]`}>
+        <div className= {`bg-[url('/img/bg.svg')]`}>
             <Header />
             <Title Title="¡Tenés todo el talento que andamos buscando!" />
             <SecondRegistrationContainer />

@@ -6,7 +6,7 @@ import bg from "/img/bg.svg";
 
 const MainView = ()=>{
     return(
-        <div className= {`bg-[url('${bg}')]`}>
+        <div className= {`bg-[url('/img/bg.svg')]`}>
             <Header />
             <MainContainer/>
             <Footer />
