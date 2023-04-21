@@ -1,34 +1,28 @@
 
 import { Link } from "react-router-dom";
 
+//importing assets
+import icon from "../../../../assets/img/kfc.svg"
+import senior_red from "../../../../assets/img/art05.svg"
+
+import LinkElement from "./LinkElement/LinkElement.component";
+
 const Menu = ({className})=>{
     
     return(
-        <div className={` hidden bg-kfc-white text-black h-11 w-full lg:flex ${className} z-10`}>
-            <ul className="w-full hidden lg:flex flex-row justify-around items-center font-bold text-lg">
+        <div className={` font-ronnia hidden bg-kfc-white text-black h-auto w-full lg:flex flex-col items-center ${className} z-10`}>
+            <ul className="w-[90%] hidden lg:flex flex-row justify-around items-center font-bold text-lg p-3">
                 <Link to={"/"}>
-                    <li><img src="#" alt="KFC icon"/></li>
+                    <li><img src={icon} alt="KFC icon" className=" w-48" /></li>
                 </Link>
-                <Link to={"/"} className=" uppercase">
-                    <li>Inicio</li>
-                </Link>
-
-                <Link to={"/registro"} className=" uppercase">
-                    <li>Aplica por primera vez</li>
-                </Link>
-
-                <Link to={"/actualiza-perfil"} className=" uppercase">
-                    <li>Actualiza tu perfil</li>
-                </Link>
-
-                <Link to={"/plazas"} className=" uppercase">
-                    <li>Plazas disponibles</li>
-                </Link>
-
-                <Link to={"/contactos"} className=" uppercase" >
-                    <li>Contáctanos</li>
-                </Link>
+                
+                <LinkElement to={"/"}> Inicio </LinkElement>
+                <LinkElement to={"/registro"}> Aplica por primera vez </LinkElement>
+                <LinkElement to={"/actualiza-perfil"}> Actualiza tu perfil </LinkElement>
+                <LinkElement to={"/plazas"}> Plazas disponibles </LinkElement>
+                <LinkElement to={"/contactos"}> Contáctanos </LinkElement>
             </ul>
+            <div className={`w-full bg-kfc-red h-4`}></div>
         </div>
 
     )
