@@ -3,6 +3,7 @@ import Webcam from "react-webcam";
 
 //importing assets
 import pic_profile from "../../../assets/image/profile-placeholder.png";
+import pic_profile_second from "../../../assets/image/usuario.png"
 
 //importing elements
 import FileUploadComponent from "../../Shared/Form/FileUploadComponent/FileUploadComponent.component";
@@ -43,7 +44,7 @@ const ProfilePicContainer = ({setPictureHandler, picture})=>{
               setPictureHandler(result)
               
               data.pic_perfil = result;
-              setItemLS(data)
+              setItemLS(data);
             }
           }
           fileReader.readAsDataURL(fileUploaded);
@@ -100,12 +101,12 @@ const ProfilePicContainer = ({setPictureHandler, picture})=>{
                                         <img src={picture} />
                                     :   <></>
                                 :
-                                <img src={pic_profile} alt="background wendys icon" /> 
+                                <img src={pic_profile_second} alt="background wendys icon" /> 
                         }
 {/* TODO: add imagehere */}
                     </div>
 
-                    <div className="w-full mt-4 flex flex-col items-center border-t-8 p-4">
+                    <div className="w-full mt-4 flex flex-col items-center border-t-4 p-4">
                        
                        <FileUploadComponent onChange={onChangeHandler}></FileUploadComponent> 
                         <br />
