@@ -8,10 +8,9 @@ import Button from "../../../Components/Shared/Button/Button.component";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
-import { Navigate } from "react-router-dom";
 
 //importing modules
-import { errorsMessages, defaultOptions, checkDB, getItemLS } from "../Registration.module";
+import { errorsMessages, defaultOptions, checkDB, getItemLS, clearLS } from "../Registration.module";
 
 const estudios=[
     {id: "1", nieNombre: "Pensum cerrado"},
@@ -61,11 +60,12 @@ const SecondRegistrationContainer = ({data=[], dataFrom="database"})=>{
             ...data,
             ...firstRegistration
         }
-        console.log(Data);
+        navigateTo("/")
+        clearLS();
     }
     
     const onInvalid=()=>{
-        console.log("yeant");
+        console.log("invalid");
         
     }
     

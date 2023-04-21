@@ -37,12 +37,12 @@ export const videSettings = {
 
 //check data exists and comes from local or db source
 export const checkLS = (data, value)=>{
-    if(data && value === "localstorage") return true;
+    if(data && value.toLowerCase() === "localstorage") return true;
     return false;
 }
 
 export const checkDB = (data, value) =>{
-    if(data && data.length > 0 && value === "database") return true;
+    if(data && data.length > 0 && value.toLowerCase() === "database") return true;
     return false;
 }
 
@@ -55,7 +55,7 @@ export const imageAccepted = /image\/(png|jpg|jpeg)/gm;
 
 const KEY_FORMS = "token_forms_HUT";
 
-export const clearLS = ()=> localStorage.clear();
+export const clearLS = ()=> localStorage.removeItem(KEY_FORMS);
 
 export const setItemLS = (item) =>localStorage.setItem(KEY_FORMS, JSON.stringify(item));
 
