@@ -83,7 +83,7 @@ const FirstRegistrationContainer = ({Data, dataFrom})=>{
 
     //setting default value on selects elements and assing data to img elements
     useEffect(() => {
-        if(data && dataFrom === "localstorage") setPictureHandler(data.pic_perfil);
+        if(data && dataFrom.toLowerCase() === "localstorage") setPictureHandler(data.pic_perfil);
 
         if(!defaultPais) return;
         setValue("paises", defaultPais);
@@ -113,15 +113,12 @@ const FirstRegistrationContainer = ({Data, dataFrom})=>{
             "pic_perfil": picture
         }
         setItemLS(dataUser);
-
-        console.log(dataUser);
-
         navigateTo("/registro-step-2");
     }
 
     //onInvalidHandler
     const onInvalid=(data)=>{
-        console.log(data);    
+        console.log("invalid");    
     }
 
 
