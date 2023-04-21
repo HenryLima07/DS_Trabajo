@@ -4,10 +4,6 @@ import { useState } from "react";
 import AsideMenu from "./AsideMenu/AsideMenu.component";
 import Menu from "./Menu/Menu.component";
 
-//importing icons
-// import banner from "../../../assets/img/wendy/Wendys.svg";
-// import asideicon from "../../../assets/img/wendy/logo-wht.svg";
-
 const bigSticky = 127;
 const smallSticky = 59;
 

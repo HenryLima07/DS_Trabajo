@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 //importing assets
 import icon from "../../../../assets/img/kfc.svg"
-import senior_red from "../../../../assets/img/art05.svg"
 
 import LinkElement from "./LinkElement/LinkElement.component";
 
