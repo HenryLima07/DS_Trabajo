@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
-// import AsideCloseIcon from "../../../../assets/img/wendy/close-w.svg";
 import { useState } from "react";
 
+//assets
+import AsideCloseIcon from "../../../../assets/img/close.png";
+import art_icon from "../../../../assets/img/kfc02.svg";
 
-const AsideMenu=({asideicon, className})=>{
+const AsideMenu=({className})=>{
 
     const [toogleAsideMenu, setToogleAsideMenu] = useState(false);
 
@@ -31,10 +33,10 @@ const AsideMenu=({asideicon, className})=>{
             <div className="bg-kfc-red flex flex-col">
 
                 <div className="flex flex-row h-30 justify-between items-start pt-4 px-6">
-                    <img src={asideicon} alt="Wendy logo" className="w-1/3"/>
+                    <img src={art_icon} alt="KFC logo" className="w-1/3"/>
 
                     <div className="w-1/4 flex flex-col items-center cursor-pointer" onClick={()=>setToogleAsideMenuHandler(false)}>
-                        <img src={"#"} alt="close logo" className="w-8" />
+                        <img src={AsideCloseIcon} alt="close logo" className="w-8" />
                         <h2 className=" text-white">CLOSE</h2>
                     </div>
 

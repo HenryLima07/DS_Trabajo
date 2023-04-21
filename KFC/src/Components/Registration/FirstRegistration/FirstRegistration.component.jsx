@@ -128,7 +128,7 @@ const FirstRegistrationContainer = ({Data, dataFrom})=>{
 
 
     return(
-        <main className=" bg-kfc-red-alt">
+        <main className=" bg-kfc-white">
         {/* TODO: Funciones especiales de validacion para documento DUI y correo y despliege de informacion en options*/}
 
             <Form autoComplete="off" 

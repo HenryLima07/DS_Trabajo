@@ -57,9 +57,8 @@ const SecondRegistrationContainer = ({data=[], dataFrom="database"})=>{
             ...data,
             ...firstRegistration
         }
-        console.log(Data);
-
         clearLS();
+        navigateTo("/")
     }
     
     const onInvalid=()=>{
@@ -71,7 +70,7 @@ const SecondRegistrationContainer = ({data=[], dataFrom="database"})=>{
     return(
         <main>
 
-            <article className="flex flex-col items-center py-8 bg-kfc-red-alt">
+            <article className="flex flex-col items-center py-8 bg-kfc-white">
 
             <Form autoComplete = "off" onSubmit = {handleSubmit(onSubmitHandler, onInvalid)}>
 

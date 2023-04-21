@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Webcam from "react-webcam";
 
 //importing src
-// import chinaGray from "../../../assets/imgs/logoEmpleosGris.png";
+import pic_profile from "../../../assets/img/usuario.png";
 
 //importing elements
 import FileUploadComponent from "../../Shared/Form/FileUploadComponent/FileUploadComponent.component";
@@ -100,20 +100,20 @@ const ProfilePicContainer = ({setPictureHandler, picture})=>{
                                         <img src={picture} />
                                     :   <></>
                                 :
-                                <img src={"#"} alt="background wendys icon" />
+                                <img src={pic_profile} alt="background wendys icon" />
                         }
 
                     </div>
 
-                    <div className="w-full mt-4 flex flex-col items-center p-4 border-kfc-red-alt border-t-8">
+                    <div className="w-full mt-4 flex flex-col items-center p-4 bg-gray-200">
                        
                        <FileUploadComponent onChange={onChangeHandler}></FileUploadComponent> 
                         <br />
                         {
                             OpenCamera ? 
-                                <label htmlFor="" className="bg-kfc-red-buttons text-white py-4 px-8 rounded cursor-pointer" onClick={takePhotoHandler}>Tomar foto</label>
+                                <label htmlFor="" className="bg-kfc-red-buttons hover:bg-kfc-red transition-colors text-white py-4 px-8 rounded cursor-pointer" onClick={takePhotoHandler}>Tomar foto</label>
                                 :
-                                <label className="bg-kfc-red-buttons text-white py-3 px-6 rounded cursor-pointer" onClick={()=>setOpenCameraHandler(true)}>Abrir camara</label>
+                                <label className="bg-kfc-red-buttons hover:bg-kfc-red transition-colors text-white py-3 px-6 rounded cursor-pointer" onClick={()=>setOpenCameraHandler(true)}>Abrir camara</label>
                         }
                         
                         <p className="mt-4 text-center">
