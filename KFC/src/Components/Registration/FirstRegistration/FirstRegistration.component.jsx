@@ -341,7 +341,7 @@ const FirstRegistrationContainer = ({Data, dataFrom})=>{
                     </div>
                 </div>
             </div>
-            <FormFooterContainer className={"text-right"}><button type="submit">CONTINUAR &gt;</button></FormFooterContainer>
+            <FormFooterContainer className={"text-right"}><button type="submit" className=" hover:text-kfc-red transition-colors">CONTINUAR &gt;</button></FormFooterContainer>
         </Form>
 
         </main>

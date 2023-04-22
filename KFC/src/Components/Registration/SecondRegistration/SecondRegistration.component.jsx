@@ -175,7 +175,7 @@ const SecondRegistrationContainer = ({data=[], dataFrom="database"})=>{
             </Form>
 
             </article>
-            <FormFooterContainer><Link to={"/registro"}>&lt; REGRESAR</Link></FormFooterContainer>
+            <FormFooterContainer><Link to={"/registro"} className="hover:text-kfc-red transition-colors">&lt; REGRESAR</Link></FormFooterContainer>
             
         </main>
        

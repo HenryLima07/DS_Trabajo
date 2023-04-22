@@ -8,7 +8,7 @@ const FormFooterContainer = ({className, children}) =>{
             {/* 
             <div className=" w-full text-right font-wendysSimpleFont text-xl text-white"></div>  */}
         
-            <div className = { `w-full font-wendysSimpleFont text-xl text-black font-ronnia ${className}` }>
+            <div className = { `w-full text-xl text-black font-ronnia ${className}` }>
                 {children}
             </div> 
         </div>
