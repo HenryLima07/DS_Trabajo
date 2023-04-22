@@ -7,8 +7,17 @@ module.exports = {
   theme: {
     extend: {
       fontFamily:{
-        "wendysSimpleFont": "wendysSimpleFont",
-        "wendysFont": "wendysFont"
+        "mohave": "mohave",
+        "bebasN": "bebas neue",
+        "ronnia": "ronnia",
+        "avenirMedium": "AvenirLTStd-Medium",
+        "lato": "lato",
+        "BNT": "BigNoodleTitling",
+        "pacifico": "pacifico",
+        "cheddar": "cheddar",
+        "neo": "neo",
+        "soho": "soho",
+          
       },
 
       colors:{

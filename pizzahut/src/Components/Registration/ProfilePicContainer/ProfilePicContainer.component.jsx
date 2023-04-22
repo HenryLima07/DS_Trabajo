@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import Webcam from "react-webcam";
 
-//importing src
+//importing assets
+import pic_profile from "../../../assets/image/profile-placeholder.png";
+import pic_profile_second from "../../../assets/image/usuario.png"
 
 //importing elements
 import FileUploadComponent from "../../Shared/Form/FileUploadComponent/FileUploadComponent.component";
@@ -42,7 +44,7 @@ const ProfilePicContainer = ({setPictureHandler, picture})=>{
               setPictureHandler(result)
               
               data.pic_perfil = result;
-              setItemLS(data)
+              setItemLS(data);
             }
           }
           fileReader.readAsDataURL(fileUploaded);
@@ -72,11 +74,11 @@ const ProfilePicContainer = ({setPictureHandler, picture})=>{
     }    
 
     return(
-        <div className="mx-8">
+        <div className="mx-8 rounded-xl bg-white">
             
             <div className="flex flex-col justify-center">
 
-                <div className="flex flex-col items-center border border-gray-200 rounded-md">
+                <div className="flex flex-col items-center border rounded">
 
                     <div className="w-52 flex flex-col items-center p-4">
                         {
@@ -99,12 +101,12 @@ const ProfilePicContainer = ({setPictureHandler, picture})=>{
                                         <img src={picture} />
                                     :   <></>
                                 :
-                                <img src={"#"} alt="background wendys icon" /> 
+                                <img src={pic_profile_second} alt="background wendys icon" /> 
                         }
 {/* TODO: add imagehere */}
                     </div>
 
-                    <div className="w-full mt-4 flex flex-col items-center bg-gray-200 p-4">
+                    <div className="w-full mt-4 flex flex-col items-center border-t-4 p-4">
                        
                        <FileUploadComponent onChange={onChangeHandler}></FileUploadComponent> 
                         <br />

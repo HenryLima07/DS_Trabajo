@@ -22,7 +22,7 @@ const UpdateProfileContainer = ()=>{
     }
 
     return(
-        <main className=" bg-kfc-red-alt flex flex-col lg:flex-row p-4 items-center justify-around" >
+        <main className=" bg-kfc-white flex flex-col lg:flex-row p-4 items-center justify-around" >
 
             <div className="flex flex-col items-center py-8">
                 <h2 className="mb-8">

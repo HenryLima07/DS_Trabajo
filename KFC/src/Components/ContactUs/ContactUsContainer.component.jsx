@@ -2,7 +2,7 @@
 const ContactUsContainer = ()=>{
 
     return(
-        <main className=" bg-kfc-red-alt text-kfc-gray flex flex-col lg:flex-row py-16 items-center justify-around">
+        <main className=" bg-kfc-white text-black flex flex-col lg:flex-row py-16 items-center justify-around">
 
             <div className="md:hidden">
                 

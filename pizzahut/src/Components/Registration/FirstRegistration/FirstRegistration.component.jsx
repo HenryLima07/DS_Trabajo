@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { useForm } from "react-hook-form";
-
 
 //importing elements
 import Form from "../../Shared/Form/Form.component";
@@ -85,7 +83,7 @@ const FirstRegistrationContainer = ({Data, dataFrom})=>{
 
     //setting default value on selects elements and assing data to img elements
     useEffect(() => {
-        if(data && dataFrom === "localstorage") setPictureHandler(data.pic_perfil);
+        if(data && dataFrom.toLowerCase() === "localstorage") setPictureHandler(data.pic_perfil);
 
         if(!defaultPais) return;
         setValue("paises", defaultPais);
@@ -115,20 +113,17 @@ const FirstRegistrationContainer = ({Data, dataFrom})=>{
             "pic_perfil": picture
         }
         setItemLS(dataUser);
-
-        console.log(dataUser);
-
         navigateTo("/registro-step-2");
     }
 
     //onInvalidHandler
     const onInvalid=(data)=>{
-        console.log(data);    
+        console.log("invalid");    
     }
 
 
     return(
-        <article>
+        <article className=" mb-12 bg-pizzaGrayAlt">
         {/* TODO: Funciones especiales de validacion para documento DUI y correo y despliege de informacion en options*/}
 
             <Form autoComplete="off" 

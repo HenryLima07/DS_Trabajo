@@ -7,13 +7,18 @@ module.exports = {
   theme: {
     extend: {
       fontFamily:{
-        "wendysSimpleFont": "wendysSimpleFont",
-        "wendysFont": "wendysFont"
+        "mohave": "mohave",
+        "ronnia": "ronnia",
+        "avenirMedium": "AvenirLTStd-Medium",
+        "lato": "lato",
+        "bebasN": "bebas neue"
       },
 
       colors:{
         "starbucks-Green": "#006F42",
         "starbucks-Gray": "#E6E6E6",
+        "starbucks-Dark-Gray": "#888888",
+        "starbucks-Black": "#1E1E1E",
       },
       backgroundSize:{
         "normalWaterMarkSize": "40rem",

@@ -73,11 +73,11 @@ const ProfilePicContainer = ({setPictureHandler, picture})=>{
     }    
 
     return(
-        <div className="mx-8 bg-white">
+        <div className="mx-8 bg-white rounded-xl">
             
             <div className="flex flex-col justify-center">
 
-                <div className="flex flex-col items-center border border-kfc-red-alt-200 rounded-md">
+                <div className="flex flex-col items-center border-2 rounded-md">
 
                     <div className="w-52 flex flex-col items-center p-4">
                         {
@@ -105,7 +105,7 @@ const ProfilePicContainer = ({setPictureHandler, picture})=>{
 
                     </div>
 
-                    <div className="w-full mt-4 flex flex-col items-center p-4">
+                    <div className="w-full mt-4 flex flex-col items-center p-4 border-t-4">
                        
                        <FileUploadComponent onChange={onChangeHandler}></FileUploadComponent> 
                         <br />

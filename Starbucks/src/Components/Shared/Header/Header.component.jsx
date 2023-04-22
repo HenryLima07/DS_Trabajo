@@ -8,7 +8,7 @@ import Menu from "./Menu/Menu.component";
 // import banner from "../../../assets/img/wendy/Wendys.svg";
 // import asideicon from "../../../assets/img/wendy/logo-wht.svg";
 
-const sticky = 160;
+const sticky = 59;
 
 const Header = ()=>{
     const [positionSticky, setPositionSticky] = useState(false);
@@ -24,7 +24,6 @@ const Header = ()=>{
         <>
             <header className="flex flex-col items-center w-full">
                 <Menu className={`${ positionSticky ? "fixed top-0": ""}`}/>
-                <div className=" w-full bg-kfc-red h-2"></div>
             </header>
 
             <article>

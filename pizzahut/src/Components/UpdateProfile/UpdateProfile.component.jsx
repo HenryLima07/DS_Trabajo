@@ -7,22 +7,25 @@ import { useForm } from "react-hook-form";
 
 //errors messages
 import { errorsMessages } from "./UpdateProfile.module";
+import { useNavigate } from "react-router-dom";
 
 const UpdateProfileContainer = ()=>{
+
+    const navigateTo = useNavigate();
 
     const { register, handleSubmit, formState:{ errors } } = useForm();
 
     const onSubmitHandler = (data)=>{
         const { email } = data;
-        console.log(email);
+        navigateTo("/");
     }
  {/* TODO: Add action on submit */}
     const onInvalidHandler = ()=>{
-
+        console.log("invalid");
     }
 
     return(
-        <section className="flex flex-col lg:flex-row p-4 items-center justify-around" >
+        <section className="flex flex-col lg:flex-row p-4 items-center justify-around mb-12 bg-pizzaGrayAlt" >
 
             <div className="flex flex-col items-center py-8">
                 <h2 className="mb-8">
@@ -40,7 +43,7 @@ const UpdateProfileContainer = ()=>{
                             <div className="flex flex-col p-2 items-start">
 
                                 <Input 
-                                    type="email" 
+                                    type="text" 
                                     name="email"
                                     required={true} 
                                     label = "Correo electrónico"

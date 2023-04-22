@@ -2,7 +2,7 @@
 const ContactUsContainer = ()=>{
 
     return(
-        <section className=" flex flex-col lg:flex-row py-16 items-center justify-around">
+        <section className=" flex flex-col lg:flex-row py-16 items-center justify-around bg-pizzaGrayAlt mb-12">
 
             <div className="md:hidden">
                 

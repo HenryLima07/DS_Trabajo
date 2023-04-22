@@ -15,20 +15,20 @@ const AsideMenu=({asideicon, className})=>{
 
         <>
         <div id="hamburger" className={`w-full z-10 ${className}`}>
-            <a className="flex flex-row w-full p-4 bg-kfc-red lg:hidden items-center">
+            <a className="flex flex-row w-full p-4 bg-white lg:hidden items-center">
                 <div className="space-y-1.5 cursor-pointer" onClick={()=> setToogleAsideMenuHandler(true)}>
-                    <span className="block w-8 h-0.5 bg-white rounded-lg"></span>
-                    <span className="block w-8 h-0.5 bg-white rounded-lg"></span>
-                    <span className="block w-8 h-0.5 bg-white rounded-lg"></span>
+                    <span className="block w-8 h-0.5 bg-starbucks-Black rounded-lg"></span>
+                    <span className="block w-8 h-0.5 bg-starbucks-Black rounded-lg"></span>
+                    <span className="block w-8 h-0.5 bg-starbucks-Black rounded-lg"></span>
                 </div>
 
-                <div className="pl-4 text-lg text-white font-bold">Menu</div>
+                <div className="pl-4 text-lg text-starbucks-Black font-bold">Menu</div>
             </a>
         </div>
 
         {/* set class to toogle it */}
         <aside className={`transition-all duration-300 w-80 h-full fixed -left-80 top-0 bottom-0 shadow-md shadow-black z-[1200] ${toogleAsideMenu ? "translate-x-80": " invisible"}`}>
-            <div className="bg-kfc-red flex flex-col">
+            <div className="bg-starbucks-Green flex flex-col">
 
                 <div className="flex flex-row h-30 justify-between items-start pt-4 px-6">
                     <img src={asideicon} alt="Wendy logo" className="w-1/3"/>
@@ -40,11 +40,11 @@ const AsideMenu=({asideicon, className})=>{
 
                 </div>
 
-                <h2 className=" px-2 py-4 w-full text-3xl text-justify text-white uppercase"> KFC empleos </h2>
+                <h2 className=" px-2 py-4 w-full text-3xl text-justify text-white uppercase"> starbucks empleos </h2>
             
             </div>
 
-            <ul className="bg-kfc-white min-h-full flex flex-col items-start p-4 text-lg text-wendys-blue font-bold">
+            <ul className="bg-white min-h-full flex flex-col items-start p-4 text-lg text-starbucks-Black font-bold">
 
                 <Link to={"/"} className="m-3 uppercase"> <li>Inicio</li></Link>
                 <Link to={"/registro"} className="m-3 uppercase"> <li>Aplica por primera vez</li></Link>

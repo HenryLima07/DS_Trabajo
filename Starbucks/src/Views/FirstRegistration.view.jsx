@@ -4,6 +4,7 @@ import FirstRegistrationContainer from "../Components/Registration/FirstRegistra
 
 //modules
 import { getItemLS } from "../Components/Registration/Registration.module";
+import Header from "../Components/Shared/Header/Header.component";
 
 //getting data from local storage
 const localStorageData = getItemLS();
@@ -13,6 +14,7 @@ const DBData = false;
 const FirstRegistration =()=>{
     return(
         <div>
+            <Header />
             <Title Title="Únete a Starbucks" subTitle="Para unirte debes registrarte ingresando los siguientes datos:" />
             <FirstRegistrationContainer 
                  data={DBData ? DBData : []} 
