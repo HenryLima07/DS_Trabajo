@@ -11,7 +11,8 @@ module.exports = {
         "ronnia": "ronnia",
         "avenirMedium": "AvenirLTStd-Medium",
         "lato": "lato",
-        "bebasN": "bebas neue"
+        "bebasN": "bebas neue",
+        "openSans": "open-sans"
       },
 
       colors:{
@@ -19,6 +20,9 @@ module.exports = {
         "starbucks-Gray": "#E6E6E6",
         "starbucks-Dark-Gray": "#888888",
         "starbucks-Black": "#1E1E1E",
+        "starbucks-red-buttons": "#C4122F",
+        "starbucks-Green-alt": "#D4E9E2",
+
       },
       backgroundSize:{
         "normalWaterMarkSize": "40rem",

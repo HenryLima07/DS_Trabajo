@@ -1,7 +1,7 @@
 
 const Button = ({className = "", children, rest})=>{
     return(
-        <button className={` bg-starbucks-Green text-white p-5 ${className}`} {...rest}>
+        <button className={` bg-starbucks-red-buttons hover:bg-starbucks-Green transition-colors text-white p-5 ${className}`} {...rest}>
             {children}
         </button>
     )

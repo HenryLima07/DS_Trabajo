@@ -22,10 +22,10 @@ const UpdateProfile = ()=>{
     }
 
     return(
-        <main className=" bg-starbucks-Gray flex flex-col lg:flex-row p-4 items-center justify-around" >
+        <main className=" bg-white flex flex-col lg:flex-row p-4 items-center justify-around" >
 
             <div className="flex flex-col items-center py-8">
-                <h2 className="mb-8">
+                <h2 className="mb-8 font-lato">
                     Por tu seguridad confirma tus datos y te enviaremos un link a tu correo electrónico para que puedas actualizar tu información
                 </h2>
 
