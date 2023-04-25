@@ -8,7 +8,7 @@ import UpdateProfileContainer from "../../components/UpdateProfileContainer.comp
 const UpdateProfileView =()=>{
     return(
         <>
-            <Header />
+            <Header sticky={120} />
                 <Title Title="¡Tenés todo el talento que andamos buscando!" />
                 <UpdateProfileContainer />
             <Footer />

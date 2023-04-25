@@ -8,9 +8,8 @@ import Menu from "./Menu/Menu.component";
 import banner from "../../../assets/img/wendy/Wendys.svg";
 import asideicon from "../../../assets/img/wendy/logo-wht.svg";
 
-const sticky = 160;
 
-const Header = ()=>{
+const Header = ({sticky = 160})=>{
     const [positionSticky, setPositionSticky] = useState(false);
     
     const onScrollHandler = ()=>{
