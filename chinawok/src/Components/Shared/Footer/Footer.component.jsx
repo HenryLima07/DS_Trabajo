@@ -12,10 +12,10 @@ const Footer = ({year = "2023"})=>{
                 <Link className="text-white p-2 w-[100%] text-center border-r-[1px]" to={"/actualiza-perfil"}>ACTUALIZA TU PERFIL</Link>
                 <Link className="text-white p-2 w-[100%] text-center border-r-[1px]" to={"/contactos"}>CONTÁCTANOS</Link>
             </div>
-            <div class="w-full bg-black flex flex-col items-center text-white text-xs">
+            <div className="w-full bg-black flex flex-col items-center text-white text-xs">
                 TRABAJOS EN CENTROAMÉRICA
             </div>
-            <div class="w-full bg-black flex flex-col items-center text-white text-xs">
+            <div className="w-full bg-black flex flex-col items-center text-white text-xs">
                 ©Chinawok, Copyright {year}. Todos los Derechos Reservados.
             </div>
         </div>

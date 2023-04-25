@@ -9,7 +9,7 @@ import Menu from "./Menu/Menu.component";
 import banner from "../../../assets/imgs/logoEmpleos.png";
 //import asideicon from "../../../assets/img/wendy/logo-wht.svg";
 
-const sticky = 160;
+const sticky = 110;
 
 const Header = ()=>{
     const [positionSticky, setPositionSticky] = useState(false);
