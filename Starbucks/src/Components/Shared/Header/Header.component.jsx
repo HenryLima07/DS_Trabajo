@@ -4,17 +4,14 @@ import { useState } from "react";
 import AsideMenu from "./AsideMenu/AsideMenu.component";
 import Menu from "./Menu/Menu.component";
 
-//importing icons
-// import banner from "../../../assets/img/wendy/Wendys.svg";
-// import asideicon from "../../../assets/img/wendy/logo-wht.svg";
 
-const sticky = 59;
+const sticky = 0;
 
 const Header = ()=>{
     const [positionSticky, setPositionSticky] = useState(false);
     
     const onScrollHandler = ()=>{
-        if(window.pageYOffset >= sticky) return setPositionSticky(true);
+        if(window.pageYOffset > sticky) return setPositionSticky(true);
         setPositionSticky(false);
     }
 

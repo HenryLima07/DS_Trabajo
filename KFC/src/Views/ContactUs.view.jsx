@@ -8,7 +8,7 @@ const ContactUs = ()=>{
     return(
         <div>
 
-            <Header />
+            <Header smallSticky={45} />
             <TitleContainer 
                 Title="¿Deseas ponerte en contacto con nosotros?" 
                 subTitle="Puedes escribirnos a los siguientes correos, dependiendo del país en que te encuentres:"

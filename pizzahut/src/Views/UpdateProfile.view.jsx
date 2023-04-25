@@ -7,7 +7,7 @@ import bg from "/img/bg.svg";
 const UpdateProfileView =()=>{
     return(
         <div className= {`bg-[url('/img/bg.svg')]`}>
-            <Header />
+            <Header sticky={1}/>
             <TitleContainer Title="Actualiza tu información" subTitle="Para que tengas acceso a tu CV debes ingresar tus datos." />
             <UpdateProfileContainer />
             <Footer />

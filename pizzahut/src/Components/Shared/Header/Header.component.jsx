@@ -7,13 +7,12 @@ import Menu from "./Menu/Menu.component";
 //importing icons
 //import banner from "../../../assets/imgs/logoEmpleos.png";
 
-const sticky = 185;
 
-const Header = ()=>{
+const Header = ({sticky = 60})=>{
     const [positionSticky, setPositionSticky] = useState(false);
     
     const onScrollHandler = ()=>{
-        if(window.pageYOffset >= sticky) return setPositionSticky(true);
+        if(window.pageYOffset > sticky) return setPositionSticky(true);
         setPositionSticky(false);
     }
 

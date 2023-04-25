@@ -31,7 +31,7 @@ const AsideMenu=({className})=>{
 
         {/* set class to toogle it */}
         <aside className={` bg-pizzaRed transition-all duration-300 w-80 h-full fixed -left-80 top-0 bottom-0 shadow-md shadow-black z-[1200] ${toogleAsideMenu ? "translate-x-80": " invisible"}`}>
-            <div className="bg-chinaGreen flex flex-col">
+            <div className="flex flex-col pl-2">
 
                 <div className="flex flex-row h-30 justify-between items-start pt-4 px-6">
                     <img src={menu_icon} alt="pizza hut logo" className="w-1/3"/>
@@ -43,7 +43,7 @@ const AsideMenu=({className})=>{
 
                 </div>
 
-                <h2 className=" font-wendysFont px-2 py-4 w-full text-3xl text-justify text-white uppercase"> pizza hut Empleos </h2>
+                <h2 className="px-2 py-4 w-full text-3xl text-white uppercase"> pizza hut Empleos </h2>
             
             </div>
 
